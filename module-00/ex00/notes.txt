@@ -1,0 +1,11 @@
+-no norm
+
+-all classes need UpperCamelFormat
+
+-almost everything from stdlib is allowed! no other ext libs tho
+
+-no printf alloc or free
+
+-no namespace or friend
+
+-STL in mod08 only so no containers or algorithms
