@@ -1,0 +1,32 @@
+-no norm
+
+-all classes need UpperCamelFormat
+
+-almost everything from stdlib is allowed! no other ext libs tho
+
+-no printf alloc or free
+
+-no namespace or friend
+
+-STL in mod08 only so no containers or algorithms
+
+-codam can use c11
+
+
+
+
+
+what are vectors and containers
+
+and namespaces
+
+auto keyword
+
+why are these things called iterators
+
+
+
+
+difference between macros and functions
+
+post en pre increment operators

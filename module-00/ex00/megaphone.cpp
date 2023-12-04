@@ -45,3 +45,6 @@ int	main (int argc, char **argv)
 	std::cout << std::endl; //is there any functional diff between endl and \n?
 	return (0);
 }
+
+//perhaps a more CPP way of solving this would be using std::transform,
+//but it seems to be not allowed since id need the algorithm header
