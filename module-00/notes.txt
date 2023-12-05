@@ -16,7 +16,7 @@
 
 
 
-what are vectors and containers
+what are vecors and containers
 
 and namespaces
 
