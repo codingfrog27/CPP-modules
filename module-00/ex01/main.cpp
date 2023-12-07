@@ -14,31 +14,59 @@
 #include <unordered_map>
 
 void	search(){}
-void	add(){}
+void	add(){
+
+}
 void	exit_phonebook(){
 	std::cout << "doei";
 	std::exit(0);
 }
 
+// int	main(int argc, char **argv){
+// 	PhoneBook	Rad_Book;
+// 	std::string	input;
+
+// 	std::unordered_map<std::string, void (PhoneBook::*)()> input_map = {
+// 		{"ADD", Rad_Book.add_contact()},
+// 		{"SEARCH", Rad_Book.Search()},
+// 		{"EXIT", exit_phonebook}
+// 	};
+
+// 	std::cout << "hoi, reading input\n";
+// 	while (1)
+// 	{
+// 		std::cin >> input;
+// 		// std::cout << "input =" << input;
+// 		auto it = input_map.find(input);
+// 		if (it == input_map.end())
+// 		{
+// 			std::cout << "Please give a valid command, only available commands" \
+// 					<< "ADD, SEARCH and EXIT\n";
+// 			continue;
+// 		}
+// 		it->second();
+// 	}
+// 	return (0);
+// }
+
 int	main(int argc, char **argv){
-	PhoneBook	hoi;
+	PhoneBook	Rad_Book;
 	std::string	input;
 
-	std::unordered_map<std::string, void(*)()> input_map = {
-		{"ADD", search},
-		{"SEARCH", add},
-		{"EXIT", exit_phonebook}
-	};
-
+	std::cout << "hoi, reading input\n";
 	while (1)
 	{
-		std::cout << "hoi, reading input\n";
 		std::cin >> input;
-		// std::cout << "input =" << input;
-		auto it = input_map.find(input);
-		if (it ==input_map.end())
-			continue;
-		it->second();
+
+		if (input == "ADD")
+			Rad_Book.add_contact();
+		else if (input == "SEARCH")
+			std::cout << "Function not made yet";
+		else if (input == "EXIT")
+			exit_phonebook();
+		else
+			std::cout << "Please give a valid command, only available commands" \
+					<< "ADD, SEARCH and EXIT\n";
 	}
 	return (0);
 }

@@ -15,21 +15,37 @@
 
 #include <iostream>
 
+#define MAX_CONTACTS 8
+
 class	Contact
 {
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	darkest_secret;
+	public:
+		//info to input
+		std::string	first_name;
+		std::string	last_name;
+		std::string	nickname;
+		std::string	darkest_secret;
+
+		bool	empty_entry;
+		int		id;
+
+				Contact();
+		void	add_Contact(int	id);
 };
 
 class PhoneBook
 {
 private:
-	Contact Contacts[8];
+	Contact Contacts[MAX_CONTACTS];
 public:
-	PhoneBook(/* args */);
-	~PhoneBook();
+		PhoneBook(/* args */);
+		~PhoneBook();
+
+void	add_contact();
+int		remove_oldest();
+
+int		created_contacts;
+
 };
 
 
