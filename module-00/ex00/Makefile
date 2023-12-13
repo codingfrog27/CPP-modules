@@ -12,11 +12,11 @@
 
 NAME = megaphone
 
-CC = c++
+CC = g++
 
 Wflags = -Wall -Wextra -Werror -fsanitize=address
 
-OLDCPPFLAG = -std=c++98
+OLDCPPFLAG = -std=c++17
 
 SOURCES = megaphone.cpp
 
@@ -30,13 +30,16 @@ COLOUR_END=\033[0m
 #-----------------
 
 NAME: $(SOURCES)
-	@$(CC) $(Wflags) $(SOURCES) -o $(NAME)
+	@$(CC) $(Wflags) $(SOURCES) $(VERSION_FLAG) -o $(NAME)
 	@printf "$(COLOUR_BLUE)megaphone$(COLOUR_GREEN) Compiled!\n\n$(COLOUR_END)"
 
 re: fclean NAME
 
 run: NAME
 	@./megaphone hi I am testing uwu
-fclean:
+
+clean:
 	@rm $(NAME)
 	@printf "$(COLOUR_RED) Megaphone removed \n\n$(COLOUR_END)"
+
+fclean: clean

@@ -40,7 +40,7 @@ void	exit_phonebook(){
 // 		auto it = input_map.find(input);
 // 		if (it == input_map.end())
 // 		{
-// 			std::cout << "Please give a valid command, only available commands" \
+// 			std::cout << "Please give a valid command, only available commands"  //line break here
 // 					<< "ADD, SEARCH and EXIT\n";
 // 			continue;
 // 		}
@@ -49,7 +49,7 @@ void	exit_phonebook(){
 // 	return (0);
 // }
 
-int	main(int argc, char **argv){
+int	main(void){
 	PhoneBook	Rad_Book;
 	std::string	input;
 

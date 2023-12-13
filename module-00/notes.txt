@@ -30,3 +30,9 @@ why are these things called iterators
 difference between macros and functions
 
 post en pre increment operators
+
+
+
+
+
+Dont forget to make Makefiles not relink :)

@@ -27,10 +27,10 @@ PhoneBook::~PhoneBook()
 void	PhoneBook::add_contact(){
 
 	size_t i = 0;
-	while (i < MAX_CONTACTS && !Contacts[i].empty_entry) //was for loop but more readable like this?
+	while (i < MAX_INDEX && !Contacts[i].empty_entry) //was for loop but more readable like this?
 		i++;
 	//if (created_contacts > MAX_COUNTACTS)
-	if (i > MAX_CONTACTS){
+	if (i > MAX_INDEX){
 		std::cout << "PhoneBook Full, Removing oldest entry";
 		i = remove_oldest();
 	}
@@ -40,19 +40,30 @@ void	PhoneBook::add_contact(){
 }
 
 
-int	PhoneBook::remove_oldest(){
-	int	replace_index;
+// int	PhoneBook::remove_oldest(){
+// 	int	replace_index;
 
-	for (size_t i = 0; i < MAX_CONTACTS; i++)
-	{
-		if (Contacts[i].id == 0)
-			replace_index = i;
-		else
-			Contacts[i].id--;
-	}
-	created_contacts--;
-	return (replace_index);
+// 	for (size_t i = 0; i < MAX_INDEX; i++)
+// 	{
+// 		if (Contacts[i].id == 0)
+// 			replace_index = i;
+// 		else
+// 			Contacts[i].id--;
+// 	}
+// 	created_contacts--;
+// 	return (replace_index);
+// }
+
+int	PhoneBook::remove_oldest()
+{
+	static int	replace_counter;
+
+	if (replace_counter > MAX_INDEX)
+		replace_counter = 0;
+	replace_counter++;
+	return (replace_counter - 1);
 }
+
 Contact::Contact()
 {
 	empty_entry = true;

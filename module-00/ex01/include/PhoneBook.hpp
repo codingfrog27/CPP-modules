@@ -15,7 +15,7 @@
 
 #include <iostream>
 
-#define MAX_CONTACTS 8
+#define MAX_INDEX 7
 
 class	Contact
 {
@@ -27,7 +27,7 @@ class	Contact
 		std::string	darkest_secret;
 
 		bool	empty_entry;
-		int		id;
+		// int		id;
 
 				Contact();
 		void	add_Contact(int	id);
@@ -36,7 +36,7 @@ class	Contact
 class PhoneBook
 {
 private:
-	Contact Contacts[MAX_CONTACTS];
+	Contact Contacts[MAX_INDEX];
 public:
 		PhoneBook(/* args */);
 		~PhoneBook();
