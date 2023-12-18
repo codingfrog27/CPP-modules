@@ -53,9 +53,9 @@ int	main(void){
 	PhoneBook	Rad_Book;
 	std::string	input;
 
-	std::cout << "hoi, reading input\n";
 	while (1)
 	{
+		std::cout << C_GREEN << "Enter your action oh great Phonebook user: " << C_RESET;
 		std::cin >> input;
 
 		if (input == "ADD")
@@ -65,8 +65,13 @@ int	main(void){
 		else if (input == "EXIT")
 			exit_phonebook();
 		else
-			std::cout << "Please give a valid command, only available commands" \
-					<< "ADD, SEARCH and EXIT\n";
+		{
+			std::cout << C_RED << "\nPlease give a valid command, only available commands" \
+					<< "ADD, SEARCH and EXIT\n\npress enter to continue" << C_RESET;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cin.get();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
 	}
 	return (0);
 }

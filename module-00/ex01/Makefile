@@ -49,7 +49,7 @@ clean:
 	@rm -rf *.o
 	@printf "$(COLOUR_RED)$(NAME) removed \n\n$(COLOUR_END)"
 fclean: clean
-	@rm $(NAME)
+	@rm -rf $(NAME)
 
 
 C_RED		= \033[31m

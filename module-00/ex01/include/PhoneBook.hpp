@@ -14,8 +14,13 @@
 #define PhoneBook_HPP
 
 #include <iostream>
+#include <limits>
 
 #define MAX_INDEX 7
+#define C_RED "\033[1;31m"
+#define C_RESET "\033[0m"
+#define C_GREEN "\033[32m"
+#define C_YELLOW "\033[33m"
 
 class	Contact
 {
@@ -30,7 +35,7 @@ class	Contact
 		// int		id;
 
 				Contact();
-		void	add_Contact(int	id);
+		void	add_Contact(void);
 };
 
 class PhoneBook
@@ -42,9 +47,7 @@ public:
 		~PhoneBook();
 
 void	add_contact();
-int		remove_oldest();
-
-int		created_contacts;
+int		find_oldest_contact_index();
 
 };
 

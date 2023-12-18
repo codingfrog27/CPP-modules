@@ -16,7 +16,6 @@ std::string	input_Info(std::string field_name);
 
 PhoneBook::PhoneBook()
 {
-	created_contacts = 0;
 }
 
 PhoneBook::~PhoneBook()
@@ -29,14 +28,12 @@ void	PhoneBook::add_contact(){
 	size_t i = 0;
 	while (i < MAX_INDEX && !Contacts[i].empty_entry) //was for loop but more readable like this?
 		i++;
-	//if (created_contacts > MAX_COUNTACTS)
 	if (i > MAX_INDEX){
 		std::cout << "PhoneBook Full, Removing oldest entry";
-		i = remove_oldest();
+		i = find_oldest_contact_index();
 	}
-	Contacts[i].add_Contact(created_contacts);
-	created_contacts++;
-	std::cout << "Contact saved!! :))";
+	Contacts[i].add_Contact();
+	std::cout << "Contact saved!! :))\n";
 }
 
 
@@ -54,7 +51,7 @@ void	PhoneBook::add_contact(){
 // 	return (replace_index);
 // }
 
-int	PhoneBook::remove_oldest()
+int	PhoneBook::find_oldest_contact_index()
 {
 	static int	replace_counter;
 
@@ -69,19 +66,19 @@ Contact::Contact()
 	empty_entry = true;
 }
 
-void	Contact::add_Contact(int id)
+void	Contact::add_Contact(void)
 {
 	first_name = input_Info("first name");
 	last_name = input_Info("last name");
 	nickname = input_Info("Nickname");
 	darkest_secret = input_Info("ur filthiest darkest secret uwu");
 	empty_entry = false;
-	this->id = id;
+	// this->id = id;
 }
 
 std::string	input_Info(std::string field_name)
 {
-	std::cout << "please enter " << field_name << std::endl;
+	std::cout << "please enter " << C_YELLOW << field_name << C_RESET << std::endl;
 	std::string	input;
 	while (true)
 	{
