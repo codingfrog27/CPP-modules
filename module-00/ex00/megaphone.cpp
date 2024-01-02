@@ -11,6 +11,11 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <stdlib.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <sys/time.h>
+#include <unistd.h>
 
 #define COLOUR_END "\033[0m"
 #define COLOUR_RED "\033[0;31m"
@@ -48,3 +53,11 @@ int	main (int argc, char **argv)
 
 //perhaps a more CPP way of solving this would be using std::transform,
 //but it seems to be not allowed since id need the algorithm header
+
+
+//appending is a possible alternative tho!
+	// std::string	input;
+
+	// input = argv[1];
+	// for (int i = 2; argv[i] != NULL; i++)
+	// 	input.append(argv[i]);

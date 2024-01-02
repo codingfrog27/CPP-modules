@@ -33,7 +33,7 @@ void	PhoneBook::add_contact(){
 		i = find_oldest_contact_index();
 	}
 	Contacts[i].add_Contact();
-	std::cout << "Contact saved!! :))\n";
+	std::cout << "Contact saved!! :))" << std::endl;
 }
 
 
@@ -86,6 +86,22 @@ std::string	input_Info(std::string field_name)
 		if (!input.empty())
 			return (input);
 		std::cout << "No empty fields allowed bucko >:)";
+	}
+
+}
+
+void PhoneBook::search()
+{
+	if (Contacts[0].empty_entry){
+		std::cout << C_RED << "No contacts to search yet :s" << std::endl;
+		return;
+	}
+	for (size_t i = 0; Contacts[i].empty_entry == false; i++)
+	{
+		//if any of the fields are more than 10 chars I need to replace them with a truncated version
+		//if firstname.length > 10 printing_firstname = firstname.substr(10).. something like that k byee
+		std::cout << std::left << std::setw(10) << i << '|' << std::setw(10) << Contacts[i].first_name \
+		<< '|' << std::setw(10) << Contacts[i].last_name << '|' << std::setw(10) << Contacts[i].nickname << std::endl;
 	}
 
 }

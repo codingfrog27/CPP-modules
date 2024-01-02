@@ -13,12 +13,15 @@
 #include "PhoneBook.hpp"
 #include <unordered_map>
 
-void	search(){}
+
+void	search(){
+
+}
 void	add(){
 
 }
 void	exit_phonebook(){
-	std::cout << "doei";
+	std::cout << "doei\n";
 	std::exit(0);
 }
 
@@ -53,15 +56,17 @@ int	main(void){
 	PhoneBook	Rad_Book;
 	std::string	input;
 
+	//welcome msg + available commands (mb load screen)
+
 	while (1)
 	{
-		std::cout << C_GREEN << "Enter your action oh great Phonebook user: " << C_RESET;
-		std::cin >> input;
+		std::cout << C_GREEN << "\n\nEnter your action oh great Phonebook user: " << C_RESET;
+		std::getline(std::cin, input);
 
 		if (input == "ADD")
 			Rad_Book.add_contact();
 		else if (input == "SEARCH")
-			std::cout << "Function not made yet";
+			Rad_Book.search();
 		else if (input == "EXIT")
 			exit_phonebook();
 		else
@@ -69,9 +74,10 @@ int	main(void){
 			std::cout << C_RED << "\nPlease give a valid command, only available commands" \
 					<< "ADD, SEARCH and EXIT\n\npress enter to continue" << C_RESET;
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cin.get();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 	}
 	return (0);
 }
+// cin << ignores empty newlines, getline doesnt
+// std::setw(10) << input;
+		// std::right()

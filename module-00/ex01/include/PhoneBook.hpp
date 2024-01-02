@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <limits>
+#include <iomanip>
 
 #define MAX_INDEX 7
 #define C_RED "\033[1;31m"
@@ -47,6 +48,7 @@ public:
 		~PhoneBook();
 
 void	add_contact();
+void	search();
 int		find_oldest_contact_index();
 
 };
