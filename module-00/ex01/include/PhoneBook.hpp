@@ -43,6 +43,7 @@ class PhoneBook
 {
 private:
 	Contact Contacts[MAX_INDEX];
+	inline void format_name(std::string name);
 public:
 		PhoneBook(/* args */);
 		~PhoneBook();
@@ -54,26 +55,4 @@ int		find_oldest_contact_index();
 };
 
 
-
-// class MyClass //damm bruh vscode autocomplete almost too strong
-// {
-// public:
-// 	MyClass();
-// 	MyClass(MyClass &&) = default;
-// 	MyClass(const MyClass &) = default;
-// 	MyClass &operator=(MyClass &&) = default;
-// 	MyClass &operator=(const MyClass &) = default;
-// 	~MyClass();
-
-// private:
-
-// };
-
-// MyClass::MyClass()
-// {
-// }
-
-// MyClass::~MyClass()
-// {
-// }
 #endif // PhoneBook_HPP

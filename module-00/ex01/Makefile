@@ -14,7 +14,7 @@ NAME = PhoneBook
 
 CC = g++
 
-Wflags = -Wall -Wextra -Werror
+Wflags = -Wall -Wextra -Werror -g
 
 VERSION_FLAG = -std=c++17
 

@@ -33,7 +33,7 @@ void	PhoneBook::add_contact(){
 		i = find_oldest_contact_index();
 	}
 	Contacts[i].add_Contact();
-	std::cout << "Contact saved!! :))" << std::endl;
+	std::cout << "\nContact saved!! :))" << std::endl;
 }
 
 
@@ -82,26 +82,58 @@ std::string	input_Info(std::string field_name)
 	std::string	input;
 	while (true)
 	{
-		std::cin >> input;
+		std::getline(std::cin, input); //switched from cin to avoid spaces leading to double entries :)
 		if (!input.empty())
 			return (input);
 		std::cout << "No empty fields allowed bucko >:)";
 	}
-
+ //input reading only stops on non empty input so no need to check .... I take it back on repeated calls it doesnt get flushed
+//  without this check
 }
 
 void PhoneBook::search()
 {
 	if (Contacts[0].empty_entry){
 		std::cout << C_RED << "No contacts to search yet :s" << std::endl;
-		return;
+		return ;
 	}
-	for (size_t i = 0; Contacts[i].empty_entry == false; i++)
+	int	i = 0;
+	std::cout <<
+	while(Contacts[i].empty_entry == false)
 	{
-		//if any of the fields are more than 10 chars I need to replace them with a truncated version
-		//if firstname.length > 10 printing_firstname = firstname.substr(10).. something like that k byee
-		std::cout << std::left << std::setw(10) << i << '|' << std::setw(10) << Contacts[i].first_name \
-		<< '|' << std::setw(10) << Contacts[i].last_name << '|' << std::setw(10) << Contacts[i].nickname << std::endl;
+		// std::cout << std::right << std::setw(10) << i << '|' << std::setw(10) << display[0]
+		// << '|' << std::setw(10) << Contacts[i].last_name << '|' << std::setw(10) << Contacts[i].nickname << std::endl;
+		std::cout << std::setw(10) << i << '|';
+		format_name(Contacts[i].first_name);
+		format_name(Contacts[i].last_name);
+		format_name(Contacts[i].nickname);
+		std::cout << std::endl;
+		i++;
 	}
-
+	int	index;
+	while (1)
+	{
+		std::cout << "\nPlease give the index of the contact you'd like to see :)" << std::endl;
+		std::cin >> index;
+		if (index >= i || index < 0)
+			std::cout << C_RED "Please give a valid existing index" << C_RESET << std::endl;
+		else
+			break;
+	}
+	std::cout << std::endl << Contacts[i].first_name;
+	std::cout << std::endl << Contacts[i].last_name;
+	std::cout << std::endl << Contacts[i].nickname;
+	std::cout << std::endl << Contacts[i].darkest_secret <<std::endl;
 }
+
+inline void PhoneBook::format_name(std::string name)
+{
+	std::string output;
+	output = (name.size() > 10) ? (name.substr(0, 9) + '.') : name;
+	std::cout << std::setw(10) << output << '|';
+}
+
+		// if (Contacts[i].first_name.size() > 10)
+		// 	display[0] = Contacts[i].first_name.substr(0, 9) + '.';
+		// else
+		// 	display[0] = Contacts[i].first_name;

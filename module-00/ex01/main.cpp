@@ -62,7 +62,6 @@ int	main(void){
 	{
 		std::cout << C_GREEN << "\n\nEnter your action oh great Phonebook user: " << C_RESET;
 		std::getline(std::cin, input);
-
 		if (input == "ADD")
 			Rad_Book.add_contact();
 		else if (input == "SEARCH")
@@ -73,8 +72,8 @@ int	main(void){
 		{
 			std::cout << C_RED << "\nPlease give a valid command, only available commands" \
 					<< "ADD, SEARCH and EXIT\n\npress enter to continue" << C_RESET;
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	return (0);
 }
