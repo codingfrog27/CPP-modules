@@ -16,12 +16,17 @@
 #include <iostream>
 #include <limits>
 #include <iomanip>
+#include <thread>
+#include <chrono>
 
 #define MAX_INDEX 7
+#define LINE "--------------------------------------------"
 #define C_RED "\033[1;31m"
 #define C_RESET "\033[0m"
 #define C_GREEN "\033[32m"
 #define C_YELLOW "\033[33m"
+#define PURPLE "\033[35m"
+#define BOLD "\033[1m"
 
 class	Contact
 {
@@ -51,6 +56,7 @@ public:
 void	add_contact();
 void	search();
 int		find_oldest_contact_index();
+void	choose_and_display(int existing_contacts);
 
 };
 

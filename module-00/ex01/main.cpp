@@ -14,51 +14,33 @@
 #include <unordered_map>
 
 
-void	search(){
 
-}
-void	add(){
-
-}
 void	exit_phonebook(){
-	std::cout << "doei\n";
+	std::cout << PURPLE BOLD << "\n\n  ✨✨✨✨✨✨✨✨✨\n✨B Y E   C U T I E✨\n  ✨✨✨✨✨✨✨✨✨" << std::endl;
 	std::exit(0);
 }
 
-// int	main(int argc, char **argv){
-// 	PhoneBook	Rad_Book;
-// 	std::string	input;
 
-// 	std::unordered_map<std::string, void (PhoneBook::*)()> input_map = {
-// 		{"ADD", Rad_Book.add_contact()},
-// 		{"SEARCH", Rad_Book.Search()},
-// 		{"EXIT", exit_phonebook}
-// 	};
-
-// 	std::cout << "hoi, reading input\n";
-// 	while (1)
-// 	{
-// 		std::cin >> input;
-// 		// std::cout << "input =" << input;
-// 		auto it = input_map.find(input);
-// 		if (it == input_map.end())
-// 		{
-// 			std::cout << "Please give a valid command, only available commands"  //line break here
-// 					<< "ADD, SEARCH and EXIT\n";
-// 			continue;
-// 		}
-// 		it->second();
-// 	}
-// 	return (0);
-// }
+void	greeting()
+{
+	std::cout << BOLD PURPLE << "\n\tW E L C O M E   T O\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::cout << "✨M Y" << std::flush;
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::cout << "    C U T E" << std::flush;
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::cout << "    P H O N E B O O K✨\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::seconds(2));
+	std::cout << "you have 3 possible actions:	" << C_YELLOW "ADD	SEARCH	EXIT" << std::endl;
+	 std::this_thread::sleep_for(std::chrono::seconds(1));
+}
 
 int	main(void){
 	PhoneBook	Rad_Book;
 	std::string	input;
 
-	//welcome msg + available commands (mb load screen)
-
-	while (1)
+	greeting();
+	while (true)
 	{
 		std::cout << C_GREEN << "\n\nEnter your action oh great Phonebook user: " << C_RESET;
 		std::getline(std::cin, input);

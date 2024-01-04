@@ -78,7 +78,7 @@ void	Contact::add_Contact(void)
 
 std::string	input_Info(std::string field_name)
 {
-	std::cout << "please enter " << C_YELLOW << field_name << C_RESET << std::endl;
+	std::cout << "please enter " << C_YELLOW << field_name << ':' << C_RESET;
 	std::string	input;
 	while (true)
 	{
@@ -98,32 +98,42 @@ void PhoneBook::search()
 		return ;
 	}
 	int	i = 0;
-	std::cout <<
-	while(Contacts[i].empty_entry == false)
+	std::cout << LINE << std::endl;
+	while (Contacts[i].empty_entry == false)
 	{
 		// std::cout << std::right << std::setw(10) << i << '|' << std::setw(10) << display[0]
 		// << '|' << std::setw(10) << Contacts[i].last_name << '|' << std::setw(10) << Contacts[i].nickname << std::endl;
-		std::cout << std::setw(10) << i << '|';
+		std::cout << '|' << std::setw(10) << i << '|';
 		format_name(Contacts[i].first_name);
 		format_name(Contacts[i].last_name);
 		format_name(Contacts[i].nickname);
 		std::cout << std::endl;
 		i++;
 	}
+	std::cout << LINE << std::endl;
+	choose_and_display(i - 1);
+}
+
+void	PhoneBook::choose_and_display(int max_index)
+{
 	int	index;
 	while (1)
 	{
 		std::cout << "\nPlease give the index of the contact you'd like to see :)" << std::endl;
 		std::cin >> index;
-		if (index >= i || index < 0)
+		if (std::cin.fail() || index > max_index || index < 0)
+		{
 			std::cout << C_RED "Please give a valid existing index" << C_RESET << std::endl;
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
 		else
 			break;
 	}
-	std::cout << std::endl << Contacts[i].first_name;
-	std::cout << std::endl << Contacts[i].last_name;
-	std::cout << std::endl << Contacts[i].nickname;
-	std::cout << std::endl << Contacts[i].darkest_secret <<std::endl;
+	std::cout << std::endl << Contacts[index].first_name;
+	std::cout << std::endl << Contacts[index].last_name;
+	std::cout << std::endl << Contacts[index].nickname;
+	std::cout << std::endl << Contacts[index].darkest_secret <<std::endl;
 }
 
 inline void PhoneBook::format_name(std::string name)
