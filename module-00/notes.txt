@@ -1,3 +1,17 @@
+ARCENIO PHONEBOOK NOTES
+
+
+SEARCH index checking for if it sout of bounds or an index of a not created contact
+
+check for ADDING if input is valid before adding in
+
+
+
+
+
+
+
+
 -no norm
 
 -all classes need UpperCamelFormat

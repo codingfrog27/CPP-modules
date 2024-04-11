@@ -73,19 +73,28 @@ void	Contact::add_Contact(void)
 	nickname = input_Info("Nickname");
 	darkest_secret = input_Info("ur filthiest darkest secret uwu");
 	empty_entry = false;
-	// this->id = id;
 }
 
 std::string	input_Info(std::string field_name)
 {
-	std::cout << "please enter " << C_YELLOW << field_name << ':' << C_RESET;
+	int	error_count = 3;
 	std::string	input;
 	while (true)
 	{
+		std::cout << "please enter " << C_YELLOW << field_name << ':' << C_RESET;
 		std::getline(std::cin, input); //switched from cin to avoid spaces leading to double entries :)
 		if (!input.empty())
 			return (input);
-		std::cout << "No empty fields allowed bucko >:)";
+		std::cout << "No empty fields allowed silly!" << std::endl << error_count \
+		<< " tries left before defaulting to \"silly\"\n" << std::endl;
+		error_count--;
+		if (error_count == 0)
+		{
+			std::cout << C_RED << "guess typing is hard huh :')" << field_name << "is silly" << std::endl;
+			input = "default";
+			return (input);
+		}
+
 	}
  //input reading only stops on non empty input so no need to check .... I take it back on repeated calls it doesnt get flushed
 //  without this check

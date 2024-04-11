@@ -24,23 +24,24 @@ void	exit_phonebook(){
 void	greeting()
 {
 	std::cout << BOLD PURPLE << "\n\tW E L C O M E   T O\n" << std::endl;
-	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	std::cout << "✨M Y" << std::flush;
-	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	std::cout << "    C U T E" << std::flush;
-	std::this_thread::sleep_for(std::chrono::seconds(1));
-	std::cout << "    P H O N E B O O K✨\n" << std::endl;
-	std::this_thread::sleep_for(std::chrono::seconds(2));
-	std::cout << "you have 3 possible actions:	" << C_YELLOW "ADD	SEARCH	EXIT" << std::endl;
-	 std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	std::cout << "    P H O N E B O O K✨\n\n\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	std::cout << "you can:	" << C_YELLOW "ADD	SEARCH	EXIT" << std::endl;
+	 std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 
 int	main(void){
 	PhoneBook	Rad_Book;
 	std::string	input;
+	std::string	getline_ret;
 
 	greeting();
-	while (true)
+	do
 	{
 		std::cout << C_GREEN << "\n\nEnter your action oh great Phonebook user: " << C_RESET;
 		std::getline(std::cin, input);
@@ -56,7 +57,7 @@ int	main(void){
 					<< "ADD, SEARCH and EXIT\n\npress enter to continue" << C_RESET;
 		}
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	}
+	} while (!input.empty());
 	return (0);
 }
 // cin << ignores empty newlines, getline doesnt
