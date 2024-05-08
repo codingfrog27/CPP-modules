@@ -53,11 +53,3 @@ int	main (int argc, char **argv)
 
 //perhaps a more CPP way of solving this would be using std::transform,
 //but it seems to be not allowed since id need the algorithm header
-
-
-//appending is a possible alternative tho!
-	// std::string	input;
-
-	// input = argv[1];
-	// for (int i = 2; argv[i] != NULL; i++)
-	// 	input.append(argv[i]);

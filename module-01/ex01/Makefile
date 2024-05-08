@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Accounts
+NAME = ZombieHorde
 
 CC = g++
 
@@ -18,7 +18,7 @@ Wflags = -Wall -Wextra -Werror -g
 
 VERSION_FLAG = -std=c++17
 
-SOURCES = Accounts.cpp tests.cpp
+SOURCES = main.cpp Zombie.cpp zombieHorde.cpp
 OFILES	:=	$(SOURCES:.cpp=.o)
 
 INCLUDE_DIR = Accounts.hpp

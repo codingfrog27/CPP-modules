@@ -4,6 +4,7 @@
 #include "ctime"
 
 #define INDEX_N_AMOUNT "index:" << _accountIndex << ";amount:"<< _amount
+#define INDEX "index:" << _accountIndex
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -39,7 +40,7 @@ void	Account::displayAccountsInfos()
 	_displayTimestamp();
 	std::cout << "accounts:" << _nbAccounts << ";total:" << _totalAmount \
 				<< ";deposits:" << _totalNbDeposits << ";withdrawals:" \
-				 << _totalNbWithdrawals;
+				 << _totalNbWithdrawals << std::endl;
 
 }
 
@@ -63,14 +64,6 @@ int	Account::getNbWithdrawals()
 	return(_totalNbWithdrawals);
 }
 
-void	Account::displayAccountsInfos()
-{
-	_displayTimestamp();
-	std::cout << "accounts:" << _nbAccounts << ";total:" << _totalAmount \
-				<< ";deposits:" << _totalNbDeposits << ";withdrawals:"\
-				 << _totalNbWithdrawals;
-}
-
 void	Account::makeDeposit( int deposit )
 {
 	const int	p_amount = _amount;
@@ -79,28 +72,44 @@ void	Account::makeDeposit( int deposit )
 	_nbDeposits++;
 	_totalNbDeposits++;
 	_displayTimestamp();
-	std::cout << "index:" << _accountIndex << "p_amount" << p_amount \
+	std::cout << INDEX << "p_amount" << p_amount \
 				<< ";deposit:" << deposit << ";amount:" << _amount \
-				<< ";nb_deposits:" << _nbDeposits;
+				<< ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
 
 
-bool	Account::makeWithdrawal( int withdrawal )
+bool	Account::makeWithdrawal(int withdrawal)
 {
-
+	const int p_amount = _amount;
+	_displayTimestamp();
+	std::cout << INDEX << ";p_amount:" << p_amount << ";withdrawal:";
+	if (_amount < withdrawal)
+	{
+		std::cout << "refused\n";
+		return (false);
+	}
+	_amount -= withdrawal;
+	_totalAmount -= withdrawal;
+	_nbWithdrawals++;
+	_totalNbWithdrawals++;
+	std::cout << withdrawal << ";amount:" << _amount << ";nb_withdrawals:" \
+				<< _nbWithdrawals << std::endl;
+	return (true);
 }
 
 int		Account::checkAmount( void ) const
 {
-
+	// _displayTimestamp();
+	// std::cout << INDEX_N_AMOUNT << std::endl;
+	return (_amount);
 }
 
 void	Account::displayStatus() const
 {
 	_displayTimestamp();
 	std::cout << INDEX_N_AMOUNT << "deposits:" << _nbDeposits \
-				<< ";withdrawals:" << _nbWithdrawals;
+				<< ";withdrawals:" << _nbWithdrawals << std::endl;
 }
 
 
