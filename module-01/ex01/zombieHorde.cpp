@@ -6,6 +6,6 @@ Zombie* zombieHorde( int N, std::string name )
 		return (NULL);
 	Zombie*	zombie_arr = new Zombie[N];
 	for (int i = 0; i < N; i++)
-		zombie_arr[i].setname(name + std::to_string(i)); //do i wanna od a name + i?
+		zombie_arr[i].setname(name + std::to_string(i));
 	return (zombie_arr);
 }

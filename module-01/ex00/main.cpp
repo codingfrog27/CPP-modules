@@ -12,18 +12,28 @@
 
 #include "Zombie.hpp"
 
+
+// small test main, added a name after arguments functionality for fun,
+// used to actually be 2 for loops but I thought this way I can keep using the
+// same I variable.. which really doesnt matter but oh well xd
 int main(int argc, const char** argv)
 {
 	if(argc > 1)
 	{
-		Zombie**	arg_zombies = new Zombie *[argc - 1];
-		for (size_t i = 0; argv[i + 1]; i++)
+		Zombie**	arg_zombies = new Zombie* [argc - 1];
+		int 		i = 0;
+		while (argv[i + 1])
 		{
 			arg_zombies[i] = newZombie(argv[i + 1]);
 			arg_zombies[i]->announce();
+			i++;
 		}
-		for (int i = argc - 1; i >= 0; i--)
+		i--;
+		while(i >= 0)
+		{
 			delete arg_zombies[i];
+			i--;
+		}
 		delete[] arg_zombies;
 	}
 	else
