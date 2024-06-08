@@ -11,7 +11,7 @@ class HumanA
 {
 	private:
 		std::string	name;
-		Weapon _violence_tool;
+		Weapon &_violence_tool;
 	public:
 				HumanA(std::string setName, Weapon &set_violence_tool);
 				~HumanA();

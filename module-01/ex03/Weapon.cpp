@@ -1,10 +1,4 @@
 #include "Weapon.hpp"
-
-Weapon::Weapon()
-: type("default")
-{
-}
-
 Weapon::Weapon(std::string setType)
 {
 	type = setType;
