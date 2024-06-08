@@ -16,16 +16,11 @@
 int main(int argc, const char** argv)
 {
 	Harl	yelling_guy;
-	if (argc == 1)
-		yelling_guy.cycle_all_levels();
 	if (argc == 2)
 	{
 		int	lvl_nbr = yelling_guy.get_level(argv[1]);
 		switch (lvl_nbr)
 		{
-			case -1 :
-				yelling_guy.invalid_lvl();
-				break ;
 			case 0 :
 				yelling_guy.complain("DEBUG");
 			case 1 :
@@ -39,5 +34,7 @@ int main(int argc, const char** argv)
 				yelling_guy.invalid_lvl();
 		};
 	}
+	else
+		std::cout << "please give 1 and only 1 argument\n";
 	return (0);
 }

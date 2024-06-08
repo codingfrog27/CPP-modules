@@ -12,10 +12,10 @@
 
 NAME = HarlFilter
 
-CC = g++
+CC = c++
 
-Wflags = -Wall -Wextra -Werror=implicit-fallthrough=0
-#extra flag used to omit the error
+Wflags = -Wall -Wextra -Werror
+
 
 VERSION_FLAG = -std=c++17
 
