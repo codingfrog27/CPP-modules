@@ -14,33 +14,11 @@
 #include <unordered_map>
 
 
-
-void	exit_phonebook(){
-	std::cout << PURPLE BOLD << "\n\n  ✨✨✨✨✨✨✨✨✨\n✨B Y E   C U T I E✨\n  ✨✨✨✨✨✨✨✨✨" << std::endl;
-	std::exit(0);
-}
-
-
-void	greeting()
+int	main(void)
 {
-	std::cout << BOLD PURPLE << "\n\tW E L C O M E   T O\n" << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
-	std::cout << "✨M Y" << std::flush;
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
-	std::cout << "    C U T E" << std::flush;
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
-	std::cout << "    P H O N E B O O K✨\n\n\n" << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
-	std::cout << "you can:	" << C_YELLOW "ADD	SEARCH	EXIT" << std::endl;
-	 std::this_thread::sleep_for(std::chrono::milliseconds(500));
-}
-
-int	main(void){
 	PhoneBook	Rad_Book;
 	std::string	input;
-	std::string	getline_ret;
 
-	greeting();
 	do
 	{
 		std::cout << C_GREEN << "\n\nEnter your action oh great Phonebook user: " << C_RESET;
@@ -50,7 +28,7 @@ int	main(void){
 		else if (input == "SEARCH")
 			Rad_Book.search();
 		else if (input == "EXIT")
-			exit_phonebook();
+			break ;
 		else
 		{
 			std::cout << C_RED << "\nPlease give a valid command, only available commands" \
@@ -60,6 +38,3 @@ int	main(void){
 	} while (!input.empty());
 	return (0);
 }
-// cin << ignores empty newlines, getline doesnt
-// std::setw(10) << input;
-		// std::right()

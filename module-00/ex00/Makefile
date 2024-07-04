@@ -12,7 +12,7 @@
 
 NAME = megaphone
 
-CC = g++
+CC = c++
 
 Wflags = -Wall -Wextra -Werror -fsanitize=address
 
@@ -29,7 +29,7 @@ COLOUR_END=\033[0m
 
 #-----------------
 
-NAME: $(SOURCES)
+$(NAME): $(SOURCES)
 	@$(CC) $(Wflags) $(SOURCES) $(VERSION_FLAG) -o $(NAME)
 	@printf "$(COLOUR_BLUE)megaphone$(COLOUR_GREEN) Compiled!\n\n$(COLOUR_END)"
 

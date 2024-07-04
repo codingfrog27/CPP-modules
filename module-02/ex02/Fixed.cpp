@@ -12,75 +12,194 @@
 
 #include "Fixed.hpp"
 
-	Fixed::Fixed()
-	{
-		std::cout << "Default constructor called.\n";
-		fixedNumberValue = 0;
-	}
+Fixed::Fixed()
+{
+	std::cout << "Default constructor called.\n";
+	fixedNumberValue = 0;
+}
 
-	Fixed::Fixed(const Fixed &other)
-	{
-		std::cout << "copy constructor called.\n";
-		*this = other;
-	}
+Fixed::Fixed(const Fixed &other)
+{
+	std::cout << "copy constructor called.\n";
+	*this = other;
+}
 
-	Fixed::Fixed(const int value)
-	{
-		this->fixedNumberValue = value << fractional_bits_amount;
-	}
+Fixed::Fixed(const int value)
+{
+	this->fixedNumberValue = value << fractional_bits_amount;
+}
 
-	Fixed::Fixed(const float value)
-	{
-		this->fixedNumberValue = (int)roundf(value * Float_convert_scale);
-	}
+Fixed::Fixed(const float value)
+{
+	this->fixedNumberValue = (int)roundf(value * Float_convert_scale);
+}
 
-	Fixed::~Fixed()
-	{
-		std::cout << "Destructor called.\n";
-	}
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called.\n";
+}
 
-	Fixed& Fixed::operator=(const Fixed &other)
-	{
-		std::cout << "copy assignment operator called.\n";
-		this->fixedNumberValue = other.fixedNumberValue;
-		return (*this);
-	}
+Fixed& Fixed::operator=(const Fixed &other)
+{
+	std::cout << "copy assignment operator called.\n";
+	this->fixedNumberValue = other.fixedNumberValue;
+	return (*this);
+}
+
+// --------------------------operator-overloads--------------------------
+
+bool Fixed::operator>(const Fixed &other)
+{
+	if (this->fixedNumberValue > other.fixedNumberValue)
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator>=(const Fixed &other)
+{
+	if (this->fixedNumberValue >= other.fixedNumberValue)
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator<(const Fixed &other)
+{
+	if (this->fixedNumberValue < other.fixedNumberValue)
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator<=(const Fixed &other)
+{
+	if (this->fixedNumberValue < other.fixedNumberValue)
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator==(const Fixed &other)
+{
+	if (this->fixedNumberValue == other.fixedNumberValue)
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator!=(const Fixed &other)
+{
+	if (this->fixedNumberValue != other.fixedNumberValue)
+		return (true);
+	return (false);
+}
+
+Fixed  Fixed::operator+(const Fixed &other)
+{
+	Fixed	ret;
+	ret.fixedNumberValue = this->fixedNumberValue + other.fixedNumberValue;
+	return (ret);
+}
+
+Fixed  Fixed::operator-(const Fixed &other)
+{
+	Fixed	ret;
+	ret.fixedNumberValue = this->fixedNumberValue - other.fixedNumberValue;
+	return (ret);
+}
+
+Fixed  Fixed::operator*(const Fixed &other)
+{
+	Fixed	ret;
+	ret.fixedNumberValue = this->fixedNumberValue * other.fixedNumberValue;
+	return (ret);
+}
+
+Fixed  Fixed::operator/(const Fixed &other)
+{
+	Fixed	ret;
+	ret.fixedNumberValue = this->fixedNumberValue / other.fixedNumberValue;
+	return (ret);
+}
+
+Fixed&  Fixed::operator++()
+{
+	this->fixedNumberValue += (1 << 8);
+	return (*this);
+}
+
+Fixed  Fixed::operator++(int)
+{
+	Fixed	ret;
+	this->fixedNumberValue += (1 << 8);
+	return (ret);
+}
+
+Fixed&  Fixed::operator--()
+{
+	this->fixedNumberValue -= (1 << 8);
+	return (*this);
+}
+
+Fixed  Fixed::operator--(int)
+{
+	Fixed	ret;
+	this->fixedNumberValue -= (1 << 8);
+	return (ret);
+}
+
+std::ostream& operator<<(std::ostream &stream, const Fixed &other)
+{
+	stream << other.toFloat();
+	return (stream);
+}
 
 
-	bool Fixed::operator>(const Fixed &other)
-	{
-		if (this->fixedNumberValue > other.fixedNumberValue)
-			return (true);
-		return (false);
-	}
+//--------------------- Other member functions -----------------------------
 
+int	Fixed::getRawBits (void) const
+{
+	std::cout << "getRawBits member function called.\n";
+	return (fixedNumberValue);
+}
 
+void Fixed::setRawBits(int const raw)
+{
+	fixedNumberValue = raw;
+}
 
-	int	Fixed::getRawBits (void) const
-	{
-		std::cout << "getRawBits member function called.\n";
-		return (fixedNumberValue);
-	}
+float Fixed::toFloat(void) const
+{
+	return ((float)this->fixedNumberValue / this->Float_convert_scale);
+}
 
-	void Fixed::setRawBits(int const raw)
-	{
-		fixedNumberValue = raw;
-	}
+//since the last 8 bits in our fixed number represent the fractional bits
+// we just shift those away to get our actual int value
+int Fixed::toInt(void) const
+{
+	return (fixedNumberValue >> fractional_bits_amount);
+}
 
-	float Fixed::toFloat(void) const
-	{
-		return ((float)this->fixedNumberValue / this->Float_convert_scale);
-	}
+Fixed&	Fixed::min(Fixed &first, Fixed &second)
+{
+	if (first.fixedNumberValue < second.fixedNumberValue)
+		return (first);
+	return (second);
+}
 
+const Fixed&	Fixed::min(const Fixed &first, const Fixed &second)
+{
+	if (first.fixedNumberValue < second.fixedNumberValue)
+		return (first);
+	return (second);
+}
 
-	std::ostream& operator<<(std::ostream &stream, const Fixed &other)
-	{
-		stream << other.toFloat();
-		return (stream);
-	}
-	//since the last 8 bits in our fixed number represent the fractional bits
-	// we just shift those away to get our actual int value
-	int Fixed::toInt(void) const
-	{
-		return (fixedNumberValue >> fractional_bits_amount);
-	}
+Fixed&	Fixed::max(Fixed &first, Fixed &second)
+{
+	if (first.fixedNumberValue > second.fixedNumberValue)
+		return (first);
+	return (second);
+}
+
+const Fixed&	Fixed::max(const Fixed &first, const Fixed &second)
+{
+	if (first.fixedNumberValue > second.fixedNumberValue)
+		return (first);
+	return (second);
+}

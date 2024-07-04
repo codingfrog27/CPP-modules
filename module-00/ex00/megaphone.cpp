@@ -11,19 +11,13 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <stdlib.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <sys/time.h>
-#include <unistd.h>
 
 #define COLOUR_END "\033[0m"
 #define COLOUR_RED "\033[0;31m"
 #define COLOUR_GREEN "\033[0;32m"
 #define COLOUR_BLUE "\033[0;34m"
 
-// returns a colour code text string, is initialized on static for easy passing
-// w/o reallocating (could refactor into printing for u instead of returning and taking an int as counter instead of having one be static)
+
 char *rainbow_text(void)
 {
 	static int counter;
@@ -36,7 +30,7 @@ char *rainbow_text(void)
 
 int	main (int argc, char **argv)
 {
-	if (argc > 2)
+	if (argc > 1)
 	{
 		for (size_t i = 1; argv[i]; i++)
 		{
@@ -47,9 +41,6 @@ int	main (int argc, char **argv)
 	}
 	else
 		std::cout << COLOUR_RED << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << COLOUR_END;
-	std::cout << std::endl; //is there any functional diff between endl and \n?
+	std::cout << std::endl;
 	return (0);
 }
-
-//perhaps a more CPP way of solving this would be using std::transform,
-//but it seems to be not allowed since id need the algorithm header

@@ -28,7 +28,23 @@ public:
 
 	//operator overloads
 	Fixed& operator=(const Fixed &other);
+
 	bool operator>(const Fixed &other); //left is implicitely passed since its a member function
+	bool operator>=(const Fixed &other);
+	bool operator<(const Fixed &other);
+	bool operator<=(const Fixed &other);
+	bool operator==(const Fixed &other);
+	bool operator!=(const Fixed &other);
+
+	Fixed operator+(const Fixed &other);
+	Fixed  operator-(const Fixed &other);
+	Fixed  operator*(const Fixed &other);
+	Fixed  operator/(const Fixed &other);
+
+	Fixed&  operator++();
+	Fixed  operator++(int);
+	Fixed&  operator--();
+	Fixed operator--(int);
 
 	//get and setters
 	int	getRawBits (void) const;
@@ -37,6 +53,10 @@ public:
 	// Other member functions
 	float	toFloat(void) const;
 	int		toInt(void) const;
+	Fixed&	min(Fixed &first, Fixed &second);
+	const Fixed&	min(const Fixed &first, const Fixed &second);
+	Fixed&	max(Fixed &first, Fixed &second);
+	const Fixed&	max(const Fixed &first, const Fixed &second);
 
 private:
 	int					fixedNumberValue;

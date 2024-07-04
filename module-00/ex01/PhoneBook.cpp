@@ -16,40 +16,45 @@ std::string	input_Info(std::string field_name);
 
 PhoneBook::PhoneBook()
 {
+	std::cout << BOLD PURPLE << "\n\tW E L C O M E   T O\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	std::cout << "✨M Y" << std::flush;
+	std::this_thread::sleep_for(std::chrono::milliseconds(250));
+	std::cout << "    C U T E" << std::flush;
+	std::this_thread::sleep_for(std::chrono::milliseconds(250));
+	std::cout << "    P H O N E B O O K✨\n\n\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	std::cout << "\t\tyou can:\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(600));
+	std::cout << C_YELLOW "\t\tADD\n"<< std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(250));
+	std::cout << "\t\tSEARCH\n"<< std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(250));
+	std::cout <<"\t\tEXIT\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(250));
 }
+
 
 PhoneBook::~PhoneBook()
 {
-		std::cout << "I have been destructed";
+	std::cout << PURPLE BOLD << "\nI'm being destructed 😭\n\n";
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	std::cout <<  "✨✨✨✨✨✨✨✨✨\n✨B Y E   C U T I E✨\n  ✨✨✨✨✨✨✨✨✨\n\n";
+	std::this_thread::sleep_for(std::chrono::milliseconds(250));
 }
 
 void	PhoneBook::add_contact(){
 
 	size_t i = 0;
-	while (i < MAX_INDEX && !Contacts[i].empty_entry) //was for loop but more readable like this?
+	while (i <= MAX_INDEX && !Contacts[i].empty_entry)
 		i++;
 	if (i > MAX_INDEX){
-		std::cout << "PhoneBook Full, Removing oldest entry";
+		std::cout << "PhoneBook Full, Removing oldest entry\n\n";
 		i = find_oldest_contact_index();
 	}
 	Contacts[i].add_Contact();
-	std::cout << "\nContact saved!! :))" << std::endl;
+	std::cout << "\nContact saved!! :)) (press enter to continue)" << std::endl;
 }
-
-
-// int	PhoneBook::remove_oldest(){
-// 	int	replace_index;
-
-// 	for (size_t i = 0; i < MAX_INDEX; i++)
-// 	{
-// 		if (Contacts[i].id == 0)
-// 			replace_index = i;
-// 		else
-// 			Contacts[i].id--;
-// 	}
-// 	created_contacts--;
-// 	return (replace_index);
-// }
 
 int	PhoneBook::find_oldest_contact_index()
 {
@@ -61,45 +66,6 @@ int	PhoneBook::find_oldest_contact_index()
 	return (replace_counter - 1);
 }
 
-Contact::Contact()
-{
-	empty_entry = true;
-}
-
-void	Contact::add_Contact(void)
-{
-	first_name = input_Info("first name");
-	last_name = input_Info("last name");
-	nickname = input_Info("Nickname");
-	darkest_secret = input_Info("ur filthiest darkest secret uwu");
-	empty_entry = false;
-}
-
-std::string	input_Info(std::string field_name)
-{
-	int	error_count = 3;
-	std::string	input;
-	while (true)
-	{
-		std::cout << "please enter " << C_YELLOW << field_name << ':' << C_RESET;
-		std::getline(std::cin, input); //switched from cin to avoid spaces leading to double entries :)
-		if (!input.empty())
-			return (input);
-		std::cout << "No empty fields allowed silly!" << std::endl << error_count \
-		<< " tries left before defaulting to \"silly\"\n" << std::endl;
-		error_count--;
-		if (error_count == 0)
-		{
-			std::cout << C_RED << "guess typing is hard huh :')" << field_name << "is silly" << std::endl;
-			input = "default";
-			return (input);
-		}
-
-	}
- //input reading only stops on non empty input so no need to check .... I take it back on repeated calls it doesnt get flushed
-//  without this check
-}
-
 void PhoneBook::search()
 {
 	if (Contacts[0].empty_entry){
@@ -108,10 +74,9 @@ void PhoneBook::search()
 	}
 	int	i = 0;
 	std::cout << LINE << std::endl;
-	while (Contacts[i].empty_entry == false)
+	while (i <= MAX_INDEX && Contacts[i].empty_entry == false)
 	{
-		// std::cout << std::right << std::setw(10) << i << '|' << std::setw(10) << display[0]
-		// << '|' << std::setw(10) << Contacts[i].last_name << '|' << std::setw(10) << Contacts[i].nickname << std::endl;
+
 		std::cout << '|' << std::setw(10) << i << '|';
 		format_name(Contacts[i].first_name);
 		format_name(Contacts[i].last_name);
@@ -139,10 +104,10 @@ void	PhoneBook::choose_and_display(int max_index)
 		else
 			break;
 	}
-	std::cout << std::endl << Contacts[index].first_name;
-	std::cout << std::endl << Contacts[index].last_name;
-	std::cout << std::endl << Contacts[index].nickname;
-	std::cout << std::endl << Contacts[index].darkest_secret <<std::endl;
+	std::cout << "\nFirst name: " << Contacts[index].first_name << std::endl;
+	std::cout << "\nLast name:" << Contacts[index].last_name << std::endl;
+	std::cout << "\nNickname:" << Contacts[index].nickname << std::endl;
+	std::cout << "\ndarkest secret 0-0:" << Contacts[index].darkest_secret << std::endl;
 }
 
 inline void PhoneBook::format_name(std::string name)
@@ -151,8 +116,3 @@ inline void PhoneBook::format_name(std::string name)
 	output = (name.size() > 10) ? (name.substr(0, 9) + '.') : name;
 	std::cout << std::setw(10) << output << '|';
 }
-
-		// if (Contacts[i].first_name.size() > 10)
-		// 	display[0] = Contacts[i].first_name.substr(0, 9) + '.';
-		// else
-		// 	display[0] = Contacts[i].first_name;

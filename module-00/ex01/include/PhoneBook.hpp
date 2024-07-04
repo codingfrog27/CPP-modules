@@ -18,8 +18,9 @@
 #include <iomanip>
 #include <thread>
 #include <chrono>
+#include "Contact.hpp"
 
-#define MAX_INDEX 7
+#define MAX_INDEX 2
 #define LINE "--------------------------------------------"
 #define C_RED "\033[1;31m"
 #define C_RESET "\033[0m"
@@ -28,26 +29,11 @@
 #define PURPLE "\033[35m"
 #define BOLD "\033[1m"
 
-class	Contact
-{
-	public:
-		//info to input
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string	darkest_secret;
-
-		bool	empty_entry;
-		// int		id;
-
-				Contact();
-		void	add_Contact(void);
-};
 
 class PhoneBook
 {
 private:
-	Contact Contacts[MAX_INDEX];
+	Contact Contacts[MAX_INDEX + 1];
 	inline void format_name(std::string name);
 public:
 		PhoneBook(/* args */);

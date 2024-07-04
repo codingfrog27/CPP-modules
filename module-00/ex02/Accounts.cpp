@@ -20,8 +20,12 @@ Account::Account()
 	_nbWithdrawals = 0;
 }
 
-Account::Account(int initial_deposit) : Account() //this calls the default constructer first
-{												  //constructer, delegation :3
+Account::Account(int initial_deposit) //this calls the default constructer first
+{
+	this->_accountIndex = _nbAccounts;
+	_nbAccounts++;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;									  //constructer, delegation :3
 	this->_amount = initial_deposit;
 	_totalAmount += this->_amount;
 	_displayTimestamp();
@@ -72,7 +76,7 @@ void	Account::makeDeposit( int deposit )
 	_nbDeposits++;
 	_totalNbDeposits++;
 	_displayTimestamp();
-	std::cout << INDEX << "p_amount" << p_amount \
+	std::cout << INDEX << ";p_amount:" << p_amount \
 				<< ";deposit:" << deposit << ";amount:" << _amount \
 				<< ";nb_deposits:" << _nbDeposits << std::endl;
 }
@@ -108,15 +112,15 @@ int		Account::checkAmount( void ) const
 void	Account::displayStatus() const
 {
 	_displayTimestamp();
-	std::cout << INDEX_N_AMOUNT << "deposits:" << _nbDeposits \
+	std::cout << INDEX_N_AMOUNT << ";deposits:" << _nbDeposits \
 				<< ";withdrawals:" << _nbWithdrawals << std::endl;
 }
 
 
 void	Account::_displayTimestamp()
 {
-	auto now = std::chrono::system_clock::now();
-	// std::chrono::system_clock::time_point now = std::chrono::system_clock::now();std::chrono::system_clock::now();
+	// auto now = std::chrono::system_clock::now();
+	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t time = std::chrono::system_clock::to_time_t(now);
 	char	timestr[80];
 	std::strftime(timestr, sizeof(timestr), "%Y%m%d_%H%M%S",\
