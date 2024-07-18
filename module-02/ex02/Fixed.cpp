@@ -48,6 +48,7 @@ Fixed& Fixed::operator=(const Fixed &other)
 
 // --------------------------operator-overloads--------------------------
 
+//could also return the comparison directly but this felt more readable
 bool Fixed::operator>(const Fixed &other)
 {
 	if (this->fixedNumberValue > other.fixedNumberValue)
@@ -107,40 +108,43 @@ Fixed  Fixed::operator-(const Fixed &other)
 Fixed  Fixed::operator*(const Fixed &other)
 {
 	Fixed	ret;
-	ret.fixedNumberValue = this->fixedNumberValue * other.fixedNumberValue;
+	ret.fixedNumberValue = (this->fixedNumberValue * other.fixedNumberValue) / ret.Float_convert_scale;
 	return (ret);
 }
 
 Fixed  Fixed::operator/(const Fixed &other)
 {
 	Fixed	ret;
-	ret.fixedNumberValue = this->fixedNumberValue / other.fixedNumberValue;
+	ret.fixedNumberValue = (this->fixedNumberValue / other.fixedNumberValue) * ret.Float_convert_scale;
 	return (ret);
 }
 
+//thought it would wanted to increase the pre decimal value by 1, but example shows otherwise
 Fixed&  Fixed::operator++()
 {
-	this->fixedNumberValue += (1 << 8);
+	// this->fixedNumberValue += (1 << 8);
+	this->fixedNumberValue++;
 	return (*this);
 }
 
 Fixed  Fixed::operator++(int)
 {
-	Fixed	ret;
-	this->fixedNumberValue += (1 << 8);
+	Fixed	ret = *this;
+
+	this->fixedNumberValue++;
 	return (ret);
 }
 
 Fixed&  Fixed::operator--()
 {
-	this->fixedNumberValue -= (1 << 8);
+	this->fixedNumberValue--;
 	return (*this);
 }
 
 Fixed  Fixed::operator--(int)
 {
-	Fixed	ret;
-	this->fixedNumberValue -= (1 << 8);
+	Fixed	ret = *this;
+	this->fixedNumberValue--;
 	return (ret);
 }
 
