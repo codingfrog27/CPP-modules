@@ -32,7 +32,7 @@ COLOUR_END=\033[0m
 
 #-----------------
 
-NAME: $(SOURCES) $(OFILES)
+$(NAME) $(SOURCES) $(OFILES)
 	@$(CC) $(Wflags) $(VERSION_FLAG) $(SOURCES) -I $(INCLUDE_DIR) -o $(NAME)
 	@printf "$(COLOUR_BLUE)$(NAME) $(COLOUR_GREEN) Compiled!\n\n$(COLOUR_END)"
 
