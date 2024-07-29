@@ -38,9 +38,9 @@ $(NAME) $(SOURCES) $(OFILES)
 	@$(CC) -c $< $(Wflags) $(VERSION_FLAG) -o $@
 	@printf "$(C_GREEN)Compiling $(C_CYAN)$<\n$(C_RESET)"
 
-re: fclean NAME
+re: fclean$(NAME)
 
-run: NAME
+run:$(NAME)
 	@./$(NAME) input.txt " " "   "
 
 clean:
