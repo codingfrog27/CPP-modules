@@ -23,9 +23,9 @@ int main(int argc, const char** argv)
 	}
 
 	std::string		filename = argv[1];
-	std::string		buffer;
 	std::string		find = argv[2];
 	std::string		replace = argv[3];
+	std::string		buffer;
 	std::ifstream	infile(filename);
 	std::ofstream	outfile(filename + ".replace");
 	size_t	replace_index = 0;
@@ -35,15 +35,20 @@ int main(int argc, const char** argv)
         return 1;
     }
 
+	std::cout << "FIND IS: " << find << std::endl;
+	std::cout << "replace IS: " << replace << std::endl;
+
 	while ((std::getline(infile, buffer)))
 	{
+		buffer.append("\n");
 		replace_index = buffer.find(find);
 		while (replace_index != std::string::npos)
 		{
 			buffer.replace(replace_index, find.length(), replace);
-			outfile << buffer << std::endl;
 			replace_index = buffer.find(find, replace_index + replace.length());
 		}
+		std::cout << buffer;
+		outfile << buffer;
 	}
 	infile.close();
 	outfile.close();
@@ -52,3 +57,21 @@ int main(int argc, const char** argv)
 
 //could put all the strings and streams into a single class for overview but
 // think this is fine :)
+
+
+//already doesnt work properly since if the replace word is not in the line it
+// wont be put into buffer
+
+// also getline doesnt copy the newline so might have to read everything into buffer first?
+
+
+	// while ((std::getline(infile, buffer)))
+	// {
+	// 	// replace_index = buffer.find(find);
+	// 	while (replace_index != std::string::npos);
+	// 	{
+	// 		buffer.replace(replace_index, find.length(), replace);
+	// 		outfile << buffer << std::endl;
+	// 		replace_index = buffer.find(find, replace_index + replace.length());
+	// 	}
+	// }

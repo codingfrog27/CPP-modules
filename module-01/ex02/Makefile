@@ -30,7 +30,7 @@ COLOUR_END=\033[0m
 
 #-----------------
 
-$(NAME) $(SOURCES) $(OFILES)
+$(NAME): $(SOURCES) $(OFILES)
 	@$(CC) $(Wflags) $(VERSION_FLAG) $(SOURCES) -o $(NAME)
 	@printf "$(COLOUR_BLUE)$(NAME) $(COLOUR_GREEN) Compiled!\n\n$(COLOUR_END)"
 
@@ -38,9 +38,9 @@ $(NAME) $(SOURCES) $(OFILES)
 	@$(CC) -c $< $(Wflags) $(VERSION_FLAG) -o $@
 	@printf "$(C_GREEN)Compiling $(C_CYAN)$<\n$(C_RESET)"
 
-re: fclean$(NAME)
+re: fclean $(NAME)
 
-run:$(NAME)
+run: $(NAME)
 	@./$(NAME)
 
 clean:
