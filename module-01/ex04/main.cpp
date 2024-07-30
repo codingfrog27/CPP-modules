@@ -14,29 +14,45 @@
 #include <fstream>
 #include <string>
 
+void	replacin_time(std::string find, std::string replace, \
+					std::ifstream	&infile, std::ofstream	&outfile);
+
 int main(int argc, const char** argv)
 {
 	if(argc != 4)
 	{
-		std::cout << "Please give 3 parameters, no more no less :)\n";
+		std::cout << "Please give 3 parameters, no more no less :)" << std::endl;
 		return (1);
 	}
-
 	std::string		filename = argv[1];
 	std::string		find = argv[2];
 	std::string		replace = argv[3];
-	std::string		buffer;
 	std::ifstream	infile(filename);
 	std::ofstream	outfile(filename + ".replace");
+	size_t			ret_val = 1;
+
+	if (find.empty())//  || replace.empty()
+		std::cerr << "Error:find strings is empty!.\n";
+	else if (!infile.is_open())
+		std::cerr << "Error: Could not open the input file.\n";
+	else
+	{
+		ret_val = 0;
+		replacin_time(find, replace, infile, outfile);
+		infile.close();
+	}
+	outfile.close();
+	return (ret_val);
+}
+
+
+void	replacin_time(std::string find, std::string replace, \
+					std::ifstream	&infile, std::ofstream	&outfile)
+{
+	std::string		buffer;
 	size_t	replace_index = 0;
-
-	 if (!infile.is_open()) {
-        std::cerr << "Error: Could not open the input file.\n";
-        return 1;
-    }
-
-	std::cout << "FIND IS: " << find << std::endl;
-	std::cout << "replace IS: " << replace << std::endl;
+	size_t	replace_len = replace.length();
+	size_t	find_len = find.length();
 
 	while ((std::getline(infile, buffer)))
 	{
@@ -44,34 +60,10 @@ int main(int argc, const char** argv)
 		replace_index = buffer.find(find);
 		while (replace_index != std::string::npos)
 		{
-			buffer.replace(replace_index, find.length(), replace);
-			replace_index = buffer.find(find, replace_index + replace.length());
+			buffer.erase(replace_index, find_len);
+			buffer.insert(replace_index, replace);
+			replace_index = buffer.find(find, replace_index + replace_len);
 		}
-		std::cout << buffer;
 		outfile << buffer;
 	}
-	infile.close();
-	outfile.close();
-	return 0;
 }
-
-//could put all the strings and streams into a single class for overview but
-// think this is fine :)
-
-
-//already doesnt work properly since if the replace word is not in the line it
-// wont be put into buffer
-
-// also getline doesnt copy the newline so might have to read everything into buffer first?
-
-
-	// while ((std::getline(infile, buffer)))
-	// {
-	// 	// replace_index = buffer.find(find);
-	// 	while (replace_index != std::string::npos);
-	// 	{
-	// 		buffer.replace(replace_index, find.length(), replace);
-	// 		outfile << buffer << std::endl;
-	// 		replace_index = buffer.find(find, replace_index + replace.length());
-	// 	}
-	// }

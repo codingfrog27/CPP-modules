@@ -41,7 +41,7 @@ $(NAME): $(SOURCES) $(OFILES)
 re: fclean $(NAME)
 
 run: $(NAME)
-	@./$(NAME) input.txt " " "   "
+	@./$(NAME) input.txt "bee" "butt"
 
 clean:
 	@rm -rf *.o
