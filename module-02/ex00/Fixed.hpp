@@ -21,13 +21,13 @@ public:
 	// Constructors
 	Fixed();
 	Fixed(const Fixed &other);
-	Fixed& operator=(const Fixed &other);
 	~Fixed();
 
 	int	getRawBits (void) const; //this const makes it a const member function and
-	void setRawBits(int const raw); //
 	// Setters
+	void setRawBits(int const raw); //
 	// Other member functions
+	Fixed& operator=(const Fixed &other);
 
 private:
 	int					fixed_nbr_value;

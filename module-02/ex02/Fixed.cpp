@@ -14,13 +14,13 @@
 
 Fixed::Fixed()
 {
-	std::cout << "Default constructor called.\n";
+	// std::cout << "Default constructor called.\n";
 	fixedNumberValue = 0;
 }
 
 Fixed::Fixed(const Fixed &other)
 {
-	std::cout << "copy constructor called.\n";
+	// std::cout << "copy constructor called.\n";
 	*this = other;
 }
 
@@ -32,16 +32,18 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float value)
 {
 	this->fixedNumberValue = (int)roundf(value * Float_convert_scale);
+	//since we use an int to store the rawbits we first shift the bits 8 times
+	// to the left aka x256, then we use roundf to round off any remainders
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called.\n";
+	// std::cout << "Destructor called.\n";
 }
 
 Fixed& Fixed::operator=(const Fixed &other)
 {
-	std::cout << "copy assignment operator called.\n";
+	// std::cout << "copy assignment operator called.\n";
 	this->fixedNumberValue = other.fixedNumberValue;
 	return (*this);
 }
@@ -107,22 +109,19 @@ Fixed  Fixed::operator-(const Fixed &other)
 
 Fixed  Fixed::operator*(const Fixed &other)
 {
-	Fixed	ret;
-	ret.fixedNumberValue = (this->fixedNumberValue * other.fixedNumberValue) / ret.Float_convert_scale;
-	return (ret);
+	return (Fixed((this->toFloat() * other.toFloat())));
+	//causes float constructor to be called which will make the returned result
+	// converted nicely :)
 }
 
 Fixed  Fixed::operator/(const Fixed &other)
 {
-	Fixed	ret;
-	ret.fixedNumberValue = (this->fixedNumberValue / other.fixedNumberValue) * ret.Float_convert_scale;
-	return (ret);
+	return (Fixed((this->toFloat() / other.toFloat())));
 }
 
 //thought it would wanted to increase the pre decimal value by 1, but example shows otherwise
 Fixed&  Fixed::operator++()
 {
-	// this->fixedNumberValue += (1 << 8);
 	this->fixedNumberValue++;
 	return (*this);
 }
@@ -170,7 +169,7 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-	return ((float)this->fixedNumberValue / this->Float_convert_scale);
+	return ((float)this->fixedNumberValue / (float)this->Float_convert_scale);
 }
 
 //since the last 8 bits in our fixed number represent the fractional bits

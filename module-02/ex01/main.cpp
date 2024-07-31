@@ -27,5 +27,12 @@ int main(void)
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
+
+	std::cout << "\n\nc is " << c;
+	std::cout << "\nand it's rawbits are\n" << c.getRawBits() << std::endl;
+	std::cout << "as a float it is" << c.toFloat() << std::endl;
+	//I think float will always be the same as the fixed nbr since any extra
+	// post decimal data is already lost when converted to the fixed point number
 	return 0;
 }

@@ -33,9 +33,9 @@ $(NAME): $(SOURCES)
 	@$(CC) $(Wflags) $(SOURCES) $(VERSION_FLAG) -o $(NAME)
 	@printf "$(COLOUR_BLUE)megaphone$(COLOUR_GREEN) Compiled!\n\n$(COLOUR_END)"
 
-re: fclean NAME
+re: fclean $(NAME)
 
-run: NAME
+run: $(NAME)
 	@./megaphone hi I am testing uwu
 
 clean:

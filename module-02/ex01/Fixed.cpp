@@ -32,6 +32,8 @@
 	Fixed::Fixed(const float value)
 	{
 		this->fixedNumberValue = (int)roundf(value * Float_convert_scale);
+		//since we use an int to store the rawbits we first shift the bits 8 times
+		// to the left aka x256, then we use roundf to round off any remainders
 	}
 
 	Fixed& Fixed::operator=(const Fixed &other)
