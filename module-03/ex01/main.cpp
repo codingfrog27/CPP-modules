@@ -14,25 +14,33 @@
 
 int	main(void)
 {
+	std::cout << LINE << "\n\t start of program \n" << LINE << std::endl;
+
 	ClapTrap	bud("little buddy");
 	ScavTrap	bongo("bong");
 	ScavTrap	epic("tubular droid");
 	ScavTrap	copyCat(bongo);
 	copyCat = epic;
+
+
+	std::cout << LINE << "\n\tT H E	S T O R Y	B E G I N S\n" << LINE << std::endl;
+
 	bongo.attack("capitalism");
 	copyCat.attack("big corperations");
 
-	std::cout << "the attacks go wrong and hit our little buddy instead D:\v" \
-	<< std::endl;
+	std::cout << "\n The attacks miss the big corporations and hit our " \
+	 << "cool droid and his innocent little buddy instead!! D:\v" << std::endl;
 
-	bud.takeDamage(20);
 	epic.takeDamage(20);
+	bud.takeDamage(20);
 
 	std::cout << "feeling powerless they conform to the system\v" << std::endl;
 
 	bongo.guardGate();
 	copyCat.guardGate();
 
+	std::cout << "Tubular droid vows to one day take revenge!\n" \
+	<< LINE << "\n\tT H E	E N D	? ? ?\n" << LINE << std::endl;
 
 
 	return 0;

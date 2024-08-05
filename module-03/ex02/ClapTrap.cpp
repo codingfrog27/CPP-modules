@@ -57,9 +57,15 @@ ClapTrap::~ClapTrap(void)
 	}
 	void	ClapTrap::takeDamage(unsigned int amount)
 	{
+		if (_health == 0)
+		{
+			std::cout << _name << " is already dead man, " \
+			"no need to beat up a corpse :s" << std::endl;
+			return;
+		}
 		std::cout << MAG <<  _name << RESET << " gets hurt for " \
 		<< amount << " points of damage!";
-		if (amount > _health)
+		if (amount >= _health)
 		{
 			_health = 0;
 			std::cout << "  And THEY DIE 😭😭💔💔";
@@ -104,4 +110,11 @@ bool	ClapTrap::isAlive(void)
 		return (false);
 	}
 	return (true);
+}
+
+void	ClapTrap::status()
+{
+	std::cout << MAG << "name: " <<_name << RESET << \
+		"\nhealth " << _health << "\nenergy " << _energy << \
+		"\nattack damage " << _attack_damage << std::endl;
 }

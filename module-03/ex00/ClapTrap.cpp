@@ -62,7 +62,7 @@ ClapTrap::~ClapTrap(void)
 		if (amount > _health)
 		{
 			_health = 0;
-			std::cout << "\t\t\n..and DIES 😭💔\n" << std::endl;
+			std::cout << "\n\t\t..and DIES 😭💔\n" << std::endl;
 		}
 		else
 			_health += amount;
