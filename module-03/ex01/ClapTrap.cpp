@@ -51,13 +51,13 @@ ClapTrap::~ClapTrap(void)
 		if (!hasEnergy() || !isAlive())
 			return;
 		_energy--;
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << " attacks " << target \
+		std::cout << MAG <<  _name << RESET << " attacks " << target \
 		<< " causing " << _attack_damage << " points of damage!" << std::endl;
 
 	}
 	void	ClapTrap::takeDamage(unsigned int amount)
 	{
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << " gets hurt for " \
+		std::cout << MAG <<  _name << RESET << " gets hurt for " \
 		<< amount << " points of damage!" << std::endl;
 		if (amount > _health)
 		{
@@ -72,7 +72,7 @@ ClapTrap::~ClapTrap(void)
 		if (!hasEnergy() || !isAlive())
 			return;
 		_energy--;
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << " heals " << amount \
+		std::cout << MAG <<  _name << RESET << " heals " << amount \
 		<< " of health back! ⚡" << std::endl;
 		if (_health + amount >= 10)
 		{
@@ -87,7 +87,7 @@ bool	ClapTrap::hasEnergy(void)
 {
 	if (_energy == 0)
 	{
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << \
+		std::cout << MAG <<  _name << RESET << \
 		" does not have enough juice to attack or replair itself 😔" << std::endl;
 		return (false);
 	}
@@ -98,7 +98,7 @@ bool	ClapTrap::isAlive(void)
 {
 	if (_health == 0)
 	{
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << \
+		std::cout << MAG <<  _name << RESET << \
 		" can't do anything cause they died 💀" << std::endl;
 		return (false);
 	}
