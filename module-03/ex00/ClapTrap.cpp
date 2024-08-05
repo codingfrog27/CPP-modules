@@ -51,28 +51,35 @@ ClapTrap::~ClapTrap(void)
 		if (!hasEnergy() || !isAlive())
 			return;
 		_energy--;
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << " attacks " << target \
+		std::cout << MAG <<  _name << RESET << " attacks " << target \
 		<< " causing " << _attack_damage << " points of damage!" << std::endl;
 
 	}
 	void	ClapTrap::takeDamage(unsigned int amount)
 	{
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << " gets hurt for " \
-		<< amount << " points of damage!" << std::endl;
-		if (amount > _health)
+		if (_health == 0)
+		{
+			std::cout << _name << " is already dead man, " \
+			"no need to beat up a corpse :s" << std::endl;
+			return;
+		}
+		std::cout << MAG <<  _name << RESET << " gets hurt for " \
+		<< amount << " points of damage!";
+		if (amount >= _health)
 		{
 			_health = 0;
-			std::cout << "\n\t\t..and DIES 😭💔\n" << std::endl;
+			std::cout << "  And THEY DIE 😭😭💔💔";
 		}
 		else
-			_health += amount;
+			_health -= amount;
+		std::cout << std::endl;
 	}
 	void	ClapTrap::beRepaired(unsigned int amount)
 	{
 		if (!hasEnergy() || !isAlive())
 			return;
 		_energy--;
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << " heals " << amount \
+		std::cout << MAG <<  _name << RESET << " heals " << amount \
 		<< " of health back! ⚡" << std::endl;
 		if (_health + amount >= 10)
 		{
@@ -87,7 +94,7 @@ bool	ClapTrap::hasEnergy(void)
 {
 	if (_energy == 0)
 	{
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << \
+		std::cout << MAG <<  _name << RESET << \
 		" does not have enough juice to attack or replair itself 😔" << std::endl;
 		return (false);
 	}
@@ -98,9 +105,16 @@ bool	ClapTrap::isAlive(void)
 {
 	if (_health == 0)
 	{
-		std::cout << "ClapTrap " << MAG <<  _name << RESET << \
+		std::cout << MAG <<  _name << RESET << \
 		" can't do anything cause they died 💀" << std::endl;
 		return (false);
 	}
 	return (true);
+}
+
+void	ClapTrap::status()
+{
+	std::cout << MAG << "name: " <<_name << RESET << \
+		"\nhealth " << _health << "\nenergy " << _energy << \
+		"\nattack damage " << _attack_damage << std::endl;
 }

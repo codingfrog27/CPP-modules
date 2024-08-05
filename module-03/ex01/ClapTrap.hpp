@@ -33,6 +33,7 @@ public:
 	void	beRepaired(unsigned int amount);
 	bool	hasEnergy(void);
 	bool	isAlive(void);
+	void	status(void);
 
 protected:
 	std::string		_name;

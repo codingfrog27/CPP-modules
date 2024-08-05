@@ -25,5 +25,7 @@ int	main(void)
 	frfr.takeDamage(99);
 
 
+	//show diff trap statusses i guess
+
 	return 0; //status and death check only in ex02 Claptrap (replace all of em with newest?)
 }
