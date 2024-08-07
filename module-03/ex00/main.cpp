@@ -14,6 +14,8 @@
 
 int	main(void)
 {
+	std::cout << LINE << "\n\t start of program \n" << LINE << std::endl;
+
 	ClapTrap	itsme("baby puncher");
 	ClapTrap	funny("just a funny guy");
 

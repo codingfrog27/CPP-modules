@@ -21,6 +21,7 @@
 FragTrap::FragTrap(void) : ClapTrap("unnamed FragTrap")
 {
 	std::cout << CYN << " And they're a cool high fiving FragTrap" << RESET << std::endl;
+	_max_health = 100;
 	_health = 100;
 	_energy = 100;
 	_attack_damage = 30;
@@ -29,6 +30,7 @@ FragTrap::FragTrap(void) : ClapTrap("unnamed FragTrap")
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << CYN << " And they're a cool high fiving FragTrap" << RESET << std::endl;
+	_max_health = 100;
 	_health = 100;
 	_energy = 100;
 	_attack_damage = 30;
@@ -48,6 +50,7 @@ FragTrap::operator=(const FragTrap &rhs)
 	if (this != &rhs)
 	{
 		_name = rhs._name;
+		_max_health = rhs._max_health;
 		_health = rhs._health;
 		_energy = rhs._energy;
 		_attack_damage = rhs._attack_damage;
@@ -95,7 +98,8 @@ void	FragTrap::stagger_print(std::string msg)
 
 void	FragTrap::highFivesGuys(void)
 {
-
+	if (!isAlive())
+			return;
 	std::string response;
 	std::cout << CYN << _name << RESET << " asks you for a high five"\
 	"do you accept?\n (say anything but no)" << std::endl;

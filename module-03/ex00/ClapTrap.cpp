@@ -4,7 +4,7 @@
 //                        Constructors and Destructors                        //
 // ************************************************************************** //
 
-ClapTrap::ClapTrap() : _name("Unnamed ClapTrap"), _health(10), _energy(10), _attack_damage(0)
+ClapTrap::ClapTrap() : _name("Unnamed ClapTrap"),_max_health(10), _health(_max_health), _energy(10), _attack_damage(0)
 {
 	std::cout << GREEN << "ClapTrap " << MAG << _name << GREEN  << " LIVES" << RESET << std::endl;
 }
@@ -29,6 +29,7 @@ ClapTrap::operator=(const ClapTrap &rhs)
 	if (this != &rhs)
 	{
 		_name = rhs._name;
+		_max_health = rhs._max_health;
 		_health = rhs._health;
 		_energy = rhs._energy;
 		_attack_damage = rhs._attack_damage;
@@ -81,9 +82,9 @@ ClapTrap::~ClapTrap(void)
 		_energy--;
 		std::cout << MAG <<  _name << RESET << " heals " << amount \
 		<< " of health back! ⚡" << std::endl;
-		if (_health + amount >= 10)
+		if (_health + amount >= _max_health)
 		{
-			_health = 10;
+			_health = _max_health;
 			std::cout << "...and is fully repaired! B)" << std::endl;
 		}
 		else

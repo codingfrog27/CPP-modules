@@ -37,6 +37,7 @@ public:
 
 protected:
 	std::string		_name;
+	size_t			_max_health;
 	size_t			_health;
 	size_t			_energy;
 	size_t			_attack_damage;

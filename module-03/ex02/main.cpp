@@ -11,21 +11,35 @@
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	FragTrap frfr("cool guy");
+	std::cout << LINE << "\n\t start of program \n" << LINE << std::endl;
+	ScavTrap	bongo("bong");
+	ScavTrap	epic("tubular droid");
+	ScavTrap	copyCat(bongo);
+	FragTrap 	high_fiver("cool guy");
+
+	std::cout << LINE << "\n\tT H E	S T O R Y	B E G I N S\n" << LINE << std::endl;
+	std::cout << "After many years of preparing tubulair droid is finally" \
+	 "ready to avenge his friend.\n\nHe's enlisted the help of the dangerous high fiver.\n"  << std::endl;
+
+	epic.attack("bong");
+	bongo.takeDamage(20);
+	bongo.status();
+	high_fiver.attack("bong (copycat))");
+	std::cout << "copycat revelas their true identity.. BABY PUNCHER" << std::endl;
+	copyCat.attack("cool guy");
+	high_fiver.takeDamage(20);
+	std::cout << "but with cool guy's extra strength they gain the upper hand" \
+	"\nand in an ironic twist of fate, Baby puncher and Bongo fall down the stairs!" << std::endl;
+	copyCat.takeDamage(99);
+	bongo.takeDamage(99);
+
+	std::cout << LINE "\nSweet revenge has been had!!\n" LINE << std::endl;
+	high_fiver.highFivesGuys();
 
 
-	frfr.takeDamage(40);
-	frfr.status();
-	frfr.attack("the president of the united states");
-	frfr.highFivesGuys();
-	frfr.takeDamage(60);
-	frfr.takeDamage(99);
-
-
-	//show diff trap statusses i guess
-
-	return 0; //status and death check only in ex02 Claptrap (replace all of em with newest?)
+	return 0;
 }

@@ -28,7 +28,7 @@ public:
 	// Getters
 	// Setters
 	// Other member functions
-	void	attack(const std::string& target);
+	virtual void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
 	bool	hasEnergy(void);
@@ -37,6 +37,7 @@ public:
 
 protected:
 	std::string		_name;
+	size_t			_max_health;
 	size_t			_health;
 	size_t			_energy;
 	size_t			_attack_damage;

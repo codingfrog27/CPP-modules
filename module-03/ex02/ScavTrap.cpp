@@ -22,6 +22,7 @@ ScavTrap::ScavTrap() : ClapTrap("unnamed ScavTrap")
 {
 	std::cout << CYN << "and they're an extra beefy" << YEL << " ScavTrap"\
 	<< RESET << std::endl;
+	_max_health = 100;
 	_health = 100;
 	_energy = 50;
 	_attack_damage = 20;
@@ -31,6 +32,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << CYN << "and they're an extra beefy" << YEL << " ScavTrap"\
 	<< RESET << std::endl;
+	_max_health = 100;
 	_health = 100;
 	_energy = 50;
 	_attack_damage = 20;
@@ -51,6 +53,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &rhs)
 	if (this != &rhs)
 	{
 		_name = rhs._name;
+		_max_health = rhs._max_health;
 		_health = rhs._health;
 		_energy = rhs._energy;
 		_attack_damage = rhs._attack_damage;
@@ -83,6 +86,8 @@ void	ScavTrap::attack(const std::string& target)
 
 void	ScavTrap::guardGate()
 {
+	if (!isAlive())
+			return;
 	std::cout << MAG << _name << CYN << ": Aint nobody getting past this gate!! 😈"\
 	<< RESET << std::endl;
 }
