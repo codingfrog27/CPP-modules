@@ -18,7 +18,7 @@
 //                        Constructors and Destructors                        //
 // ************************************************************************** //
 
-Animal::Animal(void)
+Animal::Animal(void): type("generic animal")
 {
 	std::cout << GREEN << "Animal: Default constructor called" << RESET << std::endl;
 }
@@ -44,12 +44,16 @@ Animal::~Animal(void)
 {
 	std::cout << RED << "Animal: Destructor called" << RESET << std::endl;
 }
-
-void Animal::makeSound()
-{
-	std::cout << "I am" CYN "an animal" RESET "don't worry about it" << std::endl;
-}
-
 // ************************************************************************** //
 //                                Public methods                              //
 // ************************************************************************** //
+
+void Animal::makeSound() const
+{
+	std::cout << "I am" CYN " an animal" RESET " don't worry about it" << std::endl;
+}
+
+const std::string	&Animal::getType() const
+{
+	return (this->type);
+}

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.hpp                                         :+:    :+:            */
+/*   WrongWrongAnimal.hpp                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,23 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
+#ifndef WrongAnimal_HPP
+#define WrongAnimal_HPP
 
-#define ANIMAL_HPP
 #include <iostream>
 
-class Animal {
+class WrongAnimal {
 public:
 	// Constructors
-	Animal();
-	Animal(const Animal &other);
-	Animal& operator=(const Animal &other);
-	~Animal();
+	WrongAnimal();
+	WrongAnimal(const WrongAnimal &other);
+	WrongAnimal& operator=(const WrongAnimal &other);
+	~WrongAnimal();
 
 	// Getters
 	// Setters
 	// Other member functions
-	virtual void	makeSound();
+	void	makeSound() const;
+	const std::string	&getType() const;
 protected:
 	std::string type;
 	// Member variables

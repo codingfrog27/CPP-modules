@@ -18,19 +18,20 @@
 
 Cat::Cat(void) : Animal()
 {
-	std::cout << GREEN << "Cat: Default constructor called" << RESET << std::endl;
+	type = "Kitty";
+	std::cout << GREEN << "🐱: Default constructor called" << RESET << std::endl;
 }
 
 Cat::Cat(const Cat &rhs)
 {
-	std::cout << GREEN << "Cat: Copy constructor called" << RESET << std::endl;
+	std::cout << GREEN << "🐱: Copy constructor called" << RESET << std::endl;
 
 	*this = rhs;
 }
 
 Cat &Cat::operator=(const Cat &rhs)
 {
-	std::cout << GREEN << "Cat: Assignment operator called" << RESET << std::endl;
+	std::cout << GREEN << "🐱: Assignment operator called" << RESET << std::endl;
 
 	if (this != &rhs)
 	{
@@ -41,7 +42,7 @@ Cat &Cat::operator=(const Cat &rhs)
 
 Cat::~Cat(void)
 {
-	std::cout << RED << "Cat: Destructor called" << RESET << std::endl;
+	std::cout << RED << "🐱: Destructor called" << RESET << std::endl;
 }
 
 
@@ -49,7 +50,7 @@ Cat::~Cat(void)
 //                                Public methods                              //
 // ************************************************************************** //
 
-void Cat::makeSound()
+void Cat::makeSound() const
 {
-	std::cout << MAG "Miauw 🐱🐱🐱🐈🐈🐈" RESET << std::endl;
+	std::cout << MAG "🐱🐱🐱🐈🐈🐈Miauw 🐱🐱🐱🐈🐈🐈" RESET << std::endl;
 }

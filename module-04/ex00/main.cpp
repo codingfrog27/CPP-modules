@@ -11,12 +11,46 @@
 /* ************************************************************************** */
 
 #include "Dog.hpp"
-#include "Cat.cpp"
+#include "Cat.hpp"
+#include "WrongCat.hpp"
+#include "utils.hpp"
+
+void	count_down(int counter);
+void	stagger_print(std::string msg);
+
+// int main()
+// {
+// 	count_down(3);
+// 	stagger_print("starting program\n");
+// 	Animal		whatAmI;
+// 	Dog			Pupper;
+// 	Cat			kitty;
+	const WrongCat*	sus_kitty = new WrongCat();
+
+// 	whatAmI.makeSound();
+// 	Pupper.makeSound();
+// 	kitty.makeSound();
+// 	sus_kitty->makeSound();
+// 	return 0;
+// }
+
+// finish cool util functions if i want :)
 
 int main()
 {
-	Animal	whatAmI;
-	Dog		Pupper;
-	Cat		cutie;
+	const Animal* meta = new Animal();
+	const Animal* pupper = new Dog();
+	const Animal* kitty = new Cat();
+	const WrongAnimal* sus_kitty = new WrongCat();
+	WrongAnimal	yo = WrongCat();
+	std::cout << pupper->getType() << " " << std::endl;
+	std::cout << kitty->getType() << " " << std::endl;
+	std::cout << sus_kitty->getType() << " " << std::endl;
+	meta->makeSound();
+	kitty->makeSound(); //will output the cat sound!
+	pupper->makeSound();
+	sus_kitty->makeSound();
+	yo.makeSound();
+
 	return 0;
 }

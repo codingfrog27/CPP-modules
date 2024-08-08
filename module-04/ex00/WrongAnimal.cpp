@@ -1,56 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Dog.cpp                                            :+:    :+:            */
+/*   WrongAnimal.cpp                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/08/07 18:17:09 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2024/08/07 18:17:09 by mde-cloe      ########   odam.nl         */
+/*   Created: 2024/08/07 18:01:14 by mde-cloe      #+#    #+#                 */
+/*   Updated: 2024/08/07 18:01:14 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongAnimal.hpp"
+
+#include "WrongAnimal.hpp"
 
 // ************************************************************************** //
 //                        Constructors and Destructors                        //
 // ************************************************************************** //
 
-Dog::Dog(void) : Animal()
+WrongAnimal::WrongAnimal(void): type("generic animal")
 {
-	std::cout << GREEN << "🐶: Default constructor called" << RESET << std::endl;
-	type = "Doggo";
+	std::cout << GREEN << "WrongAnimal: Default constructor called" << RESET << std::endl;
 }
 
-Dog::Dog(const Dog &rhs)
+WrongAnimal::WrongAnimal(const WrongAnimal &rhs)
 {
-	std::cout << GREEN << "🐶: Copy constructor called" << RESET << std::endl;
+	std::cout << GREEN << "WrongAnimal: Copy constructor called" << RESET << std::endl;
 
 	*this = rhs;
 }
 
-Dog &Dog::operator=(const Dog &rhs)
+WrongAnimal &
+WrongAnimal::operator=(const WrongAnimal &rhs)
 {
-	std::cout << GREEN << "🐶: Assignment operator called" << RESET << std::endl;
+	std::cout << GREEN << "WrongAnimal: Assignment operator called" << RESET << std::endl;
 
 	if (this != &rhs)
-	{
 		type = rhs.type;
-	}
 	return (*this);
 }
 
-Dog::~Dog(void)
+WrongAnimal::~WrongAnimal(void)
 {
-	std::cout << RED << "🐶: Destructor called" << RESET << std::endl;
+	std::cout << RED << "WrongAnimal: Destructor called" << RESET << std::endl;
 }
 
 // ************************************************************************** //
 //                                Public methods                              //
 // ************************************************************************** //
-
-void Dog::makeSound() const
+void WrongAnimal::makeSound() const
 {
-	std::cout << YEL "🐶🐶🐶 Woof Woof! 🐶🐶🐶" RESET " I aint just got that dog in me" \
-	YEL" I AM THE DOG WOOF WOOF" RESET << std::endl;
+	std::cout << "I am" CYN " an Animal" RESET " don't worry about it" << std::endl;
+}
+
+const std::string	&WrongAnimal::getType() const
+{
+	return (this->type);
 }

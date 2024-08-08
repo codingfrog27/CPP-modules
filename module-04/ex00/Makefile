@@ -16,11 +16,11 @@ CC = c++
 
 Wflags = -Wall -Wextra -Werror
 
-INCLUDE =# -I include/
+INCLUDE = -I include/
 
 VERSION_FLAG = -std=c++17
 
-SOURCES = Animal.cpp Dog.cpp Cat.cpp main.cpp
+SOURCES = utils.cpp Animal.cpp Dog.cpp Cat.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
 OFILES	:=	$(SOURCES:.cpp=.o)
 
 #-----colours----
@@ -43,6 +43,7 @@ $(NAME): $(SOURCES) $(OFILES)
 re: fclean $(NAME)
 
 run: $(NAME)
+	@rm -rf *.o
 	@./$(NAME)
 
 clean:
