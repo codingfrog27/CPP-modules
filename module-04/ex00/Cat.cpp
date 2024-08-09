@@ -52,5 +52,5 @@ Cat::~Cat(void)
 
 void Cat::makeSound() const
 {
-	std::cout << MAG "🐱🐱🐱🐈🐈🐈Miauw 🐱🐱🐱🐈🐈🐈" RESET << std::endl;
+	std::cout << MAG "🐱🐱🐱🐈🐈🐈 Miauw 🐱🐱🐱🐈🐈🐈" RESET << std::endl;
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   utils.hpp                                          :+:    :+:            */
+/*   nicePrint.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef utils_HPP
+#ifndef NICEPRINT_HPP
 
-#define utils_HPP
+#define NICEPRINT_HPP
 
 #include <iostream>
 #include <thread>
@@ -30,7 +30,28 @@
 #define WHT "\e[0;37m"
 
 #define LINE "-----------------------------------------------"
+#define LINE_S "--------------"
+
+class NicePrint {
+public:
+	// Constructors
+	NicePrint();
+	NicePrint(const NicePrint &other);
+	NicePrint& operator=(const NicePrint &other);
+	~NicePrint();
 
 
+	// Other member functions
+	void	count_down(int counter);
+	void	stagger_print(std::string msg, size_t ms);
+	void	high_five_loop();
+	// void	newline();
+	const std::string div = "--------------------------------------------";
+	static constexpr std::string div_s = "--------------";
 
-#endif // utils_HPP
+private:
+	// Member variables
+};
+//const (and constexpr) can be defined directly in the header in c++11 and later :)
+
+#endif // NICEPRINT_HPP

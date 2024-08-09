@@ -13,19 +13,15 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongCat.hpp"
-#include "utils.hpp"
-
-void	count_down(int counter);
-void	stagger_print(std::string msg);
+#include "NicePrint.hpp"
 
 // int main()
 // {
 // 	count_down(3);
-// 	stagger_print("starting program\n");
 // 	Animal		whatAmI;
 // 	Dog			Pupper;
 // 	Cat			kitty;
-	const WrongCat*	sus_kitty = new WrongCat();
+	// const WrongCat*	sus_kitty = new WrongCat();
 
 // 	whatAmI.makeSound();
 // 	Pupper.makeSound();
@@ -38,19 +34,38 @@ void	stagger_print(std::string msg);
 
 int main()
 {
-	const Animal* meta = new Animal();
-	const Animal* pupper = new Dog();
-	const Animal* kitty = new Cat();
-	const WrongAnimal* sus_kitty = new WrongCat();
-	WrongAnimal	yo = WrongCat();
+	NicePrint	msgs;
+	msgs.stagger_print(YEL LINE_S "---\n|starting program|\n---"\
+						 LINE_S RESET "\n", 15);
+	msgs.stagger_print(LINE "\n", 25);
+
+	const Animal* 		meta = new Animal();
+	const Animal* 		pupper = new Dog();
+	const Animal* 		kitty = new Cat();
+	const WrongAnimal* 	sus_kitty = new WrongCat();
+	WrongAnimal			nonptr = WrongCat(); // = copy constructer and assignment
+
+	msgs.stagger_print(LINE "\n", 25);
+
 	std::cout << pupper->getType() << " " << std::endl;
 	std::cout << kitty->getType() << " " << std::endl;
 	std::cout << sus_kitty->getType() << " " << std::endl;
+
+
+	msgs.stagger_print(LINE "\n", 10);
+
 	meta->makeSound();
 	kitty->makeSound(); //will output the cat sound!
 	pupper->makeSound();
 	sus_kitty->makeSound();
-	yo.makeSound();
+	nonptr.makeSound();
 
+
+	msgs.stagger_print(LINE "\n", 10);
+
+	delete meta;
+	delete pupper;
+	delete kitty;
+	delete sus_kitty;
 	return 0;
 }

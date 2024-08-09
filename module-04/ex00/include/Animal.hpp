@@ -21,7 +21,7 @@ public:
 	Animal();
 	Animal(const Animal &other);
 	Animal& operator=(const Animal &other);
-	~Animal();
+	virtual ~Animal();
 
 	// Getters
 	// Setters

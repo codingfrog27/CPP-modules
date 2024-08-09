@@ -14,13 +14,13 @@ NAME := polymorphism
 
 CC = c++
 
-Wflags = -Wall -Wextra -Werror
+Wflags = -Wall -Wextra -Werror -g -fsanitize=address
 
 INCLUDE = -I include/
 
-VERSION_FLAG = -std=c++17
+VERSION_FLAG = -std=c++20
 
-SOURCES = utils.cpp Animal.cpp Dog.cpp Cat.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
+SOURCES = NicePrint.cpp Animal.cpp Dog.cpp Cat.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
 OFILES	:=	$(SOURCES:.cpp=.o)
 
 #-----colours----

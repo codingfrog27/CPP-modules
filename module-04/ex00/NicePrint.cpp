@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   utils.cpp                                          :+:    :+:            */
+/*   nicePrint.cpp                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,9 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.hpp"
+#include "NicePrint.hpp"
 
-void	high_five_loop()
+// ************************************************************************** //
+//                        Constructors and Destructors                        //
+// ************************************************************************** //
+
+NicePrint::NicePrint(void)
+{
+	// std::cout << GREEN << "NicePrint: Default constructor called" << RESET << std::endl;
+}
+
+NicePrint::NicePrint(const NicePrint &rhs)
+{
+	std::cout << GREEN << "NicePrint: Copy constructor called" << RESET << std::endl;
+
+	*this = rhs;
+}
+
+NicePrint &
+NicePrint::operator=(const NicePrint &rhs)
+{
+	std::cout << GREEN << "NicePrint: Assignment operator called" << RESET << std::endl;
+
+	if (this != &rhs)
+	{
+		// Perform deep copy
+	}
+
+	return (*this);
+}
+
+NicePrint::~NicePrint(void)
+{
+	std::cout << RED << "NicePrint: Destructor called" << RESET << std::endl;
+}
+
+// ************************************************************************** //
+//                                Public methods                              //
+// ************************************************************************** //
+
+
+
+
+void	NicePrint::high_five_loop()
 {
 	std::string me = "<(▼▽▼)っ";
 	std::string you = "୧(^ ᵕ ^   )っ";
@@ -31,16 +72,16 @@ void	high_five_loop()
 	}
 }
 
-void	stagger_print(std::string msg)
+void	NicePrint::stagger_print(std::string msg, size_t ms)
 {
 	for (size_t i = 0; msg[i]; i++)
 	{
 		std::cout << msg[i] << std::flush;
-		std::this_thread::sleep_for(std::chrono::milliseconds(20));
+		std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 	}
 }
 
-void	count_down(int counter)
+void	NicePrint::count_down(int counter)
 {
 	while (counter > 0)
 	{
