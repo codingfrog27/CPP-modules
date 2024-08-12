@@ -12,7 +12,6 @@
 
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
 #include "NicePrint.hpp"
 
 int main()
@@ -22,33 +21,30 @@ int main()
 						 LINE_S RESET "\n", 15);
 	msgs.stagger_print(LINE "\n", 10);
 
-	const Animal* 		meta = new Animal();
-	const Animal* 		pupper = new Dog();
-	const Animal* 		kitty = new Cat();
-	const WrongAnimal* 	sus_kitty = new WrongCat();
-	WrongAnimal			nonptr = WrongCat(); // = copy constructer and assignment and will then destroy the temporary wrongcat and animal?
-
+	const Animal* doggo = new Dog();
+	const Animal* kitty = new Cat();
 	msgs.stagger_print(LINE "\n", 10);
 
-	std::cout << pupper->getType() << std::endl;
-	std::cout << kitty->getType() << std::endl;
-	std::cout << sus_kitty->getType() << std::endl;
-
-
-	msgs.stagger_print(LINE "\n", 10);
-
-	meta->makeSound();
-	kitty->makeSound(); //will output the cat sound!
-	pupper->makeSound();
-	sus_kitty->makeSound();
-	nonptr.makeSound();
-
-
-	msgs.stagger_print(LINE "\n", 10);
-
-	delete meta;
-	delete pupper;
+	delete doggo;//should not create a leak
 	delete kitty;
-	delete sus_kitty;
+
+	msgs.stagger_print(LINE "\n", 10);
+
+	Animal *Pet_palace[100];
+	for (size_t i = 0; i < sizeof(Pet_palace) / sizeof(*Pet_palace); i++)
+	{
+		if (i % 2)
+			Pet_palace[i] = new Dog();
+		else
+			Pet_palace[i] = new Cat();
+	}
+	//print some random thoughts
+	msgs.stagger_print("About to delete all\n", 10);
+	msgs.count_down(5);
+
+	for (size_t i = 0; i < sizeof(Pet_palace) / sizeof(*Pet_palace); i++)
+		delete Pet_palace[i];
+
+
 	return 0;
 }
