@@ -19,32 +19,67 @@ int main()
 	NicePrint	msgs;
 	msgs.stagger_print(YEL LINE_S "---\n|starting program|\n---"\
 						 LINE_S RESET "\n", 15);
-	msgs.stagger_print(LINE "\n", 10);
+	msgs.stagger_print("Subject tests\n" LINE "\n", 10);
 
 	const Animal* doggo = new Dog();
 	const Animal* kitty = new Cat();
-	msgs.stagger_print(LINE "\n", 10);
 
-	delete doggo;//should not create a leak
+	delete doggo;
 	delete kitty;
 
 	msgs.stagger_print(LINE "\n", 10);
+	msgs.stagger_print("end of subject tests, about to construct 100 animals\n"\
+						LINE "\n", 10);
+	msgs.promptEnter();
 
-	Animal *Pet_palace[100];
-	for (size_t i = 0; i < sizeof(Pet_palace) / sizeof(*Pet_palace); i++)
+	msgs.stagger_print("Constructing all pets in..", 30);
+	msgs.count_down(3);
+
+
+
+
+	Animal *petPalace[100];
+
+	//all even numbers will be cats and uneven dogs
+	for (size_t i = 0; i < sizeof(petPalace) / sizeof(*petPalace); i++)
 	{
 		if (i % 2)
-			Pet_palace[i] = new Dog();
+			petPalace[i] = new Dog();
 		else
-			Pet_palace[i] = new Cat();
+			petPalace[i] = new Cat();
 	}
-	//print some random thoughts
-	msgs.stagger_print("About to delete all\n", 10);
-	msgs.count_down(5);
-
-	for (size_t i = 0; i < sizeof(Pet_palace) / sizeof(*Pet_palace); i++)
-		delete Pet_palace[i];
+	std::cout << LINE << std::endl;
+	msgs.stagger_print("showing deepcopies and my extra useBrain function\n", 30);
+	msgs.promptEnter();
 
 
+	//downside of using a base class pointer is that you can't access methods specific
+	// to the derived class therefore we dynamic cast
+	Dog assignDog = dynamic_cast<const Dog&>(*petPalace[47]);
+	Cat CopyCat(dynamic_cast<const Cat&>(*petPalace[42]));
+	std::cout << LINE << std::endl;
+
+	CopyCat.useBrain(77);
+	assignDog.useBrain(42);
+
+	std::cout << LINE << std::endl;
+	dynamic_cast<Dog*>(petPalace[47])->printBrainAdress();
+	assignDog.printBrainAdress();
+
+	CopyCat.printBrainAdress();
+	(dynamic_cast<const Cat&>(*petPalace[42])).printBrainAdress();
+
+	std::cout << LINE << std::endl;
+	msgs.stagger_print("about to delete 100 animals: ", 30);
+	msgs.promptEnter();
+	msgs.stagger_print("Deleting all pets in: ", 30);
+	msgs.count_down(3);
+
+	for (size_t i = 0; i < sizeof(petPalace) / sizeof(*petPalace); i++)
+		delete petPalace[i];
+
+	msgs.stagger_print(YEL LINE_S "---\n|End of program|\n---"\
+						 LINE_S RESET \
+						 "\n(below will be stack destructors)\n", 15);
 	return 0;
 }

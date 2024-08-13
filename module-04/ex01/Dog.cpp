@@ -57,3 +57,13 @@ void Dog::makeSound() const
 	std::cout << YEL "🐶🐶🐶 Woof Woof! 🐶🐶🐶" RESET " I aint just got that dog in me" \
 	YEL" I AM THE DOG WOOF WOOF" RESET << std::endl;
 }
+
+void Dog::useBrain(int i) const
+{
+	std::cout << _brain->getIdea(i) << std::endl;
+}
+
+void	Dog::printBrainAdress() const
+{
+	std::cout << "Brain adress == " << &_brain << std::endl;
+}

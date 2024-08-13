@@ -25,10 +25,10 @@ public:
 	Dog& operator=(const Dog &other);
 	~Dog();
 
-	// Getters
-	// Setters
 	// Other member functions
 	void	makeSound() const override;
+	void	useBrain(int i) const;
+	void	printBrainAdress() const;
 
 private:
 	Brain	*_brain;

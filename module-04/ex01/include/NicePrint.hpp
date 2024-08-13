@@ -17,6 +17,7 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <random>
 
 #define RESET "\033[0m"
 #define GREEN "\033[32m"
@@ -47,7 +48,8 @@ public:
 	void	high_five_loop();
 	// void	newline();
 	const std::string div = "--------------------------------------------";
-	static constexpr std::string div_s = "--------------";
+	const std::string div_s = "--------------";
+	void	promptEnter() const;
 
 private:
 	// Member variables

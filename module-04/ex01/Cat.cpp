@@ -60,3 +60,13 @@ void Cat::makeSound() const
 {
 	std::cout << MAG "🐱🐱🐱🐈🐈🐈 Miauw 🐱🐱🐱🐈🐈🐈" RESET << std::endl;
 }
+
+void Cat::useBrain(int i) const
+{
+	std::cout << _brain->getIdea(i) << std::endl;
+}
+
+void	Cat::printBrainAdress() const
+{
+	std::cout << "Brain adress == " << &_brain << std::endl;
+}

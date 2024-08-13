@@ -12,6 +12,7 @@
 
 #include "NicePrint.hpp"
 
+
 // ************************************************************************** //
 //                        Constructors and Destructors                        //
 // ************************************************************************** //
@@ -85,10 +86,24 @@ void	NicePrint::count_down(int counter)
 {
 	while (counter > 0)
 	{
-		system("clear");
-		std::cout << YEL << counter << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(450));
+		std::cout << YEL << counter << std::flush;
+		std::this_thread::sleep_for(std::chrono::milliseconds(800));
+		std::cout << "\b" << std::flush;
 		counter--;
 	}
 
+}
+
+int getRandomNumber(int min, int max) {
+    static std::random_device rd;  // Seed generator
+    static std::default_random_engine eng(rd());  // Random number engine
+    std::uniform_int_distribution<int> distr(min, max);  // Distribution range
+
+    return distr(eng);
+}
+
+void	NicePrint::promptEnter() const
+{
+	std::cout << "Press Enter to continue...";
+	std::cin.get();
 }

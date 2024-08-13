@@ -14,7 +14,7 @@ NAME := BrainingTime
 
 CC = c++
 
-Wflags = -Wall -Wextra -Werror -g -ggdb3
+Wflags = -Wall -Wextra -Werror -g -fsanitize=address
 
 INCLUDE = -I include/
 
