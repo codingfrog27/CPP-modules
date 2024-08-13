@@ -35,10 +35,10 @@
 class NicePrint {
 public:
 	// Constructors
-	NicePrint();
+	NicePrint() = default;
 	NicePrint(const NicePrint &other);
 	NicePrint& operator=(const NicePrint &other);
-	~NicePrint();
+	~NicePrint()  = default;
 
 
 	// Other member functions
@@ -47,7 +47,7 @@ public:
 	void	high_five_loop();
 	// void	newline();
 	const std::string div = "--------------------------------------------";
-	static constexpr std::string div_s = "--------------";
+	const std::string div_s = "--------------";
 
 private:
 	// Member variables

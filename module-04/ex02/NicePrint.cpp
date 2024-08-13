@@ -17,6 +17,11 @@
 //                        Constructors and Destructors                        //
 // ************************************************************************** //
 
+// NicePrint::NicePrint(void)
+// {
+// 	// std::cout << GREEN << "NicePrint: Default constructor called" << RESET << std::endl;
+// }
+
 NicePrint::NicePrint(const NicePrint &rhs)
 {
 	std::cout << GREEN << "NicePrint: Copy constructor called" << RESET << std::endl;
@@ -37,6 +42,10 @@ NicePrint::operator=(const NicePrint &rhs)
 	return (*this);
 }
 
+// NicePrint::~NicePrint(void)
+// {
+// 	// std::cout << RED << "NicePrint: Destructor called" << RESET << std::endl;
+// }
 
 // ************************************************************************** //
 //                                Public methods                              //
