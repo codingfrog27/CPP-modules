@@ -17,40 +17,42 @@ CC = c++
 Wflags = -Wall -Wextra -Werror -g -fsanitize=address
 
 INCLUDE = -I include/
-
 VERSION_FLAG = -std=c++20
 
 SOURCES = NicePrint.cpp Animal.cpp Dog.cpp Cat.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
-OFILES	:=	$(SOURCES:.cpp=.o)
+
+OBJDIR = objects
+
+OFILES	:=	$(patsubst %.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 #-----colours----
 
-COLOUR_GREEN=\033[0;32m
-COLOUR_RED=\033[0;31m
-COLOUR_BLUE=\033[0;34m
-COLOUR_END=\033[0m
+C_GREEN = \033[0;32m
+C_RED = \033[0;31m
+C_BLUE = \033[0;34m
+C_RESET = \033[0m
 
 #-----------------
 
 $(NAME): $(SOURCES) $(OFILES)
 	@$(CC) $(Wflags) $(INCLUDE) $(VERSION_FLAG) $(OFILES) -o $(NAME)
-	@printf "$(COLOUR_BLUE)$(NAME) $(COLOUR_GREEN) Compiled!\n\n$(COLOUR_END)"
+	@printf "$(C_BLUE)$(NAME) $(C_GREEN) Compiled!\n\n$(C_RESET )"
 
-%.o : %.cpp
+$(OBJDIR)/%.o : %.cpp | $(OBJDIR)
+	@printf "$(C_GREEN) Compiling $(C_BLUE)$<\n$(C_RESET)"
 	@$(CC) -c $< $(Wflags) $(INCLUDE) $(VERSION_FLAG) -o $@
-	@printf "$(C_GREEN)Compiling $(C_CYAN)$<\n$(C_RESET)"
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
 
 re: fclean $(NAME)
 
 run: $(NAME)
-	@rm -rf *.o
 	@./$(NAME)
 
 clean:
-	@rm -rf *.o
-	@printf "$(COLOUR_RED)$(NAME) removed \n\n$(COLOUR_END)"
+	@rm -rf $(OBJDIR)
+	@printf "$(C_RED)$(OBJDIR) removed \n\n$(C_RESET )"
 fclean: clean
 	@rm -rf $(NAME)
-
-C_RESET	= $(shell tput sgr0)
-C_BOLD	=$(shell tput bold)
+	@printf "$(C_RED)$(NAME) removed \n\n$(C_RESET )"
