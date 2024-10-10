@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Dog.cpp                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/08/07 18:17:09 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2024/08/07 18:17:09 by mde-cloe      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/07 18:17:09 by mde-cloe          #+#    #+#             */
+/*   Updated: 2024/08/30 17:27:38 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@
 Dog::Dog(void) : Animal()
 {
 	std::cout << GREEN << "🐶: Default constructor called" << RESET << std::endl;
-	type = "Doggo";
+	type = "Doggo"; //can't init list cause its part of animal
 	_brain = new Brain;
 }
 
 Dog::Dog(const Dog &rhs)
 {
 	std::cout << GREEN << "🐶: Copy constructor called" << RESET << std::endl;
-
-	*this = rhs;
+	type = rhs.type;
+	_brain = new Brain;
+	_brain = rhs._brain;
 }
 
 Dog &Dog::operator=(const Dog &rhs)
@@ -37,7 +38,7 @@ Dog &Dog::operator=(const Dog &rhs)
 	if (this != &rhs)
 	{
 		type = rhs.type;
-		_brain = new Brain;
+		_brain = rhs._brain;
 	}
 	return (*this);
 }

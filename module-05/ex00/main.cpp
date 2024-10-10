@@ -5,35 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 18:23:13 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/08/30 17:25:59 by mde-cloe         ###   ########.fr       */
+/*   Created: 2024/10/10 18:24:11 by mde-cloe          #+#    #+#             */
+/*   Updated: 2024/10/10 18:48:28 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "NicePrint.hpp"
+#include "Bureaucrat.hpp"
 
-int main()
+int main(void)
 {
-	NicePrint	msgs;
-	msgs.stagger_print(YEL LINE_S "---\n|starting program|\n---"\
-						 LINE_S RESET "\n", 15);
+	//include niceprint from ex04 and make the start and end their own funcs
+	try
+	{
+		Bureaucrat officeCoreEnjoyer("Bob", 200);
+		std::cout << officeCoreEnjoyer << ": \"I love imagine dragons!!\"" << std::endl;
+		// a lot more tests, icluding in and decrement
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n'; 
+		//see how much work it'd be to pass the bureaucrats name to the exception
+		// and mb catch toohigh and toolow instead of just generic exception (or all 3 for showing)
+	}
+	
 
-
-	Cat		kitty;
-	Dog		Doggo;
-	// Animal	shallNotCompile;
-
-	Animal *Doggy = new Dog;
-	// Animal	*Illegal = new Animal;
-
-	delete Doggy;
-	msgs.high_five_loop();
-	msgs.stagger_print(YEL LINE_S "---\n|End of program|\n---"\
-					LINE_S RESET "\n(below will be stack destructors)\n", 15);
-
-	return 0;
+	return (0);
 }
-
-//would write more test but exercise is v straightforward
