@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:43:33 by coding_frog       #+#    #+#             */
-/*   Updated: 2024/10/31 17:16:49 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:30:53 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #define RED "\033[31m"
 #define RESET "\033[0m"
 
-class Form
+class AForm
 {
 	private:
 		const std::string	_name;
@@ -29,11 +29,11 @@ class Form
 
 	public:
 		// Constructors and Destructors
-							Form(void) = delete;
-							Form (std::string name, unsigned int grade);
-							Form(const Form &rhs);
-							Form &operator=(const Form &rhs) = delete;
-							~Form(void);
+							AForm(void) = delete;
+							AForm (std::string name, unsigned int grade);
+							AForm(const AForm &rhs);
+							AForm &operator=(const AForm &rhs) = delete;
+							~AForm(void);
 		//getters
 		const std::string	&getName() const;
 		const unsigned int	&getGrade() const;
@@ -56,4 +56,4 @@ class Form
 
 } ;
 
-std::ostream				&operator<<(std::ostream &out, const Form &obj);
+std::ostream				&operator<<(std::ostream &out, const AForm &obj);

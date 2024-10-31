@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:24:11 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/31 16:48:10 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:21:06 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main(void)
 	try{
 		Bureaucrat officeCoreEnjoyer("Bob", 150); //151
 		std::cout << officeCoreEnjoyer << ": \"I love imagine dragons!!\"" << std::endl;
-		
 		Bureaucrat coolguy("Icarus", 5);
 		std::cout << coolguy << std::endl;
 		for (size_t i = 0; i < 5; i++)

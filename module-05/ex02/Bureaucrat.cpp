@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:07 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/31 18:43:09 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:40:58 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ const unsigned int		&Bureaucrat::getGrade() const
 
 const char	*Bureaucrat::GradeTooLowException::what() const noexcept
 {
-	return ("Grade is Too low!");
+	return ("Grade Too low!");
 }
 
 const char	*Bureaucrat::GradeTooHighException::what() const noexcept
 {
-	return ("Grade is Too high!");
+	return ("Grade Too high!");
 }
 
 
@@ -107,10 +107,12 @@ void	Bureaucrat::signForm(Form &form)
 	}
 	catch(const std::exception &e)
 	{
-		std::cout << "I will never print :')" << std::endl;
 		std::cerr << _name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
 		return;
 	}
 	std::cout << _name << " signed " << form.getName() << std::endl;
 	
 }
+
+
+//
