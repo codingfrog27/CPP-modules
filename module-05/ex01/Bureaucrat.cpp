@@ -6,11 +6,12 @@
 /*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:07 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/30 20:47:59 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/10/30 20:42:26 by coding_frog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp" //circ?
 
 // ************************************************************************** //
 //                        Constructors and Destructors                        //
@@ -92,4 +93,16 @@ void				Bureaucrat::Decrement()
 		throw (Bureaucrat::GradeTooLowException());
 }
 
-
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this)
+	}
+	std::cout << _name << " signed " << form.getName() << std::endl;
+	catch(const Form::GradeTooLowException &e)
+	{
+		std::cerr << _name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+	
+}

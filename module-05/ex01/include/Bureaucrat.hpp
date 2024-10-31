@@ -6,7 +6,7 @@
 /*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:29 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/30 20:35:41 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/10/30 20:35:49 by coding_frog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 #define MIN_GRADE 1
 #define MAX_GRADE 150
+
+class Form;
 
 class Bureaucrat
 {
@@ -36,12 +38,13 @@ class Bureaucrat
 							~Bureaucrat(void);
 	Bureaucrat				&operator=(const Bureaucrat &rhs) = delete; //doesnt work w const name
 
-	//getters
+	// Public Methods
 	const std::string		&getName() const;
 	const unsigned int		&getGrade() const;
-	// Public Methods
 	void					Increment();
-	void					Decrement();
+	void					Decrement();	
+	void					signForm(Form &form);
+
 
 	// exceptions
 	class GradeTooLowException : public std::exception
