@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:07 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/30 20:47:59 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/10/31 16:24:39 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,6 @@ const unsigned int		&Bureaucrat::getGrade() const
 }
 
 // ************************************************************************** //
-//                                exceptions                              //
-// ************************************************************************** //
-
-
-const char	*Bureaucrat::GradeTooLowException::what() const noexcept
-{
-	return ("Grade Too low!");
-}
-
-const char	*Bureaucrat::GradeTooHighException::what() const noexcept
-{
-	return ("Grade Too high!");
-}
-
-
-// ************************************************************************** //
 //                                Public methods                              //
 // ************************************************************************** //
 
@@ -90,6 +74,22 @@ void				Bureaucrat::Decrement()
 	_grade++;
 	if (_grade > MAX_GRADE)
 		throw (Bureaucrat::GradeTooLowException());
+}
+
+
+// ************************************************************************** //
+//                                exceptions                              //
+// ************************************************************************** //
+
+
+const char	*Bureaucrat::GradeTooLowException::what() const noexcept
+{
+	return ("Grade Too low!");
+}
+
+const char	*Bureaucrat::GradeTooHighException::what() const noexcept
+{
+	return ("Grade Too high!");
 }
 
 

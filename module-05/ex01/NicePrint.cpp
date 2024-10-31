@@ -95,7 +95,7 @@ void	NicePrint::count_down(int counter)
 
 void NicePrint::greeter()
 {
-	stagger_print(YEL LINE_S "---\n|starting program|\n---"\
+	this->stagger_print(YEL LINE_S "---\n|starting program|\n---"\
 						 LINE_S RESET "\n", 10);
 	promptEnter();
 }

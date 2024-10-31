@@ -6,17 +6,16 @@
 //                        Constructors and Destructors                        //
 // ************************************************************************** //
 
-Form::Form(std::string name, unsigned int grade) : _name(name)
+Form::Form(std::string name, unsigned int grade) : _name(name), _gradeRequired(grade)
 {
 	if (grade < MIN_GRADE)
 		throw (Form::GradeTooHighException()); //insert name?
 	else if (grade > MAX_GRADE)
 		throw (Form::GradeTooLowException());
-	_grade = grade;
 	std::cout << GREEN << "Form: Default constructor called" << RESET << std::endl;
 }
 
-Form::Form(const Form &rhs) : _name(rhs.getName()), _grade(rhs.getGrade())
+Form::Form(const Form &rhs) : _name(rhs.getName()), _gradeRequired(rhs.getGrade())
 {
 	std::cout << GREEN << "Form: Copy constructor called" << RESET << std::endl;
 }
@@ -45,7 +44,7 @@ const std::string	&Form::getName() const
 
 const unsigned int		&Form::getGrade() const
 {
-	return (_grade);
+	return (_gradeRequired);
 }
 
 
@@ -53,10 +52,10 @@ const unsigned int		&Form::getGrade() const
 //                                Public methods                              //
 // ************************************************************************** //
 
-bool	Form::beSigned(Bureaucrat &signer)
+void	Form::beSigned(Bureaucrat &signer)
 {
 	unsigned int grade = signer.getGrade();
-	if (grade > this->_grade)
+	if (grade > this->_gradeRequired)
 		throw (Form::GradeTooLowException());
 	_isSigned = true;
 }
@@ -68,7 +67,7 @@ bool	Form::beSigned(Bureaucrat &signer)
 
 const char	*Form::GradeTooLowException::what() const noexcept
 {
-	return ("Grade Too low!" + _name);
+	return ("Grade Too low!");
 }
 
 const char	*Form::GradeTooHighException::what() const noexcept

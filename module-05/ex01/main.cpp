@@ -3,40 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:24:11 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/30 19:21:23 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/10/31 16:37:36 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include "NicePrint.hpp"
 
 int main(void)
 {
-	//include niceprint from ex04 and make the start and end their own funcs
-	try
-	{
-		Bureaucrat officeCoreEnjoyer("Bob", 200);
+	NicePrint printer;
+	try{
+		Bureaucrat officeCoreEnjoyer("Bob", 150); //151
 		std::cout << officeCoreEnjoyer << ": \"I love imagine dragons!!\"" << std::endl;
-		// a lot more tests, icluding in and decrement
+		Bureaucrat coolguy("Icarus", 5);
+		std::cout << coolguy << std::endl;
+		for (size_t i = 0; i < 5; i++)
+			coolguy.Increment();
 	}
-
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
+	catch (Bureaucrat::GradeTooLowException &e)	{
+		std::cerr << "too low exception!" << e.what() << '\n'; 
+	}
+	catch (Bureaucrat::GradeTooHighException &e) {
 		std::cerr << e.what() << '\n'; 
 	}
-	catch (Bureaucrat::GradeTooLowException &e)
-	{
-		std::cout << "too low exception!" << std::endl;
+	catch(const std::exception& e) {
 		std::cerr << e.what() << '\n'; 
-	}
-
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n'; 
-		//see how much work it'd be to pass the bureaucrats name to the exception
-		// and mb catch toohigh and toolow instead of just generic exception (or all 3 for showing)
 	}
 	
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:43:33 by coding_frog       #+#    #+#             */
-/*   Updated: 2024/10/30 20:53:16 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/10/31 16:21:52 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ class Form
 		// Public Methods
 		void				beSigned(Bureaucrat &signer);
 		//exceptions
-		class GradeTooLowException : public std::exception //wanted to define outside of class but subject states otherwise :(
-	{
-		public:
-			
-			const char		*what() const noexcept override; // noexcept means no exceptions can occur during its execution
-															//used to be throw() in older versions
-	};
-	class GradeTooHighException : public std::exception
-	{
-		public:
-			const char		*what() const noexcept override;
-	};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				
+				const char		*what() const noexcept override; // noexcept means no exceptions can occur during its execution
+																//used to be throw() in older versions
+		};  //wanted to define outside of class but subject states otherwise :(
+		class GradeTooHighException : public std::exception //passing a name would be possible but would need to make constructor and give it a name
+		{
+			public:
+				const char		*what() const noexcept override;
+		};
 
 } ;
 
