@@ -6,7 +6,7 @@
 /*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:29 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/30 20:35:49 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/11/01 21:57:59 by coding_frog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #define MIN_GRADE 1
 #define MAX_GRADE 150
 
-class Form;
+class Form;w
 
 class Bureaucrat
 {

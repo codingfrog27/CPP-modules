@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:07 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/31 18:40:58 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/11/02 00:44:42 by coding_frog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp" //circ?
+#include "AForm.hpp" //circ?
 
 // ************************************************************************** //
 //                        Constructors and Destructors                        //
@@ -93,13 +93,13 @@ void				Bureaucrat::Decrement()
 		throw (Bureaucrat::GradeTooLowException());
 }
 
-void	Bureaucrat::signForm(Form &form)
+void	Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
 		form.beSigned(*this);
 	}
-	catch(const Form::GradeTooLowException &e)
+	catch(const AForm::GradeTooLowException &e)
 	{
 		std::cerr << _name << " couldn’t sign " << form.getName() << " because "\
 		<< _name << "'s " << e.what() << std::endl;
@@ -113,6 +113,26 @@ void	Bureaucrat::signForm(Form &form)
 	std::cout << _name << " signed " << form.getName() << std::endl;
 	
 }
-
+//only way to smush this into one function is with a func ptr
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	}
+	catch(const AForm::GradeTooLowException &e)
+	{
+		std::cerr << _name << " couldn’t sign " << form.getName() << " because "\
+		<< _name << "'s " << e.what() << std::endl;
+		return;
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << _name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+		return;
+	}
+	
+}
 
 //

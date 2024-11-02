@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:43:33 by coding_frog       #+#    #+#             */
-/*   Updated: 2024/10/31 19:30:53 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/11/02 00:57:33 by coding_frog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,29 @@ class AForm
 {
 	private:
 		const std::string	_name;
-		const unsigned int	_gradeRequired;
+		const std::string	_target;
+		const unsigned int	_minSignGrade;
+		const unsigned int	_minExecGrade;
 		bool				_isSigned;
-		// Private Attributes
-		
-
+	protected:	
+		void				checkExecRights(Bureaucrat const &executor) const;
 	public:
 		// Constructors and Destructors
 							AForm(void) = delete;
 							AForm (std::string name, unsigned int grade);
+							AForm(const std::string &name, const std::string &target, int signGrade, int execGrade);
 							AForm(const AForm &rhs);
 							AForm &operator=(const AForm &rhs) = delete;
 							~AForm(void);
 		//getters
 		const std::string	&getName() const;
-		const unsigned int	&getGrade() const;
+		const unsigned int	&getSignGrade() const;
+		const unsigned int	&getExecGrade() const;
+		const std::string	&getTarget() const;
 		const bool			&getSignedStatus() const;
 		// Public Methods
 		void				beSigned(Bureaucrat &signer);
+		virtual void		execute(Bureaucrat const & executor) const = 0;
 		//exceptions
 		class GradeTooLowException : public std::exception
 		{
@@ -53,7 +58,11 @@ class AForm
 			public:
 				const char		*what() const noexcept override;
 		};
-
+		class NotSigned : public std::exception //passing a name would be possible but would need to make constructor and give it a name
+		{
+			public:
+				const char		*what() const noexcept override;
+		};
 } ;
 
 std::ostream				&operator<<(std::ostream &out, const AForm &obj);

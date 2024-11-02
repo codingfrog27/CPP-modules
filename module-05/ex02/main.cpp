@@ -3,62 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:24:11 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/31 19:32:05 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/11/02 01:08:20 by coding_frog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "NicePrint.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main(void)
 {
-	//form not signed excep class in form or bureau
+
+	//make 3 classes
+	//ah maybe Aform needs a default constructor now?
+	//impliment execute Form in bureacrat
+	//make a form not signed excep class in form or bureau
+	
+	ShrubberyCreationForm shrubForm("test.txt");
+	Bureaucrat bigBoss("obamna", 1);
+	bigBoss.signForm(shrubForm);
+	bigBoss.executeForm(shrubForm); //test ranks too low/ not signed and file not found exceptions
+
+
+
+
+	// so.. I concidered the best way for execute form err printing, making execute form a friend function of AForm
+	// seems like it would work the best, but that being forbidden, execute is now not fully exception safe if execute gets called by itself 
+	//cause i want the bureacrat the catch the exceptions for specific error messages, i could return an enum for every possible err
+	// but seems against spirit of exercise
+
+	//maybe give the exceptions a constructor with a name to pass in the what() function
 
 	
-
-
-
-
-	// NicePrint printer;
-	// printer.greeter();
-
-	// try
-	// {
-	// 	Form	tooLow("random recycling paper", 200);
-	// 	std::cout << "I shall never be printed" << std::endl;
-	// }
-	// catch(const std::exception& e)
-	// {
-	//  //can change to Bureaucrat to show program crash if not caught b4 next try
-	// 	std::cerr << e.what() << '\n';
-	// }
-	// printer.promptEnter();
-	// try{
-	// 	Bureaucrat officeCoreEnjoyer("Bob", 150); //151
-	// 	Bureaucrat coolguy("Icarus", 5);
-	// 	Form	lowForm("random paperwork", 150);
-	// 	Form	highForm("important documents", 5);
-
-	// 	officeCoreEnjoyer.signForm(lowForm);
-	// 	officeCoreEnjoyer.signForm(highForm);
-		
-	// 	coolguy.signForm(highForm);
-	// }
-	// catch (Form::GradeTooLowException &e)	{
-	// 	std::cerr << "too low exception!" << e.what() << '\n'; 
-	// }
-	// catch (Bureaucrat::GradeTooHighException &e) {
-	// 	std::cerr << e.what() << '\n'; 
-	// }
-	// catch(const std::exception& e) {
-	// 	std::cerr << e.what() << '\n'; 
-	// }
-	
-	// return (0);
+	return (0);
 }
 // abstract classes = class with at least 1 PURE VIRTUAL function (only decleration no definition, defined by declaration = 0)
 // can not be instantiated, only inherited from
