@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:07 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/11/25 14:42:45 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:32:37 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	Bureaucrat::signForm(AForm &form)
 	std::cout << _name << " signed " << form.getName() << std::endl;
 	
 }
+
 //only way to smush this into one function is with a func ptr
 void	Bureaucrat::executeForm(AForm const & form)
 {

@@ -47,6 +47,7 @@ public:
 	void	high_five_loop();
 	void	greeter();
 	void	promptEnter() const;
+	void	printLine() const;
 	// void	newline();
 	const std::string div = "--------------------------------------------";
 	const std::string div_s = "--------------";

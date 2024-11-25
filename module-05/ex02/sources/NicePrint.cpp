@@ -101,7 +101,14 @@ void NicePrint::greeter()
 }
 
 void	NicePrint::promptEnter() const
-{
-	std::cout << "Press Enter to continue...";
+{	
+	std::cout << "\n" YEL LINE << std::endl;
+	std::cout << "|\t   Press Enter to continue...\t      |\n";
+	std::cout << YEL LINE RESET << std::endl;
 	std::cin.get();
+}
+
+void	NicePrint::printLine() const
+{
+	std::cout << YEL LINE RESET << std::endl;
 }

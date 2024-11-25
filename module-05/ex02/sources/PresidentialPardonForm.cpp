@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:02:34 by coding_frog       #+#    #+#             */
-/*   Updated: 2024/11/25 15:24:22 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:28:49 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // ************************************************************************** //
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)\
-: AForm("Hitchhiker reference form", target, 25, 5)
+: AForm("Presidential pardon form", target, 25, 5)
 {
 	std::cout << GREEN << "PresidentialPardonForm: Default constructor called" << RESET << std::endl;
 }
