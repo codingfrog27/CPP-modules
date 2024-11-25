@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:23:14 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/31 19:26:05 by mde-cloe         ###   ########.fr       */
+/*   Created: 2024/11/25 17:48:49 by mde-cloe          #+#    #+#             */
+/*   Updated: 2024/11/25 17:50:36 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//if i make this, intern will have a jumptable with the name of the 3 forms
-//and 3 function ptrs for each type of form
+#include "AForm.hpp"
 
-//making such a big deal about if else forrest for 4 options kinda crazy ngl
+class Intern
+{
+	private:
+		// Private Attributes
+		
+
+	public:
+		// Constructors and Destructors
+		Intern(void);
+		Intern(const Intern &rhs);
+		Intern &operator=(const Intern &rhs);
+		~Intern(void);
+		AForm *makeForm(std::string formName, std::string target) const;
+
+		// Public Methods
+
+} ;
