@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:24:11 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/11/02 01:08:20 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/11/25 15:32:46 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "NicePrint.hpp"
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include "NicePrint.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main(void)
 {
@@ -22,11 +24,31 @@ int main(void)
 	//ah maybe Aform needs a default constructor now?
 	//impliment execute Form in bureacrat
 	//make a form not signed excep class in form or bureau
+	try
+	{
+		PresidentialPardonForm	PardonForm("your mom (haHA)");
+		RobotomyRequestForm		cyborgForm("Elon musk fanboy");
+
+
+		Bureaucrat junior("steve", 147);
+		Bureaucrat manager("janine", 1);
+		Bureaucrat bigBoss("obamna", 1);
+		
+		ShrubberyCreationForm	shrubForm("forest");
+		bigBoss.executeForm(shrubForm);
+		junior.signForm(shrubForm);
+		junior.executeForm(shrubForm);
+		bigBoss.executeForm(shrubForm);
+
+
+
+
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	
-	ShrubberyCreationForm shrubForm("test.txt");
-	Bureaucrat bigBoss("obamna", 1);
-	bigBoss.signForm(shrubForm);
-	bigBoss.executeForm(shrubForm); //test ranks too low/ not signed and file not found exceptions
 
 
 

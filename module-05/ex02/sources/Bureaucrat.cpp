@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:07 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/11/02 00:44:42 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/11/25 14:42:45 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,13 @@ void	Bureaucrat::executeForm(AForm const & form)
 	}
 	catch(const AForm::GradeTooLowException &e)
 	{
-		std::cerr << _name << " couldn’t sign " << form.getName() << " because "\
+		std::cerr << _name << " couldn’t execute " << form.getName() << " because "\
 		<< _name << "'s " << e.what() << std::endl;
 		return;
 	}
 	catch(const std::exception &e)
 	{
-		std::cerr << _name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+		std::cerr << _name << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
 		return;
 	}
 	

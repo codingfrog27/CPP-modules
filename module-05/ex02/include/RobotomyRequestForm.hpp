@@ -1,43 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 18:43:56 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/11/25 15:14:12 by mde-cloe         ###   ########.fr       */
+/*   Created: 2024/11/25 15:13:54 by mde-cloe          #+#    #+#             */
+/*   Updated: 2024/11/25 15:14:41 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #pragma once
 #include "AForm.hpp"
 
 
-#define ASCII_TREE \
-"       *\n" \
-"      ***\n" \
-"     *****\n" \
-"    *******\n" \
-"   *********\n" \
-"  ******:)****\n" \
-" *************\n" \
-"***************\n" \
-"      |||\n" \
-"      |||\n"
-
-
-// yurr
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 	public:
 		// Constructors and Destructors
-		ShrubberyCreationForm(void) = delete;
-		ShrubberyCreationForm(std::string target);
-		ShrubberyCreationForm(const ShrubberyCreationForm &rhs);
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &rhs);
-		~ShrubberyCreationForm(void);
+		RobotomyRequestForm(void) = delete;
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(const RobotomyRequestForm &rhs);
+		RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs);
+		~RobotomyRequestForm(void);
 
 		// Public Methods
 		void				executeAction() const override;

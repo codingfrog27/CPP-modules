@@ -61,13 +61,6 @@ const std::string &AForm::getTarget() const{
 
 // ************************************************************************** //
 
-void	AForm::checkExecRights(Bureaucrat const &executor) const
-{
-	if (!_isSigned)
-		throw::AForm::NotSigned();
-	if (getExecGrade() < executor.getGrade())
-		throw::AForm::GradeTooLowException();
-}
 
 
 // ************************************************************************** //
@@ -80,6 +73,14 @@ void	AForm::beSigned(Bureaucrat &signer)
 	if (grade > this->_minSignGrade)
 		throw (AForm::GradeTooLowException());
 	_isSigned = true;
+}
+void	AForm::execute(Bureaucrat const &executor) const
+{
+	if (!_isSigned)
+		throw::AForm::NotSigned();
+	if (getExecGrade() < executor.getGrade())
+		throw::AForm::GradeTooLowException();
+	executeAction();
 }
 
 // ************************************************************************** //

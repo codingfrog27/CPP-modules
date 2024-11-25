@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:25:07 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/10/31 18:43:09 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:34:49 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ void				Bureaucrat::Decrement()
 		throw (Bureaucrat::GradeTooLowException());
 }
 
-void	Bureaucrat::signForm(Form &form)
-{
+void	Bureaucrat::signForm(Form &form) //???
 	try
 	{
 		form.beSigned(*this);

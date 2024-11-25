@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:43:33 by coding_frog       #+#    #+#             */
-/*   Updated: 2024/11/02 00:57:33 by coding_frog      ###   ########.fr       */
+/*   Updated: 2024/11/25 15:24:12 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "Bureaucrat.hpp"
+#include "NicePrint.hpp"
 
 #define GREEN "\033[32m"
 #define RED "\033[31m"
@@ -27,7 +28,7 @@ class AForm
 		const unsigned int	_minExecGrade;
 		bool				_isSigned;
 	protected:	
-		void				checkExecRights(Bureaucrat const &executor) const;
+		// void				checkExecRights(Bureaucrat const &executor) const;
 	public:
 		// Constructors and Destructors
 							AForm(void) = delete;
@@ -44,7 +45,8 @@ class AForm
 		const bool			&getSignedStatus() const;
 		// Public Methods
 		void				beSigned(Bureaucrat &signer);
-		virtual void		execute(Bureaucrat const & executor) const = 0;
+		void		execute(Bureaucrat const & executor) const;
+		virtual void		executeAction() const = 0;
 		//exceptions
 		class GradeTooLowException : public std::exception
 		{
