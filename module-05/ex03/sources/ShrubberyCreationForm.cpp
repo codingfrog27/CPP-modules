@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:02:34 by coding_frog       #+#    #+#             */
-/*   Updated: 2024/11/25 15:15:00 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:44:14 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //                        Constructors and Destructors                        //
 // ************************************************************************** //
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubby form", target, 145, 137){
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubby form", target, 145, 137){
 	std::cout << GREEN << "ShrubberyCreationForm: Default constructor called" << RESET << std::endl;
 }
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &rhs) \

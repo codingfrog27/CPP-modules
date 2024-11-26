@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:51:01 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/11/25 18:26:14 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:47:36 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Intern::operator=(const Intern &rhs)
 
 	if (this != &rhs)
 	{
-		// Perform deep copy
+		// no data members xd
 	}
 
 	return (*this);
@@ -56,12 +56,12 @@ Intern::~Intern(void)
 
 AForm *Intern::makeForm(std::string formName, std::string target) const
 {
-	std::string formOptions[3] = {"shrubby form", "Robotomy Form", "Presidential pardon form"};
+	std::string formOptions[3] = {"Shrubby form", "Robotomy Form", "Presidential pardon form"};
 	for (size_t i = 0; i < 3; i++)
 	{
 		if (formName == formOptions[i])
 		{
-			std::cout << "Intern creates" << formOptions[i] << std::endl;
+			std::cout << "the intern is creating a " << formOptions[i] << std::endl;
 			switch (i)
 			{
 			case 0:
@@ -73,7 +73,11 @@ AForm *Intern::makeForm(std::string formName, std::string target) const
 			}
 		}
 	}
-	std::cout << "Im just an intern, please give me an existing form my" \
-	"life is hard enough as it is 😔" << std::endl;	
-	return (nullptr);
+	throw Intern::NonexistingForm();
+}
+
+const char	*Intern::NonexistingForm::what() const noexcept
+{
+	return ("Im just an intern, please give me an existing form.\nMy " \
+	"life is hard enough as it is. 😔");
 }

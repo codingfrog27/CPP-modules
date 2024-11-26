@@ -3,27 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+         #
+#    By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 18:17:45 by mde-cloe          #+#    #+#              #
-#    Updated: 2024/10/30 19:50:49 by coding_frog      ###   ########.fr        #
+#    Updated: 2024/11/26 13:53:11 by mde-cloe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := ex00
 
 CC = c++
+OBJDIR = objects
+SRCDIR := sources
+INCLDIR := include
 
 Wflags = -Wall -Wextra -Werror -g -fsanitize=address
-
-INCLUDE = -I include/
 VERSION_FLAG = -std=c++20
+INCLUDE_FLAG = -I $(INCLDIR)/
 
-SOURCES = $(shell find -name '*.cpp')
 
-OBJDIR = objects
+HEADERS := $(shell find $(INCLDIR) -name '*.hpp')
+SOURCES := $(shell find $(SRCDIR) -name '*.cpp')
+OBJECTS := $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
-OFILES	:=	$(patsubst %.cpp, $(OBJDIR)/%.o, $(SOURCES))
+
 
 #-----colours----
 
@@ -34,13 +37,17 @@ C_RESET = \033[0m
 
 #-----------------
 
-$(NAME): $(SOURCES) $(OFILES)
-	@$(CC) $(Wflags) $(INCLUDE) $(VERSION_FLAG) $(OFILES) -o $(NAME)
+$(NAME): $(SOURCES) $(OBJECTS)
+	@$(CC) $(Wflags) $(INCLUDE_FLAG) $(VERSION_FLAG) $(OBJECTS) -o $(NAME)
 	@printf "$(C_BLUE)$(NAME) $(C_GREEN) Compiled!\n\n$(C_RESET )"
 
-$(OBJDIR)/%.o : %.cpp | $(OBJDIR)
+
+$(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(HEADERS) | $(OBJDIR)
 	@printf "$(C_GREEN) Compiling $(C_BLUE)$<\n$(C_RESET)"
-	@$(CC) -c $< $(Wflags) $(INCLUDE) $(VERSION_FLAG) -o $@
+	@$(CC) -c $< $(Wflags) $(INCLUDE_FLAG) $(VERSION_FLAG) -o $@
+
+
+
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
