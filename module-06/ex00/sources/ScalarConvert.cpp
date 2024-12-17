@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:00:31 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/12/11 15:04:53 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:31:44 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ constexpr std::size_t npos = std::string::npos;
 
 void	ScalarConverter::convert(std::string literal)
 {
-	char last = literal.back(), front - literal.;
+	char last = literal.back(), front = literal.front();
 	if (literal || literal.find('\'') != npos && literal.length())
 	{
 		if (literal.length() != 3)
