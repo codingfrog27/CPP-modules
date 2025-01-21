@@ -6,13 +6,14 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:13:35 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/12/11 14:00:00 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:11:57 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "string"
+#include <string>
+#include <iostream>
 
 class ScalarConverter
 {
