@@ -54,6 +54,10 @@
 		"chrono": "cpp",
 		"ratio": "cpp",
 		"stop_token": "cpp",
-		"semaphore": "cpp"
+		"semaphore": "cpp",
+		"charconv": "cpp",
+		"format": "cpp",
+		"fstream": "cpp",
+		"variant": "cpp"
 	}
 }
