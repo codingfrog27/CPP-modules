@@ -6,11 +6,11 @@
 #    By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 18:17:45 by mde-cloe          #+#    #+#              #
-#    Updated: 2025/01/24 16:40:23 by coding_frog      ###   ########.fr        #
+#    Updated: 2025/01/24 17:02:08 by coding_frog      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := template_funcs
+NAME := iter
 
 CC = c++
 OBJDIR = objects
