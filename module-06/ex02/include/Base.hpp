@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:25:35 by mde-cloe          #+#    #+#             */
-/*   Updated: 2024/11/27 21:26:00 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:31:35 by coding_frog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 class Base
 {
-	virtual ~Base();
+	public:
+		virtual ~Base() = default;
 };
