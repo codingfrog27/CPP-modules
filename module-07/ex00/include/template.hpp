@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   template.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 21:25:35 by mde-cloe          #+#    #+#             */
-/*   Updated: 2025/01/24 15:14:33 by coding_frog      ###   ########.fr       */
+/*   Created: 2025/01/24 15:26:20 by coding_frog       #+#    #+#             */
+/*   Updated: 2025/01/24 15:34:17 by coding_frog      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-
-class Base
+template <typename T> void swap(T &a, T &b)
 {
-	public:
-		virtual ~Base() = default;
-};
+	T tmp = a;
+	a = b;
+	b = tmp;
+}
 
-Base * generate(void);
-void identify(Base *p);
-void identify(Base& p);
+template <typename T> T	min(T a, T b)
+{
+	return (a < b ? a : b);
+}
+
+template <typename T> T	max(T a, T b)
+{
+	return (a > b ? a : b);
+}

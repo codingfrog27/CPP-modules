@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+         #
+#    By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 18:17:45 by mde-cloe          #+#    #+#              #
-#    Updated: 2024/11/26 13:54:56 by mde-cloe         ###   ########.fr        #
+#    Updated: 2025/01/24 16:40:23 by coding_frog      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ C_RESET = \033[0m
 
 $(NAME): $(SOURCES) $(OBJECTS)
 	@$(CC) $(Wflags) $(INCLUDE_FLAG) $(VERSION_FLAG) $(OBJECTS) -o $(NAME)
-	@printf "$(C_BLUE)$(NAME) $(C_GREEN) Compiled!\n\n$(C_RESET )"
+	@printf "$(C_BLUE)$(NAME) $(C_GREEN) Compiled!\n\n$(C_RESET)"
 
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(HEADERS) | $(OBJDIR)
@@ -59,7 +59,7 @@ run: $(NAME)
 
 clean:
 	@rm -rf $(OBJDIR)
-	@printf "$(C_RED)$(OBJDIR) removed \n\n$(C_RESET )"
+	@printf "$(C_RED)$(OBJDIR) removed \n\n$(C_RESET)"
 fclean: clean
 	@rm -rf $(NAME)
-	@printf "$(C_RED)$(NAME) removed \n\n$(C_RESET )"
+	@printf "$(C_RED)$(NAME) removed \n\n$(C_RESET)"

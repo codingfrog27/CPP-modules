@@ -6,11 +6,11 @@
 #    By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 18:17:45 by mde-cloe          #+#    #+#              #
-#    Updated: 2025/01/23 22:37:40 by coding_frog      ###   ########.fr        #
+#    Updated: 2025/01/24 16:20:58 by coding_frog      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := TypeIdentify
+NAME := Iter
 
 CC = c++
 OBJDIR = objects
@@ -39,7 +39,7 @@ C_RESET = \033[0m
 
 $(NAME): $(SOURCES) $(OBJECTS)
 	@$(CC) $(Wflags) $(INCLUDE_FLAG) $(VERSION_FLAG) $(OBJECTS) -o $(NAME)
-	@printf "$(C_BLUE)$(NAME) $(C_GREEN) Compiled!\n\n$(C_RESET )"
+	@printf "$(C_BLUE)$(NAME) $(C_GREEN) Compiled!\n\n$(C_RESET)"
 
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(HEADERS) | $(OBJDIR)
@@ -59,7 +59,7 @@ run: $(NAME)
 
 clean:
 	@rm -rf $(OBJDIR)
-	@printf "$(C_RED)$(OBJDIR) removed \n\n$(C_RESET )"
+	@printf "$(C_RED)$(OBJDIR) removed \n\n$(C_RESET)"
 fclean: clean
 	@rm -rf $(NAME)
-	@printf "$(C_RED)$(NAME) removed \n\n$(C_RESET )"
+	@printf "$(C_RED)$(NAME) removed \n\n$(C_RESET)"

@@ -100,7 +100,7 @@ void NicePrint::greeter()
 	promptEnter();
 }
 
-void	NicePrint::promptEnter() const
+void	NicePrint::promptEnter()
 {	
 	std::cout << "\n" YEL LINE << std::endl;
 	std::cout << "|\t   Press Enter to continue...\t      |\n";

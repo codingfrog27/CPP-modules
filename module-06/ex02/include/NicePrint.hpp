@@ -46,7 +46,7 @@ public:
 	void	stagger_print(std::string msg, size_t ms);
 	void	high_five_loop();
 	void	greeter();
-	void	promptEnter() const;
+	static void	promptEnter();
 	void	printLine() const;
 	// void	newline();
 	const std::string div = "--------------------------------------------";

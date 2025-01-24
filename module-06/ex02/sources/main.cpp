@@ -11,84 +11,33 @@
 /* ************************************************************************** */
 
 #include "Base.hpp"
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
+#include "NicePrint.hpp"
 #include <iostream>
-#include <random>
-
-Base * generate(void)
-{
-	std::random_device rd;
-	int i = rd() % 3;
-	switch (i) {
-		case 0:
-			return new A();
-		case 1:
-			return new B();
-		case 2:
-			return new C();
-		default:
-			throw std::runtime_error("random number generator failed");
-	}
-}
-
-void identify(Base *p) {
-	if (dynamic_cast<A*>(p))
-		std::cout << "this is an A class" << std::endl;
-	else if (dynamic_cast<B*>(p))
-		std::cout << "this is an B class" << std::endl;
-	else if (dynamic_cast<C*>(p))
-		std::cout << "this is an C class" << std::endl;
-	else
-		std::cout << "Unknown type" << std::endl;
-}
 
 
-
-void identify(Base& p)
-{
-	try
-	{
-		(void)dynamic_cast<A&>(p);
-		std::cout << "A" << std::endl;
-		return;
-	}
-	catch (const std::bad_cast&) {}
-
-	try
-	{
-		(void)dynamic_cast<B&>(p);
-		std::cout << "B" << std::endl;
-		return;
-	}
-	catch (const std::bad_cast&) {}
-
-	try
-	{
-		(void)dynamic_cast<C&>(p);
-		std::cout << "C" << std::endl;
-		return;
-	}
-	catch (const std::bad_cast&) {}
-
-	std::cout << "Unknown type" << std::endl;
-}
 
 
 //since I can only use one cast type per exercise and I need to cast refs
 // dynamic cast is the only option (also most suited for this case (just results in ugly try catch))
 int main() {
 
-	std::cout << '\n' << "testing identify with Base *p function" << '\n' << std::endl;
 	try
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			Base * object = generate();
-			identify(*object);
+			identify(object);
 			delete object;
 		}
+		NicePrint::promptEnter();
+		for (int i = 0; i < 5; i++)
+		{
+			Base * object = generate();
+			identify(*object); //dereference object to pass by reference
+			delete object;
+		}
+		identify(nullptr);
+		NicePrint::promptEnter();
 	}
 	catch(const std::exception& e)
 	{

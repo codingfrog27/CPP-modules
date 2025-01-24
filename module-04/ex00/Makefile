@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: mde-cloe <mde-cloe@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2023/04/10 18:17:45 by mde-cloe      #+#    #+#                  #
-#    Updated: 2023/04/10 18:17:45 by mde-cloe      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/10 18:17:45 by mde-cloe          #+#    #+#              #
+#    Updated: 2025/01/24 16:40:23 by coding_frog      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ C_RESET = \033[0m
 
 $(NAME): $(SOURCES) $(OFILES)
 	@$(CC) $(Wflags) $(INCLUDE) $(VERSION_FLAG) $(OFILES) -o $(NAME)
-	@printf "$(C_BLUE)$(NAME) $(C_GREEN) Compiled!\n\n$(C_RESET )"
+	@printf "$(C_BLUE)$(NAME) $(C_GREEN) Compiled!\n\n$(C_RESET)"
 
 $(OBJDIR)/%.o : %.cpp | $(OBJDIR)
 	@printf "$(C_GREEN) Compiling $(C_BLUE)$<\n$(C_RESET)"
@@ -52,7 +52,7 @@ run: $(NAME)
 
 clean:
 	@rm -rf $(OBJDIR)
-	@printf "$(C_RED)$(OBJDIR) removed \n\n$(C_RESET )"
+	@printf "$(C_RED)$(OBJDIR) removed \n\n$(C_RESET)"
 fclean: clean
 	@rm -rf $(NAME)
-	@printf "$(C_RED)$(NAME) removed \n\n$(C_RESET )"
+	@printf "$(C_RED)$(NAME) removed \n\n$(C_RESET)"
