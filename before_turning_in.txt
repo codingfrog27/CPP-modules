@@ -1,4 +1,0 @@
-- maybe test main in 00 with the non ptr kinda weird, also not sure if wrong animal destructor should be virtual
-
-
--ex01 doe new and deletes have to be protected? could use unique pointers instead

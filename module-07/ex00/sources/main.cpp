@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coding_frog <coding_frog@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:35:17 by coding_frog       #+#    #+#             */
-/*   Updated: 2025/01/24 16:02:31 by coding_frog      ###   ########.fr       */
+/*   Updated: 2025/02/12 16:21:13 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(void)
 {
 	int a = 2, b = 3;
 	std::string beeg = "me beegg and longg string letsgoooooo", smol = "ME SMOL";
-	//length actually doesn't matter, it's just for clarity
+	//length actually doesn't matter (it strcmp), it's just for clarity
 
 	std::cout << C_CYAN "Showing min and max" C_RESET << std::endl;
 	std::cout << "Smallest num = " << ::min(a, b) << std::endl;
