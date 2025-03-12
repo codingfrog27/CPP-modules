@@ -6,11 +6,11 @@
 #    By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 18:17:45 by mde-cloe          #+#    #+#              #
-#    Updated: 2025/03/12 18:34:52 by mde-cloe         ###   ########.fr        #
+#    Updated: 2025/03/12 18:34:55 by mde-cloe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := find
+NAME := span
 
 CC = c++
 OBJDIR = objects
