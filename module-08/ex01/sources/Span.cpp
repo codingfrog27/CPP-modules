@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 18:45:47 by mde-cloe          #+#    #+#             */
-/*   Updated: 2025/03/12 19:08:47 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:35:39 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		Span::shortestSpan()
 			shortest = span;
 		}
 	}
-	return shortest;
+	return (std::abs(shortest));
 }
 int		Span::longestSpan()
 {
@@ -61,12 +61,7 @@ int		Span::longestSpan()
 	std::vector<int> sortedArr(arr.begin(), arr.begin() + elementCount);
 	std::sort(sortedArr.begin(), sortedArr.end());
 
-	int longest = 0;
-	for (unsigned int i = 1; i < sortedArr.size(); i++) {
-		int span = sortedArr[i] - sortedArr[i - 1];
-		if (span > longest) {
-			longest = span;
-		}
-	}
-	return longest;
+	//sincethe list is already sorted we can just grab the smallest and biggest number :)
+
+	return (std::abs(sortedArr.back() - sortedArr.front()));
 }

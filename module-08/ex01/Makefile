@@ -6,7 +6,7 @@
 #    By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 18:17:45 by mde-cloe          #+#    #+#              #
-#    Updated: 2025/03/12 18:34:55 by mde-cloe         ###   ########.fr        #
+#    Updated: 2025/03/14 17:08:52 by mde-cloe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ VERSION_FLAG = -std=c++20
 INCLUDE_FLAG = -I $(INCLDIR)/
 
 
-HEADERS := $(shell find $(INCLDIR) -name '*.hpp')
+HEADERS := $(shell find $(INCLDIR) -name '*.hpp' -o -name '*.tpp')
 SOURCES := $(shell find $(SRCDIR) -name '*.cpp')
 OBJECTS := $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 

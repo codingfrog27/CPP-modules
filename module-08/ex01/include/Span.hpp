@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 18:35:26 by mde-cloe          #+#    #+#             */
-/*   Updated: 2025/03/12 19:05:56 by mde-cloe         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:18:19 by mde-cloe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,11 @@
 #include <algorithm>
 #include <stdexcept>
 #include <climits>
+#include <cstdlib>
+
 
 class Span
 {
-	private:
-		const unsigned int	N;
-		std::vector<int>	arr;
-		int					elementCount;
-	public:
-				Span(unsigned int N);
-				~Span();
-		void	addNumber(int nbr);
-		int		shortestSpan();
-		int		longestSpan();
 	class ContainerFull : public std::exception
 	{
 		private:
@@ -39,4 +31,18 @@ class Span
 				return errorMsg.c_str();
 			}
 	};
+	private:
+		const unsigned int	N;
+		std::vector<int>	arr;
+		unsigned int		elementCount;
+	public:
+				Span(unsigned int N);
+				~Span();
+		void	addNumber(int nbr);
+		template<typename Iterator>
+		void	addRange(Iterator begin, Iterator end);
+		int		shortestSpan();
+		int		longestSpan();
 };
+
+#include "Span.tpp"
