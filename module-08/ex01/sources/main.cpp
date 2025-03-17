@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mde-cloe <mde-cloe@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:05:44 by mde-cloe          #+#    #+#             */
-/*   Updated: 2025/03/14 17:18:48 by mde-cloe         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.cpp                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/02/12 17:05:44 by mde-cloe      #+#    #+#                 */
+/*   Updated: 2025/03/17 14:29:06 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,24 @@ int RandomNbr()
 
 int main() 
 {
-	std::vector<int> vec = {-100, 2, 3, 4, 5000, 70, -5, 20};
+	std::vector<int> vec = {-100, 2, 15, 7, 500, 70, -5, 20};
 	Span	beeg(BEEGSIZE);
 	Span	smal(vec.size());
 
 	try
 	{
+		std::cout << "filling span's" << std::endl;
 		smal.addRange(vec.begin(), vec.end());
+
+		//loop for big one anyways cause i dont want to type out 50K numbers xd
 		for (size_t i = 0; i < BEEGSIZE; i++)
 			beeg.addNumber(RandomNbr());
 
+		std::cout << "about to add over capacity" << std::endl;
 		promptEnter();
 
 		//either will throw since no space
-		smal.addRange(vec.begin(), vec.end());
+		// smal.addRange(vec.begin(), vec.end());
 		beeg.addNumber(RandomNbr());
 		
 	}
