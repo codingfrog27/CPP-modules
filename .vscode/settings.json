@@ -58,6 +58,7 @@
 		"charconv": "cpp",
 		"format": "cpp",
 		"fstream": "cpp",
-		"variant": "cpp"
+		"variant": "cpp",
+		"list": "cpp"
 	}
 }
