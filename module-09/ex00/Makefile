@@ -6,7 +6,7 @@
 #    By: mde-cloe <mde-cloe@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/10 18:17:45 by mde-cloe      #+#    #+#                  #
-#    Updated: 2025/03/19 13:49:22 by mde-cloe      ########   odam.nl          #
+#    Updated: 2025/03/26 14:30:34 by mde-cloe      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ $(OBJDIR):
 re: fclean $(NAME)
 
 run: $(NAME)
-	@./$(NAME)
+	@./$(NAME) example_input.txt
 
 clean:
 	@rm -rf $(OBJDIR)
