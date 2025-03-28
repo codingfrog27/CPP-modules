@@ -15,11 +15,12 @@ CoinRate::CoinRate(std::string path) : _DBFile(DB_PATH), _input(path)
 
 
 	ValidateFiles(path);
-
-	for (std::string key; std::getline(_input, key, ',');)
+	getline(_DBFile, value);
+	for (std::string key; std::getline(_DBFile, key, ',');)
 	{
 		//regex validation check? or maybe in validate function
-		std::getline(_input, value);
+		std::getline(_DBFile, value);
+		// std::cout << "WHAT THA HELL " << value << std::endl;
 		_rateMap[key] = std::stof(value); //stof except catch
 	}
 }
@@ -38,7 +39,7 @@ CoinRate::CoinRate(std::string path) : _DBFile(DB_PATH), _input(path)
 
 void	CoinRate::ValidateFiles(std::string path)
 {
-	std::regex	datePattern("^20[0-2]\\d-[01]\\d-[0-3]\\d \\| -?(\\d+|\\d+\\.\\d+)$");
+	std::regex	datePattern("^20[0-2]\\d-[01]\\d-[0-3]\\d \\| (\\d+|\\d+\\.\\d+)$");
 	std::string	line;
 
 	if (!_DBFile.is_open())
@@ -46,7 +47,6 @@ void	CoinRate::ValidateFiles(std::string path)
 	if (!_input.is_open())
 		throw BadInput("Error: Could not open file: " + path);
 	
-
 	std::getline(_input, line);
 	if (line != "date | value") 
 		throw BadInput("Expected 'date | value' in the first line.\n\nbut line == " + line);
@@ -63,27 +63,30 @@ void	CoinRate::ValidateFiles(std::string path)
 
 void	CoinRate::printConversion()
 {
+	using	MapEntry = std::map<std::string, float>::iterator;
+	MapEntry		current;
 	std::string		date;
 	size_t			dateEnd;
 	float			value;
 	float			rate;
+
 	_input.clear();
 	_input.seekg(13); //setting the filestream to first char of values
 	
 
 	for (std::string line; std::getline(_input, line);)
 	{
-		std::cout << "yo " << line << std::endl;
 		dateEnd = line.find(' ');
 		date = line.substr(0, dateEnd);
 		value = std::stof(line.substr(dateEnd + 2));
-		if (_rateMap.count(date) > 0)
-			rate = _rateMap.at(date);
-		else
+		current = _rateMap.find(date);
+		if (current == _rateMap.end())
 		{
-
+			current = _rateMap.lower_bound(date);
+			//if current == map.begin
+			current--;
 		}
-			std::cout << "no lower date implementation yet ahhh" << std::endl;//find closest lower date
+		rate = current->second;
 		std::cout << date << " => " << value << " = " << value * rate << std::endl;
 			
 	}
