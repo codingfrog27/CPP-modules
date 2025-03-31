@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/03/27 16:40:08 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/03/31 17:17:29 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
 	{
 		CoinRate	Exchanger(argv[1]);
 		// promptEnter();
-		Exchanger.printConversion();
+		Exchanger.ShowAllRates();
 	}
 	catch(BadInput& e)
 	{

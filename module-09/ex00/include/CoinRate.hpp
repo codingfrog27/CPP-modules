@@ -16,5 +16,9 @@ class CoinRate
 		CoinRate() = delete;
 		CoinRate(std::string path);
 		~CoinRate() = default;
-		void	printConversion();
+
+		//methods
+		void	ShowAllRates();
+		bool	printConversion(std::string &line);
+		void	printError(std::string &line);
 };
