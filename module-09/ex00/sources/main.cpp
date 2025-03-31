@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/03/31 17:17:29 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/03/31 17:27:25 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,3 @@ int main(int argc, char **argv) {
 	
 	return 0;
 }
-
-//1 validate text
-//2 store csv into map with the date being the key
-//3 cycle through the input lines and print the value on each line
-
-//concidered making it throw error instead of returning false but in case of only 1 stack jump 
-// error return might be more readable (its all kinda whatevs tho)
-
-//exchange goes from 2009-01-02 to 2022-03-29,47115.93
-//if date doesnt exist in DB use closest lower one

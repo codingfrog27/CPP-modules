@@ -49,6 +49,8 @@ bool	CoinRate::printConversion(std::string &line)
 	return (true);
 }
 
+
+//using Regex B) if u wanna learn check my notion or regexone.com
 void	CoinRate::ShowAllRates()
 {
 	std::string	line;
