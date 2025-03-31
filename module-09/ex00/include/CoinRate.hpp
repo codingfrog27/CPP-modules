@@ -10,7 +10,7 @@ class CoinRate
 		std::ifstream					_DBFile;
 		std::ifstream					_input;
 		std::map<std::string, float>	_rateMap;
-		void	ValidateFiles(std::string path);
+		void	ValidateInput(std::string path);
 
 	public:
 		CoinRate() = delete;
