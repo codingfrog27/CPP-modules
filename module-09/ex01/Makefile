@@ -6,7 +6,7 @@
 #    By: mde-cloe <mde-cloe@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/10 18:17:45 by mde-cloe      #+#    #+#                  #
-#    Updated: 2025/03/31 18:40:46 by mde-cloe      ########   odam.nl          #
+#    Updated: 2025/05/30 14:53:54 by mde-cloe      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,16 @@ re: fclean $(NAME)
 
 run: $(NAME)
 	@./$(NAME) "5 7 +"
-	@./$(NAME) "2 3 + 5. *"
 	@./$(NAME) "2 3 4 + -"
+	@./$(NAME) "2 48432 * 7897 12 * *"
+
+
+bad_input: $(NAME)
+	@./$(NAME) "2 3 + 5. *"
+	@./$(NAME) "2 3 1 5 6 8 2 6 2 7 2 6 25  53 2 63+ 5 *"
+	@./$(NAME) "2 48928 oogabooga *"
+	@./$(NAME) "2 4892890298420958 *"
+
 
 clean:
 	@rm -rf $(OBJDIR)
