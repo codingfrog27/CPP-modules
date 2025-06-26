@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/06/26 17:04:11 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/06/26 17:20:21 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,11 @@
 
 int main(int argc, char **argv)
 {
-	std::vector<int> nbrVec;
+	
 		
 	try
 	{
-		if (argc < 3)
-			throw(std::invalid_argument("Can't sort without at least 2 numbers"));
-	
-		parseInput(argv, nbrVec);
+		std::vector<std::pair<int, int>> pairVec = makePairs(parseInput(argv, argc));
 	}
 	catch (const std::out_of_range &e)
 	{
@@ -53,44 +50,30 @@ int main(int argc, char **argv)
 
 
 
-void	parseInput(char **argv, std::vector<int> &nbrVec)
+std::vector<int>	parseInput(char **argv, int argc)
 {
-	std::vector<std::pair<int, int>> pairs;
-	std::pair<int, int> curPair;
-	int					curNbr;
-	size_t 				i = 0;
-	for (; argv[i]; i++)
+	std::vector<int> nbrVec;
+	int	curNbr;
+	if (argc < 3)
+			throw(std::invalid_argument("Can't sort without at least 2 numbers"));
+
+	for (size_t i = 0; argv[i]; i++)
 	{
 		curNbr = std::stoi(argv[i]); //should throw if out of range
 		if (curNbr < 0)
 			throw (std::invalid_argument("no negative ints allowed"));
-		if (i % 2 == 0)
-			curPair.first = nbrVec[i];
-		else
-		{
-			curPair.second = nbrVec[i];
-			pairs.push_back(curPair);
-		}	
+		nbrVec.push_back(curNbr);		
 	}
-	if (i % 2 == 1) //should work cause i is 
 	
-	//make em sets already?
-
-
-	// std::unordered_set<int> seenSet; Use this for sets i guess???
-
-
-	//check every arg for being digit and in range AND no duplicates
-	//check empty strings too maybe?
+	
 }
 
-void	makePairs(std::vector<int> &nbrVec)
+std::vector<std::pair<int, int>> makePairs(const std::vector<int> &nbrVec)
 {
-	
-	std::vector<std::pair<int, int>> pairs;
-	size_t i = 0;
 	std::pair<int, int> current;
-	for (; i < nbrVec.size(); i++)
+	std::vector<std::pair<int, int>> pairs;
+
+	for (size_t i = 0; i < nbrVec.size(); i++)
 	{
 		if (i % 2 == 0)
 			current.first = nbrVec[i];
@@ -100,17 +83,16 @@ void	makePairs(std::vector<int> &nbrVec)
 			pairs.push_back(current);
 		}
 	}
-	if (current.second 
+	if (nbrVec.size() % 2 == 1) //if uneven, throw last nbr in pair by itself
+	{
+		current.second = -1;
+		pairs.push_back(current);
+	}
+	return pairs;
 }
 
 //OOHH WE CAN MAKE VECTOR OR DEQUE OF PAIRS?
 
-
-void	sortVector()
-{
-	std::vector<std::pair<int, int>> pairs;
-	
-}
 
 
 //dont forget to add djoyke eval notes to ex01
