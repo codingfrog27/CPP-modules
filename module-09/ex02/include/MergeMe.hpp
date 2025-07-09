@@ -15,6 +15,12 @@ class MergeMe
 		
 		void	makePairs();
 		void	groupPairs();
+		void	mergeInsertSort();
+		void	printResult() const;
+		void	sortMainChain();
+		void	insertLeftovers();
+		void	insertPendingElements()
+
 
 	public:
 		// Constructors and Destructors

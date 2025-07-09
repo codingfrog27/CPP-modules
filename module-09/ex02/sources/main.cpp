@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/07/01 17:06:07 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/07/09 17:45:21 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 		
 	try
 	{
-		std::vector<std::pair<int, int>> pairVec = makePairs(parseInput(argv, argc));
+		MergeMe	merger(argv, argc);
 	}
 	catch (const std::out_of_range &e)
 	{
@@ -51,46 +51,46 @@ int main(int argc, char **argv)
 
 
 
-std::vector<int>	parseInput(char **argv, int argc)
-{
-	std::vector<int> nbrVec;
-	int	curNbr;
-	if (argc < 3)
-			throw(std::invalid_argument("Can't sort without at least 2 numbers"));
+// std::vector<int>	parseInput(char **argv, int argc)
+// {
+// 	std::vector<int> nbrVec;
+// 	int	curNbr;
+// 	if (argc < 3)
+// 			throw(std::invalid_argument("Can't sort without at least 2 numbers"));
 
-	for (size_t i = 0; argv[i]; i++)
-	{
-		curNbr = std::stoi(argv[i]); //should throw if out of range
-		if (curNbr < 0)
-			throw (std::invalid_argument("no negative ints allowed"));
-		nbrVec.push_back(curNbr);		
-	}
+// 	for (size_t i = 0; argv[i]; i++)
+// 	{
+// 		curNbr = std::stoi(argv[i]); //should throw if out of range
+// 		if (curNbr < 0)
+// 			throw (std::invalid_argument("no negative ints allowed"));
+// 		nbrVec.push_back(curNbr);		
+// 	}
 	
 	
-}
+// }
 
-std::vector<std::pair<int, int>> makePairs(const std::vector<int> &nbrVec)
-{
-	std::pair<int, int> current;
-	std::vector<std::pair<int, int>> pairs;
+// std::vector<std::pair<int, int>> makePairs(const std::vector<int> &nbrVec)
+// {
+// 	std::pair<int, int> current;
+// 	std::vector<std::pair<int, int>> pairs;
 
-	for (size_t i = 0; i < nbrVec.size(); i++)
-	{
-		if (i % 2 == 0)
-			current.first = nbrVec[i];
-		else
-		{
-			current.second = nbrVec[i];
-			pairs.push_back(current);
-		}
-	}
-	if (nbrVec.size() % 2 == 1) //if uneven, throw last nbr in pair by itself
-	{
-		current.second = -1;
-		pairs.push_back(current);
-	}
-	return pairs;
-}
+// 	for (size_t i = 0; i < nbrVec.size(); i++)
+// 	{
+// 		if (i % 2 == 0)
+// 			current.first = nbrVec[i];
+// 		else
+// 		{
+// 			current.second = nbrVec[i];
+// 			pairs.push_back(current);
+// 		}
+// 	}
+// 	if (nbrVec.size() % 2 == 1) //if uneven, throw last nbr in pair by itself
+// 	{
+// 		current.second = -1;
+// 		pairs.push_back(current);
+// 	}
+// 	return pairs;
+// }
 
 //OOHH WE CAN MAKE VECTOR OR DEQUE OF PAIRS?
 

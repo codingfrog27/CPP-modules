@@ -4,7 +4,7 @@
 
 
 // ************************************************************************** //
-//                        Constructors and Destructors                        //
+//								Constructors and Destructors								//
 // ************************************************************************** //
 
 MergeMe::MergeMe(char **argv, int argc)
@@ -83,7 +83,7 @@ MergeMe::~MergeMe(void)
 
 
 // ************************************************************************** //
-//                                Public methods                              //
+//										  Public methods										//
 // ************************************************************************** //
 
 
@@ -117,44 +117,56 @@ void MergeMe::insertPendingElements(std::vector<int>& mainChain, const std::vect
 	_nbrVec = mainChain;
 }
 
+std::vector<int> MergeMe::generateJacobsthalSequence2(int n)
+{
+	if 
+}
 
+
+
+
+
+//Jacobsthal is a sequence similar to fibonacci, its 0, 1 and then every step the last number gets added
+// and the second last multiplied by 2
+// 0, 1, 1, 3, 5, 11, 21, 43 etc.
 std::vector<int> MergeMe::generateJacobsthalSequence(int n)
 {
-    std::vector<int> result;
-    if (n <= 0) return result;
-    
-    // First two Jacobsthal numbers
-    result.push_back(1);
-    if (n == 1) return result;
-    
-    result.push_back(3);
-    
-    // Generate Jacobsthal numbers until we have enough
-    int j1 = 1, j2 = 3;
-    while (result.back() < n) {
-        int next = j2 * 2 - j1;
-        j1 = j2;
-        j2 = next;
-        if (next <= n) {
-            result.push_back(next);
-        }
-    }
-    
-    // Create insertion sequence from Jacobsthal numbers
-    std::vector<int> sequence;
-    for (size_t i = 0; i < result.size(); i++) {
-        sequence.push_back(result[i]);
-        
-        // Add indices between current and next Jacobsthal number
-        int current = result[i];
-        int next = (i + 1 < result.size()) ? result[i + 1] : n + 1;
-        
-        for (int j = current + 1; j < next; j++) {
-            if (j <= n) {
-                sequence.push_back(j);
-            }
-        }
-    }
-    
-    return sequence;
+	std::vector<int> result;
+	if (n <= 0) return result;
+	
+	// First two Jacobsthal numbers
+
+	//first is kinda weird maybe add 0 first?
+	result.push_back(1);
+	if (n == 1) return result;
+		
+	// Generate Jacobsthal numbers until we have enough
+	int next;
+	while (true)
+	{
+		next = result.back() + 2 * result[result.size() - 2];
+		if (next <= n) {
+				result.push_back(next);
+		}
+		else
+			break;
+	 }
+	 
+	 // Create insertion sequence from Jacobsthal numbers
+	 std::vector<int> sequence;
+	 for (size_t i = 0; i < result.size(); i++) {
+		  sequence.push_back(result[i]);
+		  
+		  // Add indices between current and next Jacobsthal number
+		  int current = result[i];
+		  int next = (i + 1 < result.size()) ? result[i + 1] : n + 1;
+		  
+		  for (int j = current + 1; j < next; j++) {
+				if (j <= n) {
+					 sequence.push_back(j);
+				}
+		  }
+	 }
+	 
+	 return sequence;
 }
