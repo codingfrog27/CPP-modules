@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/05/30 14:52:37 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/07/14 19:24:47 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ void	calculate(int op, std::stack<float> &stack)
 
 void	Tokenise(std::string	&input)
 {
-	int					nbrCount = 0;
-	std::regex			nbrPattern("^\\d+$");
+	// int				nbrCount = 0;
+	std::regex			nbrPattern("^\\d+$"); //doesnt check negative numbers but imo dont have to w how notation works
+	int					nbr;
 	std::regex			opPattern("^(\\+|-|\\*|/)$");
 	std::stack<float>	mathStack;
 	std::istringstream	iss(input);
@@ -76,9 +77,13 @@ void	Tokenise(std::string	&input)
 	{
 		if (std::regex_match(current, nbrPattern))
 		{
-			if (++nbrCount > 10)
-				throw (std::invalid_argument("no more than 10 nunbers allowed!"));
-			mathStack.push(stoi(current)); 
+			//haha oops its args less than 10 nbr value instead of
+			// if (++nbrCount > 10)
+			// 	throw (std::invalid_argument("no more than 10 nunbers allowed!"));
+			nbr = stoi(current);
+			if (nbr >= 10)
+				throw (std::invalid_argument("no numbers bigger then 10 allowed!"));
+			mathStack.push(nbr); 
 		}
 		else if (std::regex_match(current, opPattern))
 			calculate(current[0], mathStack);

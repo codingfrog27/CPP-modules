@@ -1,5 +1,6 @@
 #include "MergeMe.hpp"
 #include <algorithm>
+#include <chrono>
 
 
 
@@ -17,13 +18,23 @@ MergeMe::MergeMe(char **argv, int argc)
 
 
 
-	for (size_t i = 0; argv[i]; i++)
+	for (size_t i = 1; argv[i]; i++)
 	{
 		curNbr = std::stoi(argv[i]); //should throw if out of range
-		if (curNbr < 0 || curNbr > 10)
+		if (curNbr < 0)
 			throw (std::invalid_argument("no negative ints allowed"));
 		_nbrVec.push_back(curNbr);		
 	}
+}
+
+
+void	MergeMe::sortVector()
+{
+
+
+	makePairs();
+	groupPairs();
+	insertPendingElements();
 }
 
 void	MergeMe::makePairs()
@@ -87,44 +98,56 @@ MergeMe::~MergeMe(void)
 // ************************************************************************** //
 
 
-void MergeMe::insertPendingElements(std::vector<int>& mainChain, const std::vector<int>& pend)
+void MergeMe::insertPendingElements()
 {
 	// Calculate Jacobsthal numbers for insertion sequence
-	std::vector<int> jacobsthalIndices = generateJacobsthalSequence(pend.size());
+	std::vector<int> jacobsthalIndices = generateJacobsthalSequence(_leftovers.size());
 	
 	// Insert each pending element according to the Jacobsthal sequence
-	for (size_t i = 0; i < jacobsthalIndices.size() && i < pend.size(); i++) {
-		int pendIndex = jacobsthalIndices[i] - 1; // Convert to 0-based index
-		if (pendIndex < (int)pend.size()) {
-			int valueToInsert = pend[pendIndex];
+	for (size_t i = 0; i < jacobsthalIndices.size() && i < _leftovers.size(); i++) {
+		int pendIndex = jacobsthalIndices[i];
+		if (pendIndex < (int)_leftovers.size()) {
+			int valueToInsert = _leftovers[pendIndex];
 			
 			// Binary search to find insertion position
-			auto pos = std::lower_bound(mainChain.begin(), mainChain.end(), valueToInsert);
-			mainChain.insert(pos, valueToInsert);
+			auto pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), valueToInsert);
+			_mainChain.insert(pos, valueToInsert);
 		}
 	}
 	
 	// Insert any remaining pending elements
-	for (size_t i = 0; i < pend.size(); i++) {
-		if (std::find(jacobsthalIndices.begin(), jacobsthalIndices.end(), i + 1) == jacobsthalIndices.end()) {
-			int valueToInsert = pend[i];
-			auto pos = std::lower_bound(mainChain.begin(), mainChain.end(), valueToInsert);
-			mainChain.insert(pos, valueToInsert);
+	for (size_t i = 0; i < _leftovers.size(); i++) {
+		if (std::find(jacobsthalIndices.begin(), jacobsthalIndices.end(), i) == jacobsthalIndices.end()) {
+			int valueToInsert = _leftovers[i];
+			auto pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), valueToInsert);
+			_mainChain.insert(pos, valueToInsert);
 		}
 	}
 	
 	// Update the original vector with sorted result
-	_nbrVec = mainChain;
+	_nbrVec = _mainChain;
 }
 
-std::vector<int> MergeMe::generateJacobsthalSequence2(int n)
+void	MergeMe::timeAndSortVec()
 {
-	if 
+	std::cout << "before:\t" << std::endl;
+	for (int nbr : _nbrVec)
+		std::cout << nbr << " ";
+
+	auto start = std::chrono::high_resolution_clock::now();
+
+	sortVector();
+
+	std::chrono::duration<double, std::micro> time =  std::chrono::high_resolution_clock::now() - start;
+
+	std::cout << "after:\t" << std::endl;
+	for (int nbr : _nbrVec)
+		std::cout << nbr << " ";
+
+	std::cout << "Time to process a range of " << _nbrVec.size() \
+				<< " elements with std::vector: " << time.count() << " us" << std::endl;
+	
 }
-
-
-
-
 
 //Jacobsthal is a sequence similar to fibonacci, its 0, 1 and then every step the last number gets added
 // and the second last multiplied by 2
@@ -132,11 +155,13 @@ std::vector<int> MergeMe::generateJacobsthalSequence2(int n)
 std::vector<int> MergeMe::generateJacobsthalSequence(int n)
 {
 	std::vector<int> result;
+	std::vector<int> sequence;
 	if (n <= 0) return result;
 	
 	// First two Jacobsthal numbers
 
 	//first is kinda weird maybe add 0 first?
+	result.push_back(0);
 	result.push_back(1);
 	if (n == 1) return result;
 		
@@ -144,16 +169,14 @@ std::vector<int> MergeMe::generateJacobsthalSequence(int n)
 	int next;
 	while (true)
 	{
-		next = result.back() + 2 * result[result.size() - 2];
-		if (next <= n) {
+		next = (2 * result.at(result.size() - 2)) + result.back();
+		if (next <= n)
 				result.push_back(next);
-		}
 		else
 			break;
 	 }
 	 
 	 // Create insertion sequence from Jacobsthal numbers
-	 std::vector<int> sequence;
 	 for (size_t i = 0; i < result.size(); i++) {
 		  sequence.push_back(result[i]);
 		  

@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/07/09 17:45:21 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/07/14 19:16:47 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int main(int argc, char **argv)
 	try
 	{
 		MergeMe	merger(argv, argc);
+		merger.timeAndSortVec();
 	}
 	catch (const std::out_of_range &e)
 	{

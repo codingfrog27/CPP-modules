@@ -19,7 +19,9 @@ class MergeMe
 		void	printResult() const;
 		void	sortMainChain();
 		void	insertLeftovers();
-		void	insertPendingElements()
+		void	insertPendingElements();
+		std::vector<int>	generateJacobsthalSequence(int n);
+
 
 
 	public:
@@ -31,5 +33,7 @@ class MergeMe
 		~MergeMe(void);
 
 		// Public Methods
+		void	sortVector();
+		void	timeAndSortVec();
 
 } ;
