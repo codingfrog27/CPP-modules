@@ -55,6 +55,8 @@
 		"regex": "cpp",
 		"fstream": "cpp",
 		"sstream": "cpp",
-		"cinttypes": "cpp"
+		"cinttypes": "cpp",
+		"chrono": "cpp",
+		"ratio": "cpp"
 	}
 }
