@@ -53,15 +53,14 @@ void	MergeMe::makePairs()
 	}
 	if (_nbrVec.size() % 2 == 1) //if uneven, throw last nbr in pair by itself and make other -1
 	{
-		std::cout << "test if this works size == " << _nbrVec.size() << std::endl;
 		current.second = -1;
-		_pairs.push_back(current); //test
+		_pairs.push_back(current);
 	}
 
 	
+	//make sure first in pair is biggest
 	for (auto& pair : _pairs)
 	{
-		// Modify elements
 		if (pair.second > pair.first && pair.second != -1)
 			std::swap(pair.first, pair.second);
 	}
@@ -69,6 +68,11 @@ void	MergeMe::makePairs()
 
 void MergeMe::groupPairs()
 {
+
+	_mainChain.clear();
+	_leftovers.clear();
+
+
 	// Sort pairs by their first value (which will be the largest)
 	std::sort(_pairs.begin(), _pairs.end(),
 		[](const std::pair<int, int>& a, const std::pair<int, int>& b) { return a.first < b.first; });
@@ -104,11 +108,12 @@ void MergeMe::insertPendingElements()
 	std::vector<int> jacobsthalIndices = generateJacobsthalSequence(_leftovers.size());
 	
 	// Insert each pending element according to the Jacobsthal sequence
-	for (size_t i = 0; i < jacobsthalIndices.size() && i < _leftovers.size(); i++) {
+	for (size_t i = 0; i < jacobsthalIndices.size() && i < _leftovers.size(); i++)
+	{
 		int pendIndex = jacobsthalIndices[i];
-		if (pendIndex < (int)_leftovers.size()) {
+		if (pendIndex < (int)_leftovers.size())
+		{
 			int valueToInsert = _leftovers[pendIndex];
-			
 			// Binary search to find insertion position
 			auto pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), valueToInsert);
 			_mainChain.insert(pos, valueToInsert);
@@ -116,7 +121,8 @@ void MergeMe::insertPendingElements()
 	}
 	
 	// Insert any remaining pending elements
-	for (size_t i = 0; i < _leftovers.size(); i++) {
+	for (size_t i = 0; i < _leftovers.size(); i++)
+	{
 		if (std::find(jacobsthalIndices.begin(), jacobsthalIndices.end(), i) == jacobsthalIndices.end()) {
 			int valueToInsert = _leftovers[i];
 			auto pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), valueToInsert);
@@ -130,7 +136,7 @@ void MergeMe::insertPendingElements()
 
 void	MergeMe::timeAndSortVec()
 {
-	std::cout << "before:\t" << std::endl;
+	std::cout << "before:\t";
 	for (int nbr : _nbrVec)
 		std::cout << nbr << " ";
 
@@ -140,11 +146,11 @@ void	MergeMe::timeAndSortVec()
 
 	std::chrono::duration<double, std::micro> time =  std::chrono::high_resolution_clock::now() - start;
 
-	std::cout << "after:\t" << std::endl;
+	std::cout << "\nafter:\t";
 	for (int nbr : _nbrVec)
 		std::cout << nbr << " ";
 
-	std::cout << "Time to process a range of " << _nbrVec.size() \
+	std::cout << "\nTime to process a range of " << _nbrVec.size() \
 				<< " elements with std::vector: " << time.count() << " us" << std::endl;
 	
 }
@@ -174,21 +180,22 @@ std::vector<int> MergeMe::generateJacobsthalSequence(int n)
 				result.push_back(next);
 		else
 			break;
-	 }
+	}
 	 
 	 // Create insertion sequence from Jacobsthal numbers
-	 for (size_t i = 0; i < result.size(); i++) {
-		  sequence.push_back(result[i]);
-		  
-		  // Add indices between current and next Jacobsthal number
-		  int current = result[i];
-		  int next = (i + 1 < result.size()) ? result[i + 1] : n + 1;
-		  
-		  for (int j = current + 1; j < next; j++) {
-				if (j <= n) {
-					 sequence.push_back(j);
-				}
-		  }
+	for (size_t i = 0; i < result.size(); i++)
+	{
+		sequence.push_back(result[i]);
+		
+		// Add indices between current and next Jacobsthal number
+		int current = result[i];
+		if (i + 1 < result.size())
+			next = result[i + 1];
+		else
+			next = n + 1;
+
+		for (int j = current + 1; j < next && j <= n; j++)
+			sequence.push_back(j);
 	 }
 	 
 	 return sequence;
