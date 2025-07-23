@@ -57,18 +57,22 @@ void	MergeMe::makePairs()
 		if (pair.second > pair.first && pair.second != -1)
 			std::swap(pair.first, pair.second);
 	}
+	//can i make this recursive? maybe with template function
+	//make every pair a stack? would make recurse work and easy to split down middle later
 }
 
 void MergeMe::groupPairs()
 {
 
-	_mainChain.clear();
-	_leftovers.clear();
+	// _mainChain.clear();
+	// _leftovers.clear();
 
 
 	// Sort pairs by their first value (which will be the largest)
 	std::sort(_pairs.begin(), _pairs.end(),
 		[](const std::pair<int, int>& a, const std::pair<int, int>& b) { return a.first < b.first; });
+	//might be illegal, doesnt this check and sort every pair already?
+	//should be possible with less comparisons then amount of nbrs (could make own data type to count)
 
 	for (const auto& pair : _pairs)
 	{
