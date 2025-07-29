@@ -12,11 +12,13 @@ class NewMerge
 {
 	private:
 		// Private Attributes
-		std::vector<int>		_nbrVec;
-		std::vector<std::queue<int>>		_pairs;
+		std::vector<int>					_nbrVec;
+		std::vector<std::vector<int>>		_pairs;
+		int									_nbrSize;
 		
 
 		void	makeFirstPairs();
+		void	swapPair(std::vector<int> &pair);
 
 	public:
 		// Constructors and Destructors

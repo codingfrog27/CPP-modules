@@ -19,6 +19,9 @@ NewMerge::NewMerge(char **argv, int argc)
 			throw (std::invalid_argument("no negative ints allowed"));
 		_nbrVec.push_back(curNbr);		
 	}
+	_nbrSize = _nbrVec.size();
+	_pairs.reserve(_nbrSize / 2);
+	//would reserve inner vectors too but can only be done after initialisation
 }
 
 NewMerge::~NewMerge(void)
@@ -36,34 +39,33 @@ void	NewMerge::makeFirstPairs()
 {
 	//what about dupes?
 	int	nbr;
-	for (size_t i = 0; i < _nbrVec.size(); i++)
+	int j = 0;
+	for (size_t i = 0; i < _nbrSize; i++)
 	{
 		nbr = _nbrVec.at(i);
 		if (i % 2 == 0)
 			_pairs.emplace_back(nbr);
 		else
 		{
-			auto curstack = _pairs.back();
-			curstack.push(nbr);
-			if (curstack.front() > curstack.back())
-			curstack.swap()
+			_pairs.at(j).emplace_back(nbr);
+			if (nbr > _pairs.at(j).front())
+				std::swap(_pairs.at(j).front(), _pairs.at(j).back());
+				// _pairs.at(j).insert(_pairs.at(j).begin(), nbr);
+			j++;
 		}
 	}
-	if (_nbrVec.size() % 2 == 1) //if uneven, throw last nbr in pair by itself and make other -1
-	{
-		current.second = -1;
-		_pairs.push_back(current);
-	}
+}
 
-	
-	//make sure first in pair is biggest
-	for (auto& pair : _pairs)
+void	NewMerge::swapPair(std::vector<int> &pair)
+{
+	int	halfSize = pair.size() / 2;
+	int	halfSize = pair.size() / 2;
+	int	tmp;
+	for (size_t i = 0; i < halfSize; i++)
 	{
-		if (pair.second > pair.first && pair.second != -1)
-			std::swap(pair.first, pair.second);
+		
 	}
-	//can i make this recursive? maybe with template function
-	//make every pair a stack? would make recurse work and easy to split down middle latermake every pair a stack? would make recurse work and easy to split down middle later
+	
 }
 
 // ************************************************************************** //

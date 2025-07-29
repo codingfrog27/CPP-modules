@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/07/14 19:16:47 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/07/29 18:42:40 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@
 #define LINE "-----------------------------------------"
 
 
+// The Ford–Johnson sort (a.k.a. merge‑insertion) works by:
 
+//     Pairing up elements and comparing within each pair.
+
+//     Sorting the winners by recursively applying the same strategy.
+
+//     Inserting the losers back into the sorted sequence of winners in a carefully chosen order to minimize comparisons.
 
 int main(int argc, char **argv)
 {
