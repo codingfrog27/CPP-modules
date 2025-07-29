@@ -8,7 +8,7 @@
 //								Constructors and Destructors								//
 // ************************************************************************** //
 
-MergeMe::MergeMe(char **argv, int argc)
+MergeMe::MergeMe(char **argv, int argc) : _straggler(-1)
 {
 	std::cout << GREEN << "MergeMe: Default constructor called" << RESET << std::endl;
 	
@@ -33,32 +33,43 @@ MergeMe::MergeMe(char **argv, int argc)
 void	MergeMe::makePairs()
 {
 	std::pair<int, int> current;
+	int	nbr;
 
 	for (size_t i = 0; i < _nbrVec.size(); i++)
 	{
+		nbr = _nbrVec.at(i);
 		if (i % 2 == 0)
-			current.first = _nbrVec.at(i);
+			current.first = nbr;
 		else
 		{
-			current.second = _nbrVec.at(i);
+			current.second = nbr;
+			if (current.second < current.first)
+				std::swap(current.first, current.second);
 			_pairs.push_back(current);
 		}
 	}
 	if (_nbrVec.size() % 2 == 1) //if uneven, throw last nbr in pair by itself and make other -1
 	{
-		current.second = -1;
-		_pairs.push_back(current);
+		_straggler = nbr;
+		// current.second = -1;
+		// _pairs.push_back(current);
 	}
+}
 
-	
-	//make sure first in pair is biggest
-	for (auto& pair : _pairs)
+void	MergeMe::sortPairs(int stepsize) 
+{
+	// If 'start' reaches the last index, the vector is sorted
+	if (stepsize == _pairs.size() - 1)
+		return ;
+
+	for (int i = 0; i < _pairs.size(); i += stepsize) 
 	{
-		if (pair.second > pair.first && pair.second != -1)
-			std::swap(pair.first, pair.second);
+		// Compare the pair at 'start' with the current pair at index 'it'
+		if ()
+			// std::swap(_pairs[stepsize], _pairs[it]);
 	}
-	//can i make this recursive? maybe with template function
-	//make every pair a stack? would make recurse work and easy to split down middle later
+	// Recursively sort the remaining elements of the vector
+	sortPairs(stepsize + 1);
 }
 
 void MergeMe::groupPairs()

@@ -13,7 +13,7 @@ class NewMerge
 	private:
 		// Private Attributes
 		std::vector<int>					_nbrVec;
-		std::vector<std::vector<int>>		_pairs;
+		std::vector<std::pair<int, int>>	_pairs;
 		int									_nbrSize;
 		
 

@@ -12,9 +12,11 @@ class MergeMe
 		std::vector<std::pair<int, int>>	_pairs;
 		std::vector<int>					_mainChain;
 		std::vector<int>					_leftovers;
+		int									_straggler;
 		
 		void	makePairs();
 		void	groupPairs();
+		void	sortPairs(int start);
 		void	mergeInsertSort();
 		void	printResult() const;
 		void	sortMainChain();
