@@ -13,12 +13,13 @@ class NewMerge
 	private:
 		// Private Attributes
 		std::vector<int>					_nbrVec;
-		std::vector<std::pair<int, int>>	_pairs;
+		std::vector<std::vector<int>>		_pairs;
 		int									_nbrSize;
 		
 
 		void	makeFirstPairs();
-		void	swapPair(std::vector<int> &pair);
+		void	groupPairs();
+		void	sort();
 
 	public:
 		// Constructors and Destructors

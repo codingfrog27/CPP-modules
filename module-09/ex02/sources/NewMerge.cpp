@@ -22,6 +22,7 @@ NewMerge::NewMerge(char **argv, int argc)
 	_nbrSize = _nbrVec.size();
 	_pairs.reserve(_nbrSize / 2);
 	//would reserve inner vectors too but can only be done after initialisation
+	//else could count how many times you can half nbrVec and reserve size would be divcount to power of 2
 }
 
 NewMerge::~NewMerge(void)
@@ -43,35 +44,58 @@ void	NewMerge::makeFirstPairs()
 	for (size_t i = 0; i < _nbrSize; i++)
 	{
 		nbr = _nbrVec.at(i);
-		if (i % 2 == 0)
-			_pairs.emplace_back(nbr);
-		else
-		{
-			_pairs.at(j).emplace_back(nbr);
-			if (nbr > _pairs.at(j).front())
-				std::swap(_pairs.at(j).front(), _pairs.at(j).back());
-				// _pairs.at(j).insert(_pairs.at(j).begin(), nbr);
-			j++;
-		}
+		// if (i % 2 == 0)
+		_pairs.emplace_back(std::vector<int>{nbr});
+		// else
+		// {
+		// 	_pairs.at(j).emplace_back(nbr);
+		// 	if (nbr > _pairs.at(j).front())
+		// 		std::swap(_pairs.at(j).front(), _pairs.at(j).back());
+		// 	j++;
+		// }
 	}
 }
 
-void	NewMerge::swapPair(std::vector<int> &pair)
+void	NewMerge::groupPairs()
 {
-	int	halfSize = pair.size() / 2;
-	int	halfSize = pair.size() / 2;
-	int	tmp;
-	for (size_t i = 0; i < halfSize; i++)
+	int	next, i = 0; //add bound protec
+	for (; i < _nbrVec.size(); i++)
 	{
+		next = i + 1;
+		if (next > _nbrVec.size() || next > _pairs.size() || \
+			 _pairs[i].size() != _pairs[next].size())
+			break;
+		if (_nbrVec[i] < _nbrVec[next])
+		{
+			std::swap(_nbrVec[i], _nbrVec[next]);
+			std::swap(_pairs[i], _pairs[next]);
+		}
+		//groupping pair by inserting the smaller onto the bigger and removing it after
+		_pairs[i].insert(_pairs[i].end(), _pairs[next].begin(), _pairs[next].end());
+		_pairs.erase(_pairs.begin() + next);
 		
+		//main chain will only have the winners (up to only the largest number) so others get removed
+		_nbrVec.erase(_nbrVec.begin() + next);
+		// This also will keep it the index in line with pairs :)
+		_nbrSize = _nbrVec.size();
 	}
-	
+	//remove trailing nbr if its there
+	if (i < _nbrVec.size())
+		_nbrVec.erase(_nbrVec.begin() + i);
 }
 
 // ************************************************************************** //
 //                                Public methods                              //
 // ************************************************************************** //
 
+
+void	NewMerge::sort()
+{
+	makeFirstPairs();
+	while (_nbrSize > 1)
+
+
+}
 
 // INSERT SORT
 
