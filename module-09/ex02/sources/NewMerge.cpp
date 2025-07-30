@@ -40,8 +40,8 @@ void	NewMerge::makeFirstPairs()
 {
 	//what about dupes?
 	int	nbr;
-	int j = 0;
-	for (size_t i = 0; i < _nbrSize; i++)
+	// int j = 0;
+	for (size_t i = 0; i < _nbrVec.size(); i++)
 	{
 		nbr = _nbrVec.at(i);
 		// if (i % 2 == 0)
@@ -56,45 +56,70 @@ void	NewMerge::makeFirstPairs()
 	}
 }
 
+//keeps merging the groups untill no size doubling is possible anymore
 void	NewMerge::groupPairs()
 {
-	int	next, i = 0; //add bound protec
-	for (; i < _nbrVec.size(); i++)
+	size_t i = 0, next = 1, groupSize = _pairs[i].size();
+	while (_nbrVec.size() > 1)
 	{
-		next = i + 1;
-		if (next > _nbrVec.size() || next > _pairs.size() || \
-			 _pairs[i].size() != _pairs[next].size())
+		if (next > _nbrVec.size() || next > _pairs.size() ||  _pairs[next].size() != groupSize)
 			break;
+
 		if (_nbrVec[i] < _nbrVec[next])
 		{
 			std::swap(_nbrVec[i], _nbrVec[next]);
 			std::swap(_pairs[i], _pairs[next]);
 		}
-		//groupping pair by inserting the smaller onto the bigger and removing it after
+
 		_pairs[i].insert(_pairs[i].end(), _pairs[next].begin(), _pairs[next].end());
 		_pairs.erase(_pairs.begin() + next);
 		
 		//main chain will only have the winners (up to only the largest number) so others get removed
+		// (This also will keep it the index in line with pairs) :)
 		_nbrVec.erase(_nbrVec.begin() + next);
-		// This also will keep it the index in line with pairs :)
-		_nbrSize = _nbrVec.size();
+		i++;
+		next++;
 	}
 	//remove trailing nbr if its there
-	if (i < _nbrVec.size())
+	if (i < _nbrVec.size() && _nbrVec.size() > 1)
 		_nbrVec.erase(_nbrVec.begin() + i);
+	
+
+	printPairs();
+	
+
+	//keep going untill no doubling is possible anymore 
+	if (_pairs.front().size() != groupSize)
+		groupPairs();
 }
 
 // ************************************************************************** //
 //                                Public methods                              //
 // ************************************************************************** //
 
+void	NewMerge::printPairs()
+{
+	std::cout << "PAIRS ARE: --> " << std::endl;
+	for (size_t i = 0; i < _pairs.size(); i++)
+	{
+		std::cout << "[";
+		for (size_t j = 0; j < _pairs[i].size(); ++j) {
+			std::cout << _pairs[i][j];
+			if (j + 1 < _pairs[i].size())
+				std::cout << ", ";
+		}
+		std::cout << "]" << std::endl;
+	}
+}
 
 void	NewMerge::sort()
 {
 	makeFirstPairs();
-	while (_nbrSize > 1)
+	groupPairs();
 
-
+	std::cout << "vec size == " << _nbrVec.size() << std::endl;
+	for (int num : _nbrVec)
+		std::cout << num << " " << std::endl;
 }
 
 // INSERT SORT

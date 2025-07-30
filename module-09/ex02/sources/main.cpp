@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/07/29 18:42:40 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/07/30 18:26:23 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <sstream>
 #include <regex>
-#include "MergeMe.hpp"
+#include "NewMerge.hpp"
 
 
 #define C_YELLOW "\033[33m"
@@ -39,8 +39,8 @@ int main(int argc, char **argv)
 		
 	try
 	{
-		MergeMe	merger(argv, argc);
-		merger.timeAndSortVec();
+		NewMerge	merger(argv, argc);
+		merger.sort();
 	}
 	catch (const std::out_of_range &e)
 	{

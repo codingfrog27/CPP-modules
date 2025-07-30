@@ -19,16 +19,17 @@ class NewMerge
 
 		void	makeFirstPairs();
 		void	groupPairs();
-		void	sort();
-
-	public:
+		
+		public:
 		// Constructors and Destructors
 		NewMerge(void) = delete;
 		NewMerge(char **argv, int argc);
 		NewMerge(const NewMerge &rhs) = delete;
 		NewMerge &operator=(const NewMerge &rhs) = delete;
 		~NewMerge(void);
-
+		
 		// Public Methods
+		void	sort();
+		void	printPairs();
 
 } ;

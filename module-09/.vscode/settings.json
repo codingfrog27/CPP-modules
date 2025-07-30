@@ -58,6 +58,7 @@
 		"cinttypes": "cpp",
 		"chrono": "cpp",
 		"ratio": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"iomanip": "cpp"
 	}
 }
