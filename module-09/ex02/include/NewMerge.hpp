@@ -19,6 +19,7 @@ class NewMerge
 
 		void	makeFirstPairs();
 		void	groupPairs();
+		void	createJacobSeq(int n);
 		
 		public:
 		// Constructors and Destructors
