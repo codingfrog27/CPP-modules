@@ -142,52 +142,29 @@ void	NewMerge::BinaryInsert()
 //     return ret;
 // }
 
-// // Jacobsthal is a sequence similar to fibonacci, its 0, 1 and then every step the last number gets added
-// // and the second last multiplied by 2
-// // 0, 1, 1, 3, 5, 11, 21, 43 etc.
-// std::vector<int> MergeMe::createJacobSeq(int n)
-// {
-// 	std::vector<int> result;
-// 	std::vector<int> sequence;
-// 	// if (n <= 0) return result; //idk if this will ever happen but just in case
-	
-// 	// First two Jacobsthal numbers
+// Jacobsthal is a sequence similar to fibonacci, its 0, 1 and then every step the last number gets added
+// and the second last multiplied by 2
+// 0, 1, 1, 3, 5, 11, 21, 43 etc.
+void NewMerge::createJacobSeq(int n)
+{
 
-// 	//first is kinda weird maybe add 0 first?
-// 	result.push_back(0);
-// 	if (n == 1) return result;
+	int j0 = 0, j1 = 1;
+	while (j1 <= n)
+	{
+		int j2 = j1 + (2 * j0);
 		
-// 	// Generate Jacobsthal numbers until we have enough
-// 	int next = 1;
-// 	int	
-// 	do
-// 	{
-// 		result.push_back(next);
-// 		next = (2 * result.at(result.size() - 2)) + result.back();
-// 	} while (next <= n);
-	
-	
-// 	// Create insertion sequence from Jacobsthal numbers
-// 	sequence.push_back(0); 
-// 	for (size_t i = 1; i < result.size(); i++)
-// 	{
-// 		sequence.push_back(result[i]);
+		if (j1 <= n)
+			_jacobseq.push_back(j1);
 		
-// 		// Add indices between current and next Jacobsthal number
-// 		int current = result[i];
-// 		if (i + 1 < result.size())
-// 			next = result[i + 1];
-// 		else
-// 			next = n + 1;
+		//add all indices inbetween
+		int start = std::min(j2 - 1, n);
+		for (int i = start; i > j1 && i <= n; i--)
+			 _jacobseq.push_back(i);
 
-// 		for (int j = current + 1; j < next && j <= n; j++)
-// 			sequence.push_back(j);
-// 	}
-// 	for (int remain = sequence.back() + 1; remain < n; remain++)
-// 		sequence.push_back(remain);
-	 
-// 	return sequence;
-// }
+		j0 = j1;
+		j1 = j2;
+	}
+}
 
 // ************************************************************************** //
 //                                Public methods                              //

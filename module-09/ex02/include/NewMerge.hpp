@@ -15,6 +15,7 @@ class NewMerge
 		std::vector<int>					_nbrVec;
 		std::vector<std::vector<int>>		_pairs;
 		int									_nbrSize;
+		std::vector<int>					_jacobseq;
 		
 
 		void	makeFirstPairs();
