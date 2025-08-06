@@ -143,48 +143,48 @@
 
 
 
-std::vector<int> MergeMe::generateJacobsthalSequence(int n)
-{
-    std::vector<int> sequence;
-    std::vector<int> ret;
-    if (n <= 0) return ret;  // Return empty sequence for invalid n
+// std::vector<int> MergeMe::generateJacobsthalSequence(int n)
+// {
+//     std::vector<int> sequence;
+//     std::vector<int> ret;
+//     if (n <= 0) return ret;  // Return empty sequence for invalid n
     
-    // Start with J(0)=0 and J(1)=1
-    sequence.push_back(0);
-    sequence.push_back(1);
+//     // Start with J(0)=0 and J(1)=1
+//     sequence.push_back(0);
+//     sequence.push_back(1);
     
-    // Generate Jacobsthal numbers up to n
-    int next;
-    while (true) {
-        next = sequence[sequence.size() - 1] + 2 * sequence[sequence.size() - 2];
-        if (next <= n)
-            sequence.push_back(next);
-        else
-            break;
-    }
+//     // Generate Jacobsthal numbers up to n
+//     int next;
+//     while (true) {
+//         next = sequence[sequence.size() - 1] + 2 * sequence[sequence.size() - 2];
+//         if (next <= n)
+//             sequence.push_back(next);
+//         else
+//             break;
+//     }
     
-    // The first position is special - add it first if needed
-        ret.push_back(0);  // First position
+//     // The first position is special - add it first if needed
+//         ret.push_back(0);  // First position
     
-    // Build insertion sequence from Jacobsthal numbers, skipping 0
-    for (size_t i = 1; i < sequence.size(); i++) {
-        int start = sequence[i-1] + 1;
-        int end = sequence[i];
+//     // Build insertion sequence from Jacobsthal numbers, skipping 0
+//     for (size_t i = 1; i < sequence.size(); i++) {
+//         int start = sequence[i-1] + 1;
+//         int end = sequence[i];
         
-        // Add in reverse order from current to next Jacobsthal number
-        for (int j = end; j >= start && j < n; j--) {
-            ret.push_back(j);
-        }
-    }
+//         // Add in reverse order from current to next Jacobsthal number
+//         for (int j = end; j >= start && j < n; j--) {
+//             ret.push_back(j);
+//         }
+//     }
     
-    // Add any remaining elements
-    int start = sequence.back() + 1;
-    for (int j = start; j < n; j++) {
-        ret.push_back(j);
-    }
+//     // Add any remaining elements
+//     int start = sequence.back() + 1;
+//     for (int j = start; j < n; j++) {
+//         ret.push_back(j);
+//     }
     
-    return ret;
-}
+//     return ret;
+// }
 //Jacobsthal is a sequence similar to fibonacci, its 0, 1 and then every step the last number gets added
 // and the second last multiplied by 2
 // 0, 1, 1, 3, 5, 11, 21, 43 etc.

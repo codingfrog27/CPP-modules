@@ -63,7 +63,7 @@ void	NewMerge::groupPairs()
 	while (_nbrVec.size() > 1)
 	{
 		if (next > _nbrVec.size() || next > _pairs.size() ||  _pairs[next].size() != groupSize)
-			break;
+			break; //split this if too see if can be simplified and exit condition can be improved! :)
 
 		if (_nbrVec[i] < _nbrVec[next])
 		{
@@ -85,18 +85,119 @@ void	NewMerge::groupPairs()
 		_nbrVec.erase(_nbrVec.begin() + i);
 	
 
-	printPairs();
-	
+		
+		// printPairs();
 
 	//keep going untill no doubling is possible anymore 
+	// if (_pairs.front().size() == _pairs.at(next).size())
 	if (_pairs.front().size() != groupSize)
+	{
+		// std::cout << "new groupsize == " << _pairs.front().size() << " old size == " << groupSize << "\ngrouping again" << std::endl;
 		groupPairs();
+	}
+	else
+		std::cout << "amogus" << std::endl;
 }
 
-void	NewMerge::BinaryInsert()
+// Jacobsthal is a sequence similar to fibonacci, its 0, 1 and then every step the last number gets added
+// and the second last multiplied by 2
+// 0, 1, 1, 3, 5, 11, 21, 43 etc.
+void NewMerge::createJacobSeq(int n)
 {
 
+	int j0 = 0, j1 = 1;
+
+
+	// _jacobseq.push_back(1);
+	while (true)
+	{
+		int j2 = j1 + (2 * j0);
+		if (j2 > n)
+			break;
+
+		_jacobseq.push_back(j2);
+		
+		//add all indices inbetween
+		for (int i = j2 - 1; i > j1 && i <= n; i--)
+			_jacobseq.push_back(i);
+
+		j0 = j1;
+		j1 = j2;
+	}
+
+	//fill in last indices between last jacobs and n
+	for (int i = n; i > j1; i--)
+	{
+		_jacobseq.push_back(i);
+	}
+
+	std::cout << "JACOB_SEQ --> ";
+
+	for (size_t i = 0; i < _jacobseq.size(); i++)
+	{
+		std::cout << _jacobseq[i] << " ";
+	}
+	std::cout << std::endl;
 }
+
+
+// ************************************************************************** //
+//                                Public methods                              //
+// ************************************************************************** //
+
+void	NewMerge::printPairs()
+{
+	std::cout << "PAIRS ARE: --> " << std::endl;
+	for (size_t i = 0; i < _pairs.size(); i++)
+	{
+		std::cout << "[";
+		for (size_t j = 0; j < _pairs[i].size(); ++j) {
+			std::cout << _pairs[i][j];
+			if (j + 1 < _pairs[i].size())
+				std::cout << ", ";
+		}
+		std::cout << "]" << std::endl;
+	}
+}
+
+void	NewMerge::sort()
+{
+	makeFirstPairs();
+	groupPairs();
+	createJacobSeq(_pairs.front().size());
+
+	std::cout << "vec size == " << _nbrVec.size() << std::endl;
+	for (int num : _nbrVec)
+		std::cout << num << " " << std::endl;
+}
+
+// INSERT SORT
+
+// 1 MAKE PAIRS (biggest on top)
+
+// 2 START UR BIG GROUP
+// 	every split check het bovenste nummer (top of stack) van de lagere helft 
+
+
+// 	(de bovenste helft gaat sws naar rechts/hoger want dat weet je al door het vormen van de paren) 
+
+
+
+// lage deel van pair gaat altijd links van de stack waaar die uitkomt)
+
+
+// CHECK ALLEEN TOP OF STACK
+
+
+// (hoogste en laagste stacks weet je altijd al)
+
+
+// gedurende did check of leftover stacks zelfde size zijn om ze in te voegen
+
+// void	NewMerge::BinaryInsert()
+// {
+
+// }
 
 
 // std::vector<int> MergeMe::generateJacobsthalSequence(int n)
@@ -142,78 +243,4 @@ void	NewMerge::BinaryInsert()
 //     return ret;
 // }
 
-// Jacobsthal is a sequence similar to fibonacci, its 0, 1 and then every step the last number gets added
-// and the second last multiplied by 2
-// 0, 1, 1, 3, 5, 11, 21, 43 etc.
-void NewMerge::createJacobSeq(int n)
-{
 
-	int j0 = 0, j1 = 1;
-	while (j1 <= n)
-	{
-		int j2 = j1 + (2 * j0);
-		
-		if (j1 <= n)
-			_jacobseq.push_back(j1);
-		
-		//add all indices inbetween
-		int start = std::min(j2 - 1, n);
-		for (int i = start; i > j1 && i <= n; i--)
-			 _jacobseq.push_back(i);
-
-		j0 = j1;
-		j1 = j2;
-	}
-}
-
-// ************************************************************************** //
-//                                Public methods                              //
-// ************************************************************************** //
-
-void	NewMerge::printPairs()
-{
-	std::cout << "PAIRS ARE: --> " << std::endl;
-	for (size_t i = 0; i < _pairs.size(); i++)
-	{
-		std::cout << "[";
-		for (size_t j = 0; j < _pairs[i].size(); ++j) {
-			std::cout << _pairs[i][j];
-			if (j + 1 < _pairs[i].size())
-				std::cout << ", ";
-		}
-		std::cout << "]" << std::endl;
-	}
-}
-
-void	NewMerge::sort()
-{
-	makeFirstPairs();
-	groupPairs();
-
-	std::cout << "vec size == " << _nbrVec.size() << std::endl;
-	for (int num : _nbrVec)
-		std::cout << num << " " << std::endl;
-}
-
-// INSERT SORT
-
-// 1 MAKE PAIRS (biggest on top)
-
-// 2 START UR BIG GROUP
-// 	every split check het bovenste nummer (top of stack) van de lagere helft 
-
-
-// 	(de bovenste helft gaat sws naar rechts/hoger want dat weet je al door het vormen van de paren) 
-
-
-
-// lage deel van pair gaat altijd links van de stack waaar die uitkomt)
-
-
-// CHECK ALLEEN TOP OF STACK
-
-
-// (hoogste en laagste stacks weet je altijd al)
-
-
-// gedurende did check of leftover stacks zelfde size zijn om ze in te voegen
