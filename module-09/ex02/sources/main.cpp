@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/07/30 18:26:23 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/08/06 19:53:21 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,25 @@
 
 //     Inserting the losers back into the sorted sequence of winners in a carefully chosen order to minimize comparisons.
 
+
+void	insertPendIntoMain(std::vector<std::vector<int>>& main, \
+	std::vector<std::vector<int>>& pend);
+
+
+std::vector<std::vector<int>>	recursiveFordJohnson(std::vector<std::vector<int>> groups);
+ std::vector<int>	generateJacobsthal(int n);
+ void	sort(char **argv);
+
+
 int main(int argc, char **argv)
 {
 	
-		
+	(void)argc;
 	try
 	{
-		NewMerge	merger(argv, argc);
-		merger.sort();
+		sort(argv);
+		// NewMerge	merger(argv, argc);
+		// merger.sort();
 	}
 	catch (const std::out_of_range &e)
 	{

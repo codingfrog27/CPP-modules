@@ -18,10 +18,12 @@ class NewMerge
 		std::vector<int>					_jacobseq;
 		
 
-		void	makeFirstPairs();
-		void	groupPairs();
-		void	createJacobSeq(int n);
-		void	binaryInsert();
+		void							makeFirstPairs();
+		std::vector<std::vector<int>>	groupPairs \
+		(std::vector<std::vector<int>> groups);
+
+		void							createJacobSeq(int n);
+		void							binaryInsert();
 		
 		public:
 		// Constructors and Destructors
