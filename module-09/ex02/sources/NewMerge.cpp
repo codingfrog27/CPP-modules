@@ -86,13 +86,13 @@ void	NewMerge::groupPairs()
 	
 
 		
-		// printPairs();
-
+	
 	//keep going untill no doubling is possible anymore 
 	// if (_pairs.front().size() == _pairs.at(next).size())
 	if (_pairs.front().size() != groupSize)
 	{
 		// std::cout << "new groupsize == " << _pairs.front().size() << " old size == " << groupSize << "\ngrouping again" << std::endl;
+		printPairs();
 		groupPairs();
 	}
 	else
@@ -108,7 +108,7 @@ void NewMerge::createJacobSeq(int n)
 	int j0 = 0, j1 = 1;
 
 
-	// _jacobseq.push_back(1);
+	_jacobseq.push_back(0);
 	while (true)
 	{
 		int j2 = j1 + (2 * j0);
@@ -171,6 +171,26 @@ void	NewMerge::sort()
 		std::cout << num << " " << std::endl;
 }
 
+
+// The main is initialised with the elements {b1, a1} and then with the rest of a's.
+// The pend is initialised with the rest of bs starting from b2.
+void	NewMerge::binaryInsert()
+{
+	size_t	i = 0, next = 1, groupAmount = 0, groupSize = _pairs[0].size(), halfSize = groupSize / 2;
+	std::vector<int> currentGroup;
+	while (!_pairs.empty())
+	{
+		while (groupAmount < _pairs.size() && groupSize == _pairs[groupAmount].size())
+			groupAmount++;
+
+			
+			currentGroup.insert(_pairs[next].begin(), _pairs[next].end());
+			_pairs.erase(_pairs.begin() + next);
+			_pairs.insert(_pairs.begin() + i, currentGroup);
+	}
+}
+
+
 // INSERT SORT
 
 // 1 MAKE PAIRS (biggest on top)
@@ -193,54 +213,4 @@ void	NewMerge::sort()
 
 
 // gedurende did check of leftover stacks zelfde size zijn om ze in te voegen
-
-// void	NewMerge::BinaryInsert()
-// {
-
-// }
-
-
-// std::vector<int> MergeMe::generateJacobsthalSequence(int n)
-// {
-//     std::vector<int> sequence;
-//     std::vector<int> ret;
-//     if (n <= 0) return ret;  // Return empty sequence for invalid n
-    
-//     // Start with J(0)=0 and J(1)=1
-//     sequence.push_back(0);
-//     sequence.push_back(1);
-    
-//     // Generate Jacobsthal numbers up to n
-//     int next;
-//     while (true) {
-//         next = sequence[sequence.size() - 1] + 2 * sequence[sequence.size() - 2];
-//         if (next <= n)
-//             sequence.push_back(next);
-//         else
-//             break;
-//     }
-    
-//     // The first position is special - add it first if needed
-//         ret.push_back(0);  // First position
-    
-//     // Build insertion sequence from Jacobsthal numbers, skipping 0
-//     for (size_t i = 1; i < sequence.size(); i++) {
-//         int start = sequence[i-1] + 1;
-//         int end = sequence[i];
-        
-//         // Add in reverse order from current to next Jacobsthal number
-//         for (int j = end; j >= start && j < n; j--) {
-//             ret.push_back(j);
-//         }
-//     }
-    
-//     // Add any remaining elements
-//     int start = sequence.back() + 1;
-//     for (int j = start; j < n; j++) {
-//         ret.push_back(j);
-//     }
-    
-//     return ret;
-// }
-
 
