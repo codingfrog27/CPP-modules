@@ -22,6 +22,7 @@ class MergeMe
 		void	sortMainChain();
 		void	insertLeftovers();
 		void	insertPendingElements();
+
 		std::vector<int>	generateJacobsthalSequence(int n);
 
 

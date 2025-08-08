@@ -15,15 +15,21 @@ class NewMerge
 		std::vector<int>					_nbrVec;
 		std::vector<std::vector<int>>		_pairs;
 		int									_nbrSize;
+		int									_recLvl;
 		std::vector<int>					_jacobseq;
+		int									_compare;
 		
 
 		void							makeFirstPairs();
 		std::vector<std::vector<int>>	groupPairs \
 		(std::vector<std::vector<int>> groups);
 
-		void							createJacobSeq(int n);
+		std::vector<int>				createJacobSeq(int n);
 		void							binaryInsert();
+		std::vector<int>	fordJohnson(std::vector<int> groups);
+		void insertPendIntoMain(std::vector<int>& mainChain, const std::vector<int>& pend);
+		bool	compare(int x, int y);
+
 		
 		public:
 		// Constructors and Destructors
