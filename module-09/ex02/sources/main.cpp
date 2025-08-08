@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/08/06 19:53:21 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/08/08 18:00:32 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include <iostream>
 #include <sstream>
 #include <regex>
-#include "NewMerge.hpp"
+#include "VecMerge.hpp"
+#include "QueMerge.hpp"
 
 
 #define C_YELLOW "\033[33m"
@@ -33,25 +34,17 @@
 
 //     Inserting the losers back into the sorted sequence of winners in a carefully chosen order to minimize comparisons.
 
-
-void	insertPendIntoMain(std::vector<std::vector<int>>& main, \
-	std::vector<std::vector<int>>& pend);
-
-
-std::vector<std::vector<int>>	recursiveFordJohnson(std::vector<std::vector<int>> groups);
- std::vector<int>	generateJacobsthal(int n);
- void	sort(char **argv);
-
-
 int main(int argc, char **argv)
 {
-	
-	(void)argc;
 	try
 	{
-		sort(argv);
-		// NewMerge	merger(argv, argc);
-		// merger.sort();
+		VecMerge	vecSort(argv, argc);
+		vecSort.sort();
+
+		std::cout << LINE << std::endl;
+
+		QueMerge	queSort(argv, argc);
+		queSort.sort();
 	}
 	catch (const std::out_of_range &e)
 	{
@@ -61,56 +54,8 @@ int main(int argc, char **argv)
 	{
 		std::cerr << C_RED "Error: " C_RESET << e.what() << '\n';
 	}
-	
-	
-	
 	return 0;
 }
-
-
-
-// std::vector<int>	parseInput(char **argv, int argc)
-// {
-// 	std::vector<int> nbrVec;
-// 	int	curNbr;
-// 	if (argc < 3)
-// 			throw(std::invalid_argument("Can't sort without at least 2 numbers"));
-
-// 	for (size_t i = 0; argv[i]; i++)
-// 	{
-// 		curNbr = std::stoi(argv[i]); //should throw if out of range
-// 		if (curNbr < 0)
-// 			throw (std::invalid_argument("no negative ints allowed"));
-// 		nbrVec.push_back(curNbr);		
-// 	}
-	
-	
-// }
-
-// std::vector<std::pair<int, int>> makePairs(const std::vector<int> &nbrVec)
-// {
-// 	std::pair<int, int> current;
-// 	std::vector<std::pair<int, int>> pairs;
-
-// 	for (size_t i = 0; i < nbrVec.size(); i++)
-// 	{
-// 		if (i % 2 == 0)
-// 			current.first = nbrVec[i];
-// 		else
-// 		{
-// 			current.second = nbrVec[i];
-// 			pairs.push_back(current);
-// 		}
-// 	}
-// 	if (nbrVec.size() % 2 == 1) //if uneven, throw last nbr in pair by itself
-// 	{
-// 		current.second = -1;
-// 		pairs.push_back(current);
-// 	}
-// 	return pairs;
-// }
-
-//OOHH WE CAN MAKE VECTOR OR DEQUE OF PAIRS?
 
 
 

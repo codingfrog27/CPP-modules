@@ -1,6 +1,19 @@
 
 
-
+void	NewMerge::printPairs()
+{
+	std::cout << "PAIRS ARE: --> " << std::endl;
+	for (size_t i = 0; i < _pairs.size(); i++)
+	{
+		std::cout << "[";
+		for (size_t j = 0; j < _pairs[i].size(); ++j) {
+			std::cout << _pairs[i][j];
+			if (j + 1 < _pairs[i].size())
+				std::cout << ", ";
+		}
+		std::cout << "]" << std::endl;
+	}
+}
 
 //keeps merging the groups untill no size doubling is possible anymore
 std::vector<std::vector<int>> NewMerge::groupPairs(std::vector<std::vector<int>> groups)
@@ -39,6 +52,24 @@ std::vector<std::vector<int>> NewMerge::groupPairs(std::vector<std::vector<int>>
 	else
 		std::cout << "amogus" << std::endl;
 	return groups;
+}
+
+// The main is initialised with the elements {b1, a1} and then with the rest of a's.
+// The pend is initialised with the rest of bs starting from b2.
+void	NewMerge::binaryInsert()
+{
+	size_t	i = 0, next = 1, groupAmount = 0, groupSize = _pairs[0].size(), halfSize = groupSize / 2;
+	std::vector<int> currentGroup;
+	while (!_pairs.empty())
+	{
+		while (groupAmount < _pairs.size() && groupSize == _pairs[groupAmount].size())
+			groupAmount++;
+
+			
+			currentGroup.insert(_pairs[next].begin(), _pairs[next].end());
+			_pairs.erase(_pairs.begin() + next);
+			_pairs.insert(_pairs.begin() + i, currentGroup);
+	}
 }
 
 

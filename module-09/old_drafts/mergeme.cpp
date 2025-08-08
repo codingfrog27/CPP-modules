@@ -238,42 +238,42 @@
 // 	insertPendingElements();
 // }
 
-// void	MergeMe::timeAndSortVec()
-// {
-// 	std::cout << "before:\t";
-// 	for (int nbr : _nbrVec)
-// 		std::cout << nbr << " ";
+void	MergeMe::timeAndSortVec()
+{
+	std::cout << "before:\t";
+	for (int nbr : _nbrVec)
+		std::cout << nbr << " ";
 
-// 	auto start = std::chrono::high_resolution_clock::now();
+	auto start = std::chrono::high_resolution_clock::now();
 
-// 	sortVector();
+	sortVector();
 
-// 	std::chrono::duration<double, std::micro> time =  std::chrono::high_resolution_clock::now() - start;
+	std::chrono::duration<double, std::micro> time =  std::chrono::high_resolution_clock::now() - start;
 
-// 	std::cout << "\nafter:\t";
-// 	for (int nbr : _nbrVec)
-// 		std::cout << nbr << " ";
+	std::cout << "\nafter:\t";
+	for (int nbr : _nbrVec)
+		std::cout << nbr << " ";
 
-// 	std::cout << "\nTime to process a range of " << _nbrVec.size() \
-// 				<< " elements with std::vector: " << time.count() << " us" << std::endl;
+	std::cout << "\nTime to process a range of " << _nbrVec.size() \
+				<< " elements with std::vector: " << time.count() << " us" << std::endl;
 	
-// }void MergeMe::insertPendingElements()
-// {
-// 	// Calculate Jacobsthal numbers for insertion sequence
-// 	std::vector<int> jacobsthalIndices = generateJacobsthalSequence(_leftovers.size());
+}void MergeMe::insertPendingElements()
+{
+	// Calculate Jacobsthal numbers for insertion sequence
+	std::vector<int> jacobsthalIndices = generateJacobsthalSequence(_leftovers.size());
 	
-// 	// Insert each pending element according to the Jacobsthal sequence
-// 	for (size_t i = 0; i < jacobsthalIndices.size() && i < _leftovers.size(); i++)
-// 	{
-// 		int pendIndex = jacobsthalIndices[i];
-// 		if (pendIndex < (int)_leftovers.size())
-// 		{
-// 			int valueToInsert = _leftovers[pendIndex];
-// 			// Binary search to find insertion position
-// 			auto pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), valueToInsert);
-// 			_mainChain.insert(pos, valueToInsert);
-// 		}
-// 	}
+	// Insert each pending element according to the Jacobsthal sequence
+	for (size_t i = 0; i < jacobsthalIndices.size() && i < _leftovers.size(); i++)
+	{
+		int pendIndex = jacobsthalIndices[i];
+		if (pendIndex < (int)_leftovers.size())
+		{
+			int valueToInsert = _leftovers[pendIndex];
+			// Binary search to find insertion position
+			auto pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), valueToInsert);
+			_mainChain.insert(pos, valueToInsert);
+		}
+	}
 	
 // 	// Insert any remaining pending elements
 // 	for (size_t i = 0; i < _leftovers.size(); i++)

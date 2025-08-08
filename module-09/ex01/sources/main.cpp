@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/17 13:36:32 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2025/07/14 19:24:47 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2025/08/08 18:11:08 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	InputIsValid(std::string input)
 		throw (std::invalid_argument("Invalid character found in input"));
 }
 
-void	calculate(int op, std::stack<float> &stack)
+void	calculate(int op, std::stack<int> &stack)
 {
-	float a, b, result;
+	int a, b, result;
 	if (stack.size() < 2)
 		throw (std::invalid_argument("Wrong operator placement, need at least 2 preceding numbers"));
 	
@@ -52,6 +52,8 @@ void	calculate(int op, std::stack<float> &stack)
 		result = b - a;
 		break;
 	case '/':
+		if (a == 0)
+			throw (std::invalid_argument("Division by zero is undefined"));
 		result = b / a;
 		break;
 	case '*':
@@ -69,7 +71,7 @@ void	Tokenise(std::string	&input)
 	std::regex			nbrPattern("^\\d+$"); //doesnt check negative numbers but imo dont have to w how notation works
 	int					nbr;
 	std::regex			opPattern("^(\\+|-|\\*|/)$");
-	std::stack<float>	mathStack;
+	std::stack<int>		mathStack;
 	std::istringstream	iss(input);
 	std::string			current;
 

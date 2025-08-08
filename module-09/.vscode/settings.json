@@ -59,6 +59,7 @@
 		"chrono": "cpp",
 		"ratio": "cpp",
 		"*.tpp": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"stack": "cpp"
 	}
 }

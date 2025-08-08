@@ -10,20 +10,23 @@
 #define DB_PATH "./data.csv"
 
 
+
 CoinRate::CoinRate(std::string path) : _DBFile(DB_PATH), _input(path)
 {
 	std::string		value;
+	static const std::regex datePattern("^\\d{4}-\\d{2}-\\d{2}$");
 	if (!_DBFile.is_open())
 		throw BadInput("Error: Could not open database: ");
 	if (!_input.is_open())
 		throw BadInput("Error: Could not open file: " + path);
 
-	//decided database content validation is out of scope
 	getline(_DBFile, value);
 	for (std::string key; std::getline(_DBFile, key, ',');)
 	{
+		if (!std::regex_match(key, datePattern))
+			throw BadInput("Error: bad date in data,csv");
 		std::getline(_DBFile, value);
-		_rateMap[key] = std::stof(value);
+		_rateMap[key] = std::stof(value); //will throw on bad input so inherit pretection 😎
 	}
 }
 
